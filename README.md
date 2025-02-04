@@ -6,7 +6,7 @@
 
 | name                      | link                                      | quiz | 
 | ---                       | ---                                       | ---  |
-| vector(s)                 | [notes link](./topics/vectors/vector.md)  | [quiz link](./topics/vectors/QUIZ.md) |
+| vector(s)                 | [notes link](./topics/vectors/vector.md)  | [quiz link](./topics/vectors/vector-QUIZ.md) |
 
 
 ## Resources

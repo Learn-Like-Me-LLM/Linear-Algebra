@@ -1,11 +1,11 @@
 🟢 _Last Updated: Feb 04, 2025_
 # Vector(s)
 
-> [!NOTE]
+> [!IMPORTANT]
 >
-> A vector is a mathematical entity that simultaneously possesses both `magnitude` ("length" or "size") and `direction`. It can be visualized as an arrow in geometric space, pointing to a specific location from its `tail`. 
+> A mathematical entity that simultaneously possesses both `magnitude` ("length" or "size") and `direction`. It can be visualized as an arrow in geometric space, pointing to a specific location from its `tail`. 
 
-Vectors are fundamental components of [VECTOR SPACES](./vector-spaces.md). In practical applications, especially within data science, vectors are crucial for representing multi-dimensional data succinctly. Each component of a vector can correspond to a feature or variable in datasets.
+Vectors are fundamental components of [VECTOR SPACES](./vector-spaces/vector-space.md). In practical applications, especially within data science, vectors are crucial for representing multi-dimensional data succinctly. Each component of a vector can correspond to a feature or variable in datasets.
 
 Moreover, while vectors can be abstract entities beyond coordinate systems, such as functions forming vector spaces
 under appropriate operations, the core concept remains consistent: **they are ordered, scalable (["operatable"](./operations.md)), and addable quantities
@@ -13,7 +13,7 @@ essential across various mathematical and scientific disciplines.**
 
 > [!WARNING]
 >
-> [VECTORS](./vector.md) are not [SCALARS](./scalar.md)
+> [VECTOR](./vector.md)s are not [SCALAR](./../scalar.md)s
 
 ## Representation / Notation
 
