@@ -11,9 +11,17 @@ Moreover, while vectors can be abstract entities beyond coordinate systems, such
 under appropriate operations, the core concept remains consistent: **they are ordered, scalable (["operatable"](./operations.md)), and addable quantities
 essential across various mathematical and scientific disciplines.**
 
-> [!WARNING]
->
-> [VECTOR](./vector.md)s are not [SCALAR](./../scalar.md)s
+## vs [TENSOR](./../tensor.md)
+
+Vectors are not tensors. Tensors are higher-dimensional arrays of numbers, while vectors are ordered collections of numbers.
+
+## vs [SCALAR](./../scalar.md)
+
+Vectors are not scalars. Scalars are single numbers, while vectors are ordered collections of numbers.
+
+## vs [MATRIX](./../MATRIXs/matrix.md)
+
+Vectors are not matrices. Matrices are rectangular arrays of numbers, while vectors are ordered collections of numbers.
 
 ## Representation / Notation
 

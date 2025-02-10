@@ -1,12 +1,51 @@
 # Linear-Algebra
 
+## [🚧 WIP CURRICULUM 🚧](https://docs.google.com/spreadsheets/d/1fwn18Aqr-nGrS0VKeRELpRluGVMYJptrxpRzLfXdl5c/edit?gid=0#gid=0)
+
 ## [Glossary](./glossary.md)
+
+## Tree
+
+<details>
+<summary>Tree</summary>
+
+```
+.
+├── README.md
+├── glossary.md
+├── quotes.md
+└── topics
+    ├── TENSORs
+    │   ├── MATRIXs
+    │   │   ├── VECTORs
+    │   │   │   ├── SCALARs
+    │   │   │   │   └── scalar.index.md
+    │   │   │   ├── VECTOR-OPERATIONs
+    │   │   │   │   ├── LINEAR-COMBINATIONs
+    │   │   │   │   │   ├── linear-combinations.index.md
+    │   │   │   │   │   └── scalar-multiplication.md
+    │   │   │   │   ├── cross-product.md
+    │   │   │   │   └── vector-operations.index.md
+    │   │   │   ├── vector.index.md
+    │   │   │   └── vector.quiz.md
+    │   │   └── matrix.index.md
+    │   └── tensor.index.md
+    └── VECTOR-SPACEs
+        ├── LINEAR-TRANSFORMATIONs
+        │   └── linear-transformations.index.md
+        ├── axioms.md
+        ├── norm.md
+        └── vector-space.index.md
+```
+</details>
 
 ## Topics
 
 | name                      | link                                      | quiz | 
 | ---                       | ---                                       | ---  |
-| vector(s)                 | [notes link](./topics/vectors/vector.md)  | [quiz link](./topics/vectors/vector-QUIZ.md) |
+| vector-space(s)           | [notes link](./topics/VECTOR-SPACEs/vector-space.index.md)  | |
+| linear-transformation(s)  | [notes link](./topics/VECTOR-SPACEs/LINEAR-TRANSFORMATIONs/linear-transformations.index.md)  | |
+| tensor(s)                 | [notes link](./topics/VECTOR-SPACEs/TENSORs/tensor.index.md)  | |
 
 
 ## Resources

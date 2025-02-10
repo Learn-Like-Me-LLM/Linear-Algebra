@@ -9,6 +9,13 @@ They are crucial for organizing and manipulating multi-dimensional datasets and 
 
 Understanding vector spaces equips one with the ability to analyze systems of equations, transformations, and data structures efficiently, making it an essential concept in modern mathematics and its applications.
 
+## Routing
+
+| link | description |
+| --- | --- |
+| [Linear Transformations](./LINEAR-TRANSFORMATIONs/linear-transformations.index.md) | Linear Transformations are mappings between vector spaces |
+| [Tensors](./TENSORs/tensor.index.md) | Tensors are mathematical objects that live within vector spaces |
+
 ## Type(s)
 
 ### Euclidean Vector Space
