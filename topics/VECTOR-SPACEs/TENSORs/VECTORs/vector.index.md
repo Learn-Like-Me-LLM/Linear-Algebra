@@ -3,8 +3,22 @@
 
 > [!IMPORTANT]
 >
-> A mathematical entity that simultaneously possesses both `magnitude` ("length" or "size") and `direction`. It can be visualized as an arrow in geometric space, pointing to a specific location from its `tail`. 
+> A mathematical entity that simultaneously possesses both `magnitude` ("length" or "size") and `direction`. It can be visualized as an arrow in geometric space, pointing to a specific location from its `tail`.  
 
+<video controls>
+  <source src="../../../../manim/001_2-11-25_what-is-a-vector/exports/videos/what-is-a-vector/720p30/WhatIsAVector.mp4" type="video/mp4">
+</video>
+
+<details>
+    <summary>
+        Manim Video: What is a Vector?
+    </summary>  
+
+> Last Updated: _`February 12, 2025`_    
+> Manim Knowledge: _`Manim Super Noob`_
+</details>
+
+</br>
 
 Vectors are fundamental components of [VECTOR SPACES](./vector-spaces/vector-space.md). In practical applications, especially within data science, vectors are crucial for representing multi-dimensional data succinctly. Each component of a vector can correspond to a feature or variable in datasets.
 
