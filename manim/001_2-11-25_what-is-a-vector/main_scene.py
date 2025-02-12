@@ -7,107 +7,73 @@ class S1(Scene):
         # TITLE ################
         ########################
         title = Text("What is a Vector?", font_size=40)
-        self.play(Write(title))
-        self.wait(wait)
-        self.remove(title)
 
         # DEFINITION ###########
         ########################
-        definition = Text("A vector is a mathematical entity that simultaneously possesses both magnitude and direction.", font_size=20)
+        definition = MarkupText(
+            'A vector is a mathematical entity that simultaneously \npossesses both <span color="RED">magnitude</span> and <span color="YELLOW">direction</span>.',
+            font_size=20,
+            should_center=True
+        )
+
+
+        # EXAMPLE ###########
+        ########################
+        statement = MarkupText(
+            "The wind is blowing <span color='RED'>6mph</span> <span color='YELLOW'>east</span>.",
+            font_size=30,
+        )
+
+        # Group text elements and position left
+        left_container = VGroup(title, definition, statement).arrange(DOWN, buff=0.5)
+        # text_group.scale(0.7)  # Scale down a bit more
+        
+        # Animation sequence
+        self.play(Write(title))
+        self.wait(wait)
         self.play(Write(definition))
         self.wait(wait)
-        self.remove(definition)
-
-        statement = Text("The wind is blowing 6mph east.")
         self.play(Write(statement))
         self.wait(wait)
-        self.remove(statement)
-
-        # NUMBER LINE ##########
-        ########################
-        number_line = NumberLine(
-            x_range=[0, 10, 1],
-            include_ticks=True
-
-        )
-        self.play(Create(number_line))
-
-        # Create vector animations with "walking" effect
-        start_num = 0
-        end_num = 5
         
-        # Initial vector at starting point
+        # Move text to left and show border
+        self.play(
+            left_container.animate.to_edge(LEFT, buff=1),
+        )
+
+        # Scale down and position plane
+        plane = NumberPlane(
+            x_range=[-2, 10, 1],
+            y_range=[-2, 10, 1],
+            x_length=4.5,  # Reduced further
+            y_length=4.5,  # Reduced further
+            axis_config={"include_numbers": True}
+        )
+        right_container = VGroup(plane)
+        self.play(
+            right_container.animate.to_edge(RIGHT, buff=1),
+        )
+
+        # Direction labels
+        directions = VGroup(
+            Text("North", font_size=16).next_to(plane.y_axis, UP),
+            Text("South", font_size=16).next_to(plane.y_axis, DOWN),
+            Text("East", font_size=16).next_to(plane.x_axis, RIGHT),
+            Text("West", font_size=16).next_to(plane.x_axis, LEFT)
+        )
+        
+        self.play(Write(directions))
+        
+        # Create vector showing 6 units east
         vector = Arrow(
-            start=number_line.number_to_point(start_num),
-            end=number_line.number_to_point(start_num),
+            start=plane.coords_to_point(0, 0),
+            end=plane.coords_to_point(6, 0),
             color=YELLOW,
             buff=0,
             max_tip_length_to_length_ratio=0.2
         )
-        self.play(Create(vector))
         
-        # Walk through each number
-        for i in range(start_num + 1, end_num + 1):
-            # Create new vector for target position
-            new_vector = Arrow(
-                start=number_line.number_to_point(start_num),
-                end=number_line.number_to_point(i),
-                color=YELLOW,
-                buff=0,
-                max_tip_length_to_length_ratio=0.2
-            )
-            
-            # Transform current vector to new position
-            self.play(
-                Transform(vector, new_vector),
-                run_time=0.5
-            )
-            
-            # Pulse animation at each number
-            self.play(
-                vector.animate.scale(1.2),
-                run_time=0.2
-            )
-            self.play(
-                vector.animate.scale(1/1.2),
-                run_time=0.2
-            )
-            
-            # Pause briefly
-            self.wait(0.3)
-
-        # ########################
-        # # NUMBER PLANE #########
-        # ########################
-        # number_plane = NumberPlane(
-        #     x_range=[-10, 10, 1], 
-        #     y_range=[-10, 10, 1], 
-        #     x_length=20,         
-        #     y_length=20, 
-        #     axis_config={"include_numbers": True}
-        # )
-        # # self.play(Create(number_plane))
-        # self.wait(wait)
-
-        # # Create and animate points
-        # dot1 = Dot(radius=0.1)
-        # dot1.move_to(number_plane.coords_to_point(0, 0))
-        
-        # dot2 = Dot(radius=0.1, color=RED)
-        # dot2.move_to(number_plane.coords_to_point(5, 0))
-        
-        # self.play(Create(dot1))
-        # self.wait(wait)
-
-        # self.play(Create(dot2))
-        # self.wait(wait)
-
-        # # Create vector between points
-        # vector = Arrow(
-        #     start=dot1.get_center(),
-        #     end=dot2.get_center(),
-        #     color=YELLOW,
-        #     buff=0
-        # )
-        # self.play(Create(vector))
+        # Animate vector creation with growing effect
+        self.play(GrowArrow(vector))
+        self.wait(wait)
         
