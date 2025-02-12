@@ -72,8 +72,15 @@ class S1(Scene):
             buff=0,
             max_tip_length_to_length_ratio=0.2
         )
+        vector2 = Arrow(
+            start=plane.coords_to_point(2, 3),
+            end=plane.coords_to_point(8, 3),
+            color=ORANGE,
+            buff=0,
+            max_tip_length_to_length_ratio=0.2
+        )
         
         # Animate vector creation with growing effect
-        self.play(GrowArrow(vector))
+        self.play(GrowArrow(vector), GrowArrow(vector2))
         self.wait(wait)
         
