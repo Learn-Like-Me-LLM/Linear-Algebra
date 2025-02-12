@@ -11,7 +11,7 @@ class S1(Scene):
         # DEFINITION ###########
         ########################
         definition = MarkupText(
-            'A vector is a mathematical entity that simultaneously \npossesses both <span color="RED">magnitude</span> and <span color="YELLOW">direction</span>.',
+            'A <span color="GREEN">vector</span> is a mathematical entity that simultaneously \npossesses both <span color="RED">magnitude</span> and <span color="YELLOW">direction</span>.',
             font_size=20,
             should_center=True
         )
@@ -20,7 +20,7 @@ class S1(Scene):
         # EXAMPLE ###########
         ########################
         statement = MarkupText(
-            "The wind is blowing <span color='RED'>6mph</span> <span color='YELLOW'>east</span>.",
+            "The <span color='GREEN'>wind</span> is blowing <span color='RED'>6mph</span> <span color='YELLOW'>east</span>.",
             font_size=30,
         )
 
@@ -43,7 +43,7 @@ class S1(Scene):
 
         # Scale down and position plane
         plane = NumberPlane(
-            x_range=[-2, 10, 1],
+            x_range=[-5, 10, 1],
             y_range=[-2, 10, 1],
             x_length=4.5,  # Reduced further
             y_length=4.5,  # Reduced further
@@ -75,12 +75,33 @@ class S1(Scene):
         vector2 = Arrow(
             start=plane.coords_to_point(2, 3),
             end=plane.coords_to_point(8, 3),
-            color=ORANGE,
+            color=GREEN,
+            buff=0,
+            max_tip_length_to_length_ratio=0.2
+        )
+        vector3 = Arrow(
+            start=plane.coords_to_point(-3, 7),
+            end=plane.coords_to_point(3, 7),
+            color=GREEN,
             buff=0,
             max_tip_length_to_length_ratio=0.2
         )
         
-        # Animate vector creation with growing effect
-        self.play(GrowArrow(vector), GrowArrow(vector2))
+        # Add standard position description
+        standard_position = MarkupText(
+            "<span color='YELLOW'>Standard Position</span> refers to the vector's \nstarting point being at the origin (0,0).",
+            font_size=10
+        ).next_to(left_container, DOWN)
+        self.play(GrowArrow(vector))
+        self.play(Write(standard_position))
+        self.wait(wait)
+
+        # Add vector equivalence description
+        non_standard_position = MarkupText(
+            "All these vectors are the same <span color='GREEN'>vector</span>,\ndespite their different starting points.", 
+            font_size=10
+        ).next_to(standard_position, DOWN)
+        self.play(GrowArrow(vector2), GrowArrow(vector3))
+        self.play(Write(non_standard_position))
         self.wait(wait)
         
