@@ -5,9 +5,24 @@
 >
 > A mathematical entity that simultaneously possesses both `magnitude` ("length" or "size") and `direction`. It can be visualized as an arrow in geometric space, pointing to a specific location from its `tail`.  
 
+Video Embed - Attempt 1:
 <video controls>
   <source src="../../../../manim/001_2-11-25_what-is-a-vector/exports/videos/what-is-a-vector/720p30/WhatIsAVector.mp4" type="video/mp4">
 </video>
+
+Video Embed - Attempt 2:
+<video controls>
+  <source src="https://github.com/Learn-Like-Me-LLM/Linear-Algebra/blob/MANIM_what-is-a-vector/manim/001_2-11-25_what-is-a-vector/exports/videos/what-is-a-vector/720p30/WhatIsAVector.mp4" type="video/mp4">
+</video>
+
+Video Embed - Attempt 3:
+
+https://github.com/Learn-Like-Me-LLM/Linear-Algebra/blob/MANIM_what-is-a-vector/manim/001_2-11-25_what-is-a-vector/exports/videos/what-is-a-vector/720p30/WhatIsAVector.mp4
+
+press play to see the video
+
+Video Embed - Attempt 4:
+[![](https://github.com/Learn-Like-Me-LLM/Linear-Algebra/blob/MANIM_what-is-a-vector/manim/001_2-11-25_what-is-a-vector/exports/videos/what-is-a-vector/720p30/WhatIsAVector.mp4)](https://github.com/Learn-Like-Me-LLM/Linear-Algebra/blob/MANIM_what-is-a-vector/manim/001_2-11-25_what-is-a-vector/exports/videos/what-is-a-vector/720p30/WhatIsAVector.mp4)
 
 <details>
     <summary>
