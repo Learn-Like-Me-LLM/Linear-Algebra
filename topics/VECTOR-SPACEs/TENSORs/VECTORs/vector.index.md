@@ -1,45 +1,61 @@
-🟢 _Last Updated: Feb 04, 2025_
+🟢 _Last Updated: Feb 13, 2025_  
+
+_topic frontmatter_
+---
+
+topic: "vector"
+parent_topic: "tensor"
+linked_content_manim: [
+  {
+    "title": "What is a Vector?",
+    "google_drive_file_path": "https://drive.google.com/file/d/13sFo7jNtF66fKB5wqYcQYrTC0ez574xQ/view?usp=drive_link"
+  }
+]
+
+---
+
 # Vector(s)
 
 > [!IMPORTANT]
 >
-> A mathematical entity that simultaneously possesses both `magnitude` ("length" or "size") and `direction`. It can be visualized as an arrow in geometric space, pointing to a specific location from its `tail`. 
+> ...its an `arrow`... ⬇️ | ⬆️ | ⬅️ | ➡️ | ↙️ | ↘️ | ↖️ | ↗️  
+> - OR...an `ordered collections of numbers`    
+> - OR...a mathematical entity with both a `magnitude` (_"length"_) and `direction`
 
-Vectors are fundamental components of [VECTOR SPACES](./vector-spaces/vector-space.md). In practical applications, especially within data science, vectors are crucial for representing multi-dimensional data succinctly. Each component of a vector can correspond to a feature or variable in datasets.
+## Vector Notation / Representation
 
-Moreover, while vectors can be abstract entities beyond coordinate systems, such as functions forming vector spaces
-under appropriate operations, the core concept remains consistent: **they are ordered, scalable (["operatable"](./operations.md)), and addable quantities
-essential across various mathematical and scientific disciplines.**
+- Vectors are represented as `ordered collections of numbers` 
+  - each number corresponds to a `coordinate` in a particular `dimension`. 
+- Vectors are typically represented in the `standard position` or starting at the `origin (0, 0, 0, ...)` of the dimensional space. 
 
-## vs [TENSOR](./../tensor.md)
+### VS Point Notation
+| Notation | Description | LaTex Example| 
+| --- | --- | --- | 
+| Vector Notation | `square brackets "[]"` | $\text{Vector: } \vec{v} = \begin{bmatrix} x \\ y \\ z \\ \vdots  \end{bmatrix} = \begin{bmatrix} x & y & z & ... \end{bmatrix}$| 
+| Point Notation | `smooth brackets "()"` | $\text{Point: } P = (x,y,z)$ |
 
-Vectors are not tensors. Tensors are higher-dimensional arrays of numbers, while vectors are ordered collections of numbers.
-
-## vs [SCALAR](./../scalar.md)
-
-Vectors are not scalars. Scalars are single numbers, while vectors are ordered collections of numbers.
-
-## vs [MATRIX](./../MATRIXs/matrix.md)
-
-Vectors are not matrices. Matrices are rectangular arrays of numbers, while vectors are ordered collections of numbers.
-
-## Representation / Notation
-
-Vectors are represented as `ordered collections of numbers`, where each number corresponds to a `coordinate` in a particular `dimension`. 
-
-[VECTOR NOTATION](./notation.md) is a way to represent vectors using square brackets "[]" as opposed to [POINT NOTATION](./notation.md) that uses smooth brackets "()" to represent individual...points... 😉
-
-> [!IMPORTANT]
->
-> $\vec{v} = \begin{bmatrix} x \\ y \\ z \end{bmatrix}$
 
 ## Vector Types
 
-| type                  | description |
-| ---                   | --- |
-| `zero vector`         | a vector with all components equal to zero |
-| `unit vector`         | a vector with a magnitude of 1 |
-| `position vector`     | a vector that represents a point in space |
-| `free vector`         | a vector that can be moved without changing their effect |
-| `bound vector`        | a vector that is anchored at specific points |
-| ...etc. | ...etc.     |
+| Type                  | Description | LaTeX Example |
+| ---                   | ---                                                       | --- |
+| `zero vector`         | A vector with all components equal to zero                | $\vec{0} = \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix}$ |
+| `unit vector`         | A vector with a magnitude of 1                            | $\hat{i} = \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}$ |
+| `position vector`     | A vector that represents a point in space                 | $\vec{r} = \begin{bmatrix} x \\ y \\ z \end{bmatrix}$ |
+| `free vector`         | A vector that can be moved without changing their effect  | $\vec{F} = 5\hat{i} + 3\hat{j}$ |
+| `bound vector`        | A vector that is anchored at specific points              | $\vec{AB} = \begin{bmatrix} x_2-x_1 \\ y_2-y_1 \\ z_2-z_1 \end{bmatrix}$ |
+| `parallel vectors`    | Vectors pointing in the same or opposite directions       | $\vec{a} \parallel \vec{b} \iff \vec{a} = k\vec{b}$ |
+| `orthogonal vectors`  | Vectors perpendicular to each other                       | $\vec{a} \perp \vec{b} \iff \vec{a} \cdot \vec{b} = 0$ |
+| `basis vectors`       | Set of vectors that span a vector space                   | $\{\hat{i}, \hat{j}, \hat{k}\}$ |
+| `normal vector`       | Vector perpendicular to a surface or plane                | $\vec{n} = \begin{bmatrix} a \\ b \\ c \end{bmatrix}$ |
+| `displacement vector` | Vector representing change in position                    | $\Delta\vec{r} = \vec{r}_2 - \vec{r}_1$ |
+
+## 🔍 📚ManimCE Review Video(s)
+
+> [!IMPORTANT]
+> 
+> _The accompanying audiovisual pedagogical presentations, meticulously crafted utilizing the sophisticated [MANIM Community Edition](https://www.manim.community/) framework, constitute an alternative modality through which one might assimilate and synthesize the intricate epistemological elucidations heretofore delineated within this multifaceted compendium of scholarly discourse._
+
+| Video | Description |
+| --- | --- |
+| [What is a Vector?](https://drive.google.com/file/d/13sFo7jNtF66fKB5wqYcQYrTC0ez574xQ/view?usp=drive_link) | A video that explains what a vector is and how it is represented. |
