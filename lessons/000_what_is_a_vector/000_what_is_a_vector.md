@@ -7,6 +7,13 @@ topics: [{ "title: "vectors"
 manim_animations: [{ "title": "What is a vector?",
                      "google_drive_link": "https://drive.google.com/file/d/1qk0Q5V8elFQ6rYOLeb-Tq3A4hquRGXP5/view"}, 
 ]
+posts: {
+    "twitter": {
+        link: "https://x.com/turgeonreed13/status/1891586618055627002",
+        date: "02-17-2025"
+    },
+    "linkedin": null
+}
 published_date: 02-17-2025
 ---
 
