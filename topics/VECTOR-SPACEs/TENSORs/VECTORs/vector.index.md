@@ -1,8 +1,4 @@
-🟢 _Last Updated: Feb 13, 2025_  
-
-_topic frontmatter_
 ---
-
 topic: "vector"
 parent_topic: "tensor"
 linked_content_manim: [
@@ -11,9 +7,10 @@ linked_content_manim: [
     "google_drive_file_path": "https://drive.google.com/file/d/13sFo7jNtF66fKB5wqYcQYrTC0ez574xQ/view?usp=drive_link"
   }
 ]
-
 ---
 
+🟢 _Last Updated: Feb 13, 2025_ 
+ 
 # Vector(s)
 
 > [!IMPORTANT]
