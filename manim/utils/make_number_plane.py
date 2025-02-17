@@ -1,13 +1,13 @@
 from manim import *
 
-def makePlane(self, debug=False):
+def makeNumberPlane(self, x_range, y_range, x_length, y_length, axis_config, debug=False):
     # position plane
     plane = NumberPlane(
-        x_range=[-5, 10, 1],
-        y_range=[-2, 10, 1],
-        x_length=3,
-        y_length=3,
-        axis_config={"include_numbers": False},
+        x_range=x_range,
+        y_range=y_range,
+        x_length=x_length,
+        y_length=y_length,
+        axis_config=axis_config,
     )
     
     return plane

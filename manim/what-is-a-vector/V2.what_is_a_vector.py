@@ -9,7 +9,7 @@ from utils.create_mobject_border import create_border
 from utils.next_to_updater import next_to_updater
 
 from V2_what_is_a_vector_intro import WhatIsAVectorIntro
-from V2_what_is_a_cector_example import ExampleScene  # Fixed import name
+from V2_what_is_a_vector_example import ExampleScene  # Fixed import name
 
 class V2WhatIsAVector(Scene):
     def construct(self):
@@ -22,4 +22,3 @@ class V2WhatIsAVector(Scene):
         # EXAMPLE 
         ############################################################
         example = ExampleScene(self, debug=debug)
-        self.play(Write(example))

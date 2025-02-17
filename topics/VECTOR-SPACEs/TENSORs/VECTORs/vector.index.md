@@ -4,7 +4,7 @@ parent_topic: "tensor"
 linked_content_manim: [
   {
     "title": "What is a Vector?",
-    "google_drive_file_path": "https://drive.google.com/file/d/13sFo7jNtF66fKB5wqYcQYrTC0ez574xQ/view?usp=drive_link"
+    "google_drive_file_path": "https://drive.google.com/file/d/1qk0Q5V8elFQ6rYOLeb-Tq3A4hquRGXP5/view"
   }
 ]
 ---
