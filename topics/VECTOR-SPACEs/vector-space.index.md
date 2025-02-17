@@ -1,74 +1,78 @@
-🟡 _Last Updated: Feb 04, 2025_
+---
+title: "vector-space"
+parent_topic: null
+linked_content_manim: [
+    {
+        "title": "What is a Vector Space?",
+        "google_drive_file_path": null
+    }
+]
+---
+
+🟡 _Last Updated: Feb 17, 2025_
+
 # Vector Space(s)
 
 > [!IMPORTANT]
->
-> A vector space over a field F is a non-empty set of vectors together with two operations: [vector addition (+)](../operations.md#vector-addition) and [scalar multiplication (·)](../operations.md#scalar-multiplication). These operations must adhere to specific rules, known as [AXIOMS](./axioms.md), to ensure the vector space behaves in a predictable and consistent manner.
+> 
+> a vector space is a non-empty `set or field` of vectors that respect a list of fundamental [Axioms](./axioms.md) across 2 categories:  
+> - `Additive Properties`  
+>   - Closure under addition  
+>   - Associativity of addition  
+>   - Existence of additive identity  
+>   - Existence of additive inverses  
+> - `Scalar Multiplication Properties`  
+>   - Closure under scalar multiplication  
+>   - Compatibility with field addition  
+>   - Compatibility with vector addition  
+>   - Identity scalar multiplication  
 
-They are crucial for organizing and manipulating multi-dimensional datasets and help us understand how vectors interact under [SCALAR](./../scalar.md) [operations](./operations.md). 
+### Functional Properties 
 
-Understanding vector spaces equips one with the ability to analyze systems of equations, transformations, and data structures efficiently, making it an essential concept in modern mathematics and its applications.
+#### Closure
 
-## Routing
+| Name                          | Mathematical Statement                                            | Description                                           | Example | 
+| ---                           | ---                                                               | ---                                                   | --- |
+| Additive Closure              | For $\vec{u}, \vec{v} \in V$:     <br> $\vec{u} + \vec{v} \in V$  | The sum of any two vectors remains in V               | In $\mathbb{R}^2$: <br> $\begin{bmatrix} 1 \\ 2 \end{bmatrix} + \begin{bmatrix} 3 \\ 4 \end{bmatrix} = \begin{bmatrix} 4 \\ 6 \end{bmatrix} \in \mathbb{R}^2$ |
+| Scalar Multiplication Closure | For $a \in F, \vec{u} \in V$:             <br> $a\vec{u} \in V$   | Scaling a vector by a scalar keeps the result in V    | In $\mathbb{R}^2$: <br> $3\begin{bmatrix} 2 \\ 1 \end{bmatrix} = \begin{bmatrix} 6 \\ 3 \end{bmatrix} \in \mathbb{R}^2$ |
 
-| link | description |
-| --- | --- |
-| [Linear Transformations](./LINEAR-TRANSFORMATIONs/linear-transformations.index.md) | Linear Transformations are mappings between vector spaces |
-| [Tensors](./TENSORs/tensor.index.md) | Tensors are mathematical objects that live within vector spaces |
+#### Axioms
+
+> [Vector Space Axioms](./axioms.md)
+
+### Structural Properties
+
+#### Subspaces
+tbd...
+
+#### Linear Independence
+tbd...
+
+#### Span
+tbd...
+
+#### Basis
+tbd...
+
+#### Dimension
+tbd...
 
 ## Type(s)
 
-### Euclidean Vector Space
+### [Real Coordinate Space ($\mathbb{R}^n$)](./real-coordinate-space.md)
+The most fundamental and widely-used vector spaces are [real coordinate spaces](./real-coordinate-space.md). These spaces consist of ordered lists of real numbers and provide the foundation for most practical applications of vector spaces. The familiar 2D plane ($\mathbb{R}^2$) and 3D space ($\mathbb{R}^3$) are special cases of these spaces.
 
-> These are the vector spaces we encounter most often, where vectors are represented as n-tuples of real numbers. For example, ℝ² represents the two-dimensional Euclidean plane, and ℝ³ represents three-dimensional space.
+[!WARNING]
+> 
+> There are _many_ more types of vector spaces -- this list will be expanded as we continue to explore the properties of vector spaces.
 
-### Function Vector Space
+## Resources
 
-> These vector spaces consist of functions as their elements. Examples include the space of continuous functions, the space of differentiable functions, and the space of polynomials.
 
-### Polynomial Vector Space
-
-> These vector spaces consist of polynomials with coefficients from a field.
-
-### Matrix Space _(Vector Space of Matrices)_
-
-These vector spaces consist of matrices of a fixed size with entries from a field.
-
-## Type Enhancements
-
-### Normed Vector Space
-
-> a vector space equipped with a [NORM](./norm.md) (a function that assigns a non-negative length or magnitude to each vector) facilitating distance measurement between vectors and define concepts like convergence.
-
-### Inner Product Space
-
-> a vector space equipped with an [INNER PRODUCT](./inner-product.md), a generalization of the dot product. The inner product allows us to define angles between vectors and notions of orthogonality (perpendicularity).
-
-### Hilbert Space
-
-## Properties
-
-### Subspaces
-
-> A subspace of a vector space is a subset that is itself a vector space under the same operations. For example, within the vector space ℝ³, the set of all vectors lying on a plane passing through the origin forms a subspace.
-
-### Linear Independence
-
-> A set of vectors is linearly independent if no vector in the set can be expressed as a linear combination of the others. For instance, in ℝ³, the vectors (1, 0, 0), (0, 1, 0), and (0, 0, 1) are linearly independent.
-
-### Span
-
-> The span of a set of vectors is the set of all possible linear combinations of those vectors. It represents the subspace generated by the given set of vectors.
-
-### Basis
-
-> A basis for a vector space is a linearly independent set of vectors that spans the entire space. Every vector in the space can be uniquely expressed as a linear combination of the basis vectors.
-
-### Dimension
-
-> The dimension of a vector space is the number of vectors in any basis for that space. It represents the number of independent directions in the space.
-
-### Rank
-
-### Nullity
-
+| link | 
+| --- | 
+| [Abstract vector spaces \| Chapter 16, Essence of linear algebra > (YT : 3Blue1Brown)](https://www.youtube.com/watch?v=TgKwz5Ikpc8) |
+| [Understanding Vector Spaces > (YT)](https://www.youtube.com/watch?v=EP2ghkO0lSk) |
+| [What is a Vector Space (Abstract Algebra) > (YT)](https://www.youtube.com/watch?v=ozwodzD5bJM) |
+| [Vector Spaces \| Definition & Examples > (YT)](https://www.youtube.com/watch?v=72GtkP6nP_A) |
+| [Oxford Linear Algebra: What is a Vector Space? > (YT)](https://www.youtube.com/watch?v=draqOOUoWQM) |

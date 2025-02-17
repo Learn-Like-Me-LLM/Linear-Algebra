@@ -1,15 +1,21 @@
-# Vector Space(s) > Axioms
+# Vector Space Axioms
 
-| axiom                                                             | notation |
-| ---                                                               | ---      |
-| closure under addition                                            | if $\mathbf{u}, \mathbf{v} \in V$, then $\mathbf{u} + \mathbf{v} \in V$ |
-| associativity of addition                                         | For all $\mathbf{u}, \mathbf{v}, \mathbf{w} \in V$, $(\mathbf{u} + \mathbf{v}) + \mathbf{w} = \mathbf{u} + (\mathbf{v} + \mathbf{w})$. |
-| Existence of Additive Identity                                    | There exists a vector $\mathbf{0} \in V$ such that for any $\mathbf{v} \in V$, $\mathbf{v} + \mathbf{0} = \mathbf{v}$. |
-| Existence of Additive Inverses                                    | For every $\mathbf{v} \in V$, there exists a vector $-\mathbf{v} \in V$ such that $\mathbf{v} + (-\mathbf{v}) = \mathbf{0}$. |
-| Commutativity of Addition                                         | For any $\mathbf{u}, \mathbf{v} \in V$, $\mathbf{u} + \mathbf{v} = \mathbf{v} + \mathbf{u}$. |
-| Closure under Scalar Multiplication                               | If $a \in F$ and $\mathbf{v} \in V$, then $a \cdot \mathbf{v} \in V$. |
-| Compatibility of Scalar Multiplication with Field Addition        | For all $a, b \in F$ and $\mathbf{v} \in V$, $(a + b) \cdot \mathbf{v} = a \cdot \mathbf{v} + b \cdot \mathbf{v}$. |
-| Distributivity of Scalar Multiplication over Vector Addition      | For all $a \in F$ and $\mathbf{u}, \mathbf{v} \in V$, $a \cdot (\mathbf{u} + \mathbf{v}) = a \cdot \mathbf{u} + a \cdot \mathbf{v}$. |
-| Compatibility of Scalar Multiplication with Field Multiplication  | For all $a, b \in F$ and $\mathbf{v} \in V$, $(ab) \cdot \mathbf{v} = a \cdot (b \cdot \mathbf{v})$. |
-| Identity Element of Scalar Multiplication                         | For the multiplicative identity $1 \in F$, for any $\mathbf{v} \in V$, $1 \cdot \mathbf{v} = \mathbf{v}$. |
+A vector space V over a field F is defined by the following fundamental axioms:
 
+## Additive Properties
+
+| Axiom                                 | Mathematical Statement                                                                                            | Description                                                               | Example |
+|-------                                |----------------------                                                                                             |-------------                                                              |---------|
+| 1. Commutativity of Addition          | For $\vec{u}, \vec{v} \in V$:             <br> $\vec{u} + \vec{v} = \vec{v} + \vec{u}$                            | The order of vectors in addition doesn't matter                           | In $\mathbb{R}^2$: <br> $\begin{bmatrix} 1 \\ 2 \end{bmatrix} + \begin{bmatrix} 3 \\ 4 \end{bmatrix} = \begin{bmatrix} 3 \\ 4 \end{bmatrix} + \begin{bmatrix} 1 \\ 2 \end{bmatrix}$ |
+| 2. Associativity of Addition          | For $\vec{u}, \vec{v}, \vec{w} \in V$:    <br> $(\vec{u} + \vec{v}) + \vec{w} = \vec{u} + (\vec{v} + \vec{w})$    | The grouping of vectors in addition doesn't affect the result             | In $\mathbb{R}^2$: <br> $(\begin{bmatrix} 1 \\ 0 \end{bmatrix} + \begin{bmatrix} 0 \\ 1 \end{bmatrix}) + \begin{bmatrix} 2 \\ 2 \end{bmatrix} = \begin{bmatrix} 1 \\ 0 \end{bmatrix} + (\begin{bmatrix} 0 \\ 1 \end{bmatrix} + \begin{bmatrix} 2 \\ 2 \end{bmatrix})$ |
+| 3. Additive Identity                  | For $\vec{u} \in V$:                      <br> $\vec{u} + \vec{0} = \vec{u}$                                      | There exists a zero vector that acts as a neutral element in addition     | In $\mathbb{R}^3$: <br> $\begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix} + \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix} = \begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix}$ |
+| 4. Additive Inverses                  | For $\vec{u} \in V$:                      <br> $\vec{u} + (-\vec{u}) = \vec{0}$                                   | Every vector has an opposite within V                                     | In $\mathbb{R}^2$: <br> $\begin{bmatrix} 3 \\ -4 \end{bmatrix} + \begin{bmatrix} -3 \\ 4 \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \end{bmatrix}$ |
+
+## Scalar Multiplication Properties
+
+| Axiom                                     | Mathematical Statement                                                                                            | Description                                                               | Example |
+|-------                                    |----------------------                                                                                             |-------------                                                              |---------|
+| 5. Compatibility with Field Addition      | For $a, b \in F, \vec{u} \in V$:          <br> $(a + b)\vec{u} = a\vec{u} + b\vec{u}$                             | Scalar addition distributes over vector multiplication                    | In $\mathbb{R}^2$: <br> $(2 + 3)\begin{bmatrix} 1 \\ 1 \end{bmatrix} = 2\begin{bmatrix} 1 \\ 1 \end{bmatrix} + 3\begin{bmatrix} 1 \\ 1 \end{bmatrix}$ |
+| 6. Compatibility with Vector Addition     | For $a \in F, \vec{u}, \vec{v} \in V$:    <br> $a(\vec{u} + \vec{v}) = a\vec{u} + a\vec{v}$                       | Scalar multiplication distributes over vector addition                    | In $\mathbb{R}^2$: <br> $2(\begin{bmatrix} 1 \\ 0 \end{bmatrix} + \begin{bmatrix} 0 \\ 1 \end{bmatrix}) = 2\begin{bmatrix} 1 \\ 0 \end{bmatrix} + 2\begin{bmatrix} 0 \\ 1 \end{bmatrix}$ |
+| 7. Associativity of Scalar Multiplication | For $a, b \in F, \vec{u} \in V$:          <br> $(ab)\vec{u} = a(b\vec{u})$                                        | The grouping of scalars in multiplication doesn't affect the result       | In $\mathbb{R}^2$: <br> $(2 \cdot 3)\begin{bmatrix} 1 \\ 1 \end{bmatrix} = 2(3\begin{bmatrix} 1 \\ 1 \end{bmatrix})$ |
+| 8. Identity Scalar Multiplication         | For $\vec{u} \in V$:                      <br> $1\vec{u} = \vec{u}$                                               | Scaling by the multiplicative identity in F leaves the vector unchanged   | In $\mathbb{R}^2$: <br> $1\begin{bmatrix} 4 \\ -2 \end{bmatrix} = \begin{bmatrix} 4 \\ -2 \end{bmatrix}$ |
