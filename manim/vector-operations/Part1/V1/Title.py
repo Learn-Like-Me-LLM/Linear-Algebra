@@ -19,4 +19,12 @@ def Title(self, debug: bool = False):
     self.play(Write(part))
     self.wait(.5)
     self.play(Write(subtitle))
-    self.wait()
+    self.wait(5)
+    
+    # REMOVE UNNECESSARY MOBJECTS
+    ############################################################
+    mobjects_to_remove = [m for m in self.mobjects if m not in [title]]
+    self.play(
+        FadeOut(*mobjects_to_remove), 
+        run_time=2
+    )
