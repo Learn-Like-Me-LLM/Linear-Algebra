@@ -47,6 +47,20 @@ linked_content_manim: [
 | `normal vector`       | Vector perpendicular to a surface or plane                | $\vec{n} = \begin{bmatrix} a \\ b \\ c \end{bmatrix}$ |
 | `displacement vector` | Vector representing change in position                    | $\Delta\vec{r} = \vec{r}_2 - \vec{r}_1$ |
 
+### Unit Vectors / Normalized Vectors
+
+> a vector with a magnitude of 1  
+> $\|\hat{v}\| = 1$
+
+- X Axis Unit Vector  
+$\hat{e_x} = \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}$
+
+- Y Axis Unit Vector  
+$\hat{e_y} = \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}$
+
+- Z Axis Unit Vector  
+$\hat{e_z} = \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}$
+
 ## 🔍 📚ManimCE Review Video(s)
 
 > [!IMPORTANT]
