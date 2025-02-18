@@ -19,7 +19,7 @@ def Title(self, debug: bool = False):
     self.play(Write(part))
     self.wait(.5)
     self.play(Write(subtitle))
-    self.wait(5)
+    self.wait(1.5)
     
     # REMOVE UNNECESSARY MOBJECTS
     ############################################################
@@ -28,3 +28,21 @@ def Title(self, debug: bool = False):
         FadeOut(*mobjects_to_remove), 
         run_time=2
     )
+
+    # CONFIGURE NEW TITLE
+    ############################################################
+    new_title = VGroup(
+        title.copy().scale(0.35),
+    ).arrange(DOWN, buff=0.1, aligned_edge=LEFT) \
+     .to_corner(UL, buff=0.5) \
+     .to_edge(LEFT, buff=0.5)
+     
+    self.play(
+        Transform(
+            title, # this one survives
+            new_title
+        )
+    )
+    
+    titleVGroup = title
+    return titleVGroup
