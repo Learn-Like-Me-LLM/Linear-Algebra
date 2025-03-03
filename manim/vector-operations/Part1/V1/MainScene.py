@@ -8,6 +8,7 @@ sys.path.append(str(Path(__file__).parent.parent))
 from Title import Title
 from VectorAdditionAndSubraction import VectorAdditionAndSubraction
 from ScalarMultiplication import ScalarMultiplication
+from utils.make_number_plane import makeNumberPlane
 
 class V1VectorOperationsPart1(Scene):
     def construct(self):
@@ -30,7 +31,18 @@ class V1VectorOperationsPart1(Scene):
         self.play(Write(subtitle))
         self.wait(1)
 
-        VectorAdditionAndSubraction(self, debug)
+        # CREATE NUMBER PLANE ######################################
+        ############################################################
+        plane = makeNumberPlane( self, 
+                                 x_range=[-5, 7, 1], 
+                                 y_range=[-5, 7, 1], 
+                                 x_length=3,
+                                 y_length=3,
+                                 axis_config={"include_numbers": False},
+                                 debug=debug )
+        plane_container = VGroup(plane).move_to(ORIGIN)
+
+        # VectorAdditionAndSubraction(self, plane, plane_container, debug)
 
         # SCALAR MULTIPLICATION ####################################
         ############################################################
@@ -44,7 +56,7 @@ class V1VectorOperationsPart1(Scene):
         self.play(Transform(subtitle, new_subtitle))
         self.wait(1)
 
-        ScalarMultiplication(self, debug)
+        ScalarMultiplication(self, plane, plane_container, debug)
 
         # CLEAN UP 
         ############################################################

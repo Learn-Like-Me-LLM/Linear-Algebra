@@ -6,21 +6,9 @@ import numpy as np
 # Add the parent directory to Python path to allow imports from utils
 sys.path.append(str(Path(__file__).parent.parent.parent.parent))
 
-from utils.make_number_plane import makeNumberPlane
 from VectorAddition import Addition
 from VectorSubtraction import Subtraction
-def VectorAdditionAndSubraction(self, debug: bool = False):
-    # CREATE NUMBER PLANE ######################################
-    ############################################################
-    plane = makeNumberPlane( self, 
-                             x_range=[-5, 7, 1], 
-                             y_range=[-5, 7, 1], 
-                             x_length=3,
-                             y_length=3,
-                             axis_config={"include_numbers": False},
-                             debug=debug)
-    plane_container = VGroup(plane).move_to(ORIGIN)
-
+def VectorAdditionAndSubraction(self, plane, plane_container, debug: bool = False):
     # CREATE VECTORS ###########################################
     ############################################################
     vector_a_points = [2, 3]
@@ -57,5 +45,17 @@ def VectorAdditionAndSubraction(self, debug: bool = False):
     # VECTOR SUBTRACTION #######################################
     ############################################################
     Subtraction(self, plane=plane, vector_a=vector_a, vector_b=vector_b)
+
+    # CLEAN UP #################################################
+    ############################################################
+    self.play(
+        FadeOut(
+            plane,
+            vector_a,
+            vector_b,
+            vector_labels,
+        ), 
+        run_time=2
+    )
 
     return

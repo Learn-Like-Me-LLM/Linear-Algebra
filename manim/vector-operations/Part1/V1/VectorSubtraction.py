@@ -18,7 +18,7 @@ def Subtraction(self, plane, vector_a, vector_b, debug: bool = False):
     # Calculate result
     c_components = [a_components[0] - b_components[0], a_components[1] - b_components[1]]
     
-    # CONFIGURE FULL VECTOR ADDITION WALKTHROUGH ###############
+    # CONFIGURE FULL VECTOR SUBTRACTION WALKTHROUGH ############
     ############################################################
     vector_equation = VGroup(
         VGroup(
