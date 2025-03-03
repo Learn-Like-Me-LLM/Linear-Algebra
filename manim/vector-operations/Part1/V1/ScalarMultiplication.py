@@ -105,6 +105,7 @@ def ScalarMultiplication(self, plane, plane_container, debug: bool = False):
 
     # ANIMATE ##################################################
     ############################################################
+    # ANIMATE > SCALAR 1 #######################################
     self.play(Write(scalar_definition_group))
     self.wait(1.5)
     self.play(FadeOut(scalar_definition_group))
@@ -144,6 +145,7 @@ def ScalarMultiplication(self, plane, plane_container, debug: bool = False):
         GrowArrow(vector_a_result)
     )
 
+    # ANIMATE > SCALAR 2 #######################################
     self.play(
         Write(scalar_2_label)
     )
@@ -178,11 +180,18 @@ def ScalarMultiplication(self, plane, plane_container, debug: bool = False):
     )
 
 
-    # # CLEAN UP #################################################
-    # ############################################################
-    # self.play(
-    #     FadeOut(
-
-    #     ), 
-    #     run_time=2)
+    # CLEAN UP #################################################
+    ############################################################
+    self.play(
+        FadeOut(
+            vector_a,
+            vector_a_label,
+            vector_a_result,
+            vector_a_result_2,
+            scalar_label,
+            scalar_2_label,
+            vector_equation,
+            vector_equation_2
+        ), 
+        run_time=2)
     return

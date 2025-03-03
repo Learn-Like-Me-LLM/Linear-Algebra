@@ -58,6 +58,17 @@ class V1VectorOperationsPart1(Scene):
 
         ScalarMultiplication(self, plane, plane_container, debug)
 
+        # VECTOR MULTIPLICATION _(Inner Product)_ ##################
+        ############################################################
+        new_subtitle = MarkupText(
+            'Vector <span color="PURPLE">Multiplication</span> <span>(Inner Product)</span>',
+            font_size=20,
+            slant=ITALIC
+        ).move_to(subtitle).align_to(titleVGroup, LEFT)
+        
+        self.play(Transform(subtitle, new_subtitle))
+        self.wait(1)
+ 
         # CLEAN UP 
         ############################################################
         mobjects_to_remove = [m for m in self.mobjects]
