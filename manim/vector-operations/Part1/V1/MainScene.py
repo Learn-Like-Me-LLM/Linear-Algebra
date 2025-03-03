@@ -42,7 +42,7 @@ class V1VectorOperationsPart1(Scene):
                                  debug=debug )
         plane_container = VGroup(plane).move_to(ORIGIN)
 
-        # VectorAdditionAndSubraction(self, plane, plane_container, debug)
+        VectorAdditionAndSubraction(self, plane, plane_container, debug)
 
         # SCALAR MULTIPLICATION ####################################
         ############################################################
@@ -57,17 +57,6 @@ class V1VectorOperationsPart1(Scene):
         self.wait(1)
 
         ScalarMultiplication(self, plane, plane_container, debug)
-
-        # VECTOR MULTIPLICATION _(Inner Product)_ ##################
-        ############################################################
-        new_subtitle = MarkupText(
-            'Vector <span color="PURPLE">Multiplication</span> <span>(Inner Product)</span>',
-            font_size=20,
-            slant=ITALIC
-        ).move_to(subtitle).align_to(titleVGroup, LEFT)
-        
-        self.play(Transform(subtitle, new_subtitle))
-        self.wait(1)
  
         # CLEAN UP 
         ############################################################
