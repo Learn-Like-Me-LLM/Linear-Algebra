@@ -33,8 +33,24 @@ def DotProduct(scene: Scene, plane, plane_container, debug: bool = False) -> Non
         color=BLUE
     )
 
-    # Debug: Print positions before arrangement
-    print(f"Initial label_a position: {label_a.get_center()}")
+    # Add updaters that ONLY update content, not position
+    def update_label_a(mob):
+        new_label = MathTex(
+            r"\vec{a} = \begin{bmatrix}" + 
+            f"{a_x_tracker.get_value():.2f}" + r"\\" + 
+            f"{a_y_tracker.get_value():.2f}" + 
+            r"\end{bmatrix}",
+            color=BLUE
+        )
+        new_label.move_to(mob)
+        mob.become(new_label)
+    label_a.add_updater(update_label_a)
+
+    # Length labels with updaters
+    vector_a_length = MathTex(
+        f"|\\vec{{a}}| = \\sqrt{{{a_x_tracker.get_value():.2f}^2 + {a_y_tracker.get_value():.2f}^2}} = {np.sqrt(a_x_tracker.get_value()**2 + a_y_tracker.get_value()**2):.2f}",
+        color=BLUE
+    )
 
     # VECTOR B #################################################
     ############################################################
@@ -67,30 +83,7 @@ def DotProduct(scene: Scene, plane, plane_container, debug: bool = False) -> Non
         color=RED
     )
 
-    # Debug: Print positions before arrangement
-    print(f"Initial label_b position: {label_b.get_center()}")
-
-    # Create VGroup and position
-    labels = VGroup(label_a, label_b)
-    labels.arrange(RIGHT, buff=1, center=True)  # Ensure centered arrangement
-    labels.next_to(plane, DOWN, buff=0.5)
-
-    # Debug: Print positions after arrangement
-    print(f"Final label_a position: {label_a.get_center()}")
-    print(f"Final label_b position: {label_b.get_center()}")
-
     # Add updaters that ONLY update content, not position
-    def update_label_a(mob):
-        new_label = MathTex(
-            r"\vec{a} = \begin{bmatrix}" + 
-            f"{a_x_tracker.get_value():.2f}" + r"\\" + 
-            f"{a_y_tracker.get_value():.2f}" + 
-            r"\end{bmatrix}",
-            color=BLUE
-        )
-        new_label.move_to(mob)
-        mob.become(new_label)
-
     def update_label_b(mob):
         new_label = MathTex(
             r"\vec{b} = \begin{bmatrix}" + 
@@ -101,20 +94,17 @@ def DotProduct(scene: Scene, plane, plane_container, debug: bool = False) -> Non
         )
         new_label.move_to(mob)
         mob.become(new_label)
-
-    label_a.add_updater(update_label_a)
     label_b.add_updater(update_label_b)
-
-    # Length labels with updaters
-    vector_a_length = MathTex(
-        f"|\\vec{{a}}| = \\sqrt{{{a_x_tracker.get_value():.2f}^2 + {a_y_tracker.get_value():.2f}^2}} = {np.sqrt(a_x_tracker.get_value()**2 + a_y_tracker.get_value()**2):.2f}",
-        color=BLUE
-    )
 
     vector_b_length = MathTex(
         f"|\\vec{{b}}| = \\sqrt{{{b_x_tracker.get_value():.2f}^2 + {b_y_tracker.get_value():.2f}^2}} = {np.sqrt(b_x_tracker.get_value()**2 + b_y_tracker.get_value()**2):.2f}",
         color=RED
     )
+
+    # # Create VGroup and position
+    # labels = VGroup(label_a, label_b)
+    # labels.arrange(RIGHT, buff=1, center=True)  # Ensure centered arrangement
+    # labels.next_to(plane, DOWN, buff=0.5)
 
     # GROUPS ###################################################
     ############################################################
