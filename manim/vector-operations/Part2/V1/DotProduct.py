@@ -129,6 +129,17 @@ def DotProduct(scene: Scene, plane, plane_container, debug: bool = False) -> Non
         mob.become(new_length)
     vector_b_length.add_updater(update_length_b)
 
+    # LEFT EXAMPLE > Calculate Angle Between Vectors############
+    ############################################################
+    # Create dot product formula
+    angle_formula = MathTex(
+        r"\vec{a} \cdot \vec{b} = |\vec{a}| |\vec{b}| \cos(\theta)",
+        color=WHITE
+    ).to_edge(LEFT)
+
+    # RIGHT EXAMPLE > Project Vector A Onto Vector B ###########
+    ############################################################
+
     # GROUPS ###################################################
     ############################################################
     # Create VGroups for positioning
@@ -144,6 +155,9 @@ def DotProduct(scene: Scene, plane, plane_container, debug: bool = False) -> Non
     scene.play(Write(vector_a), Write(vector_b))
     scene.play(Write(vector_labels))
     scene.play(Write(length_labels))
+    scene.wait(1)
+
+    scene.play(Write(angle_formula))
     scene.wait(1)
 
     # RANDOMIZE VECTOR(s) #######################################
