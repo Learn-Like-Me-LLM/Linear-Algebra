@@ -30,7 +30,8 @@ def DotProduct(scene: Scene, plane, plane_container, debug: bool = False) -> Non
         f"{a_x_tracker.get_value():.2f}" + r"\\" + 
         f"{a_y_tracker.get_value():.2f}" + 
         r"\end{bmatrix}",
-        color=BLUE
+        color=BLUE,
+        font_size=24
     )
 
     # Add updaters that ONLY update content, not position
@@ -40,17 +41,30 @@ def DotProduct(scene: Scene, plane, plane_container, debug: bool = False) -> Non
             f"{a_x_tracker.get_value():.2f}" + r"\\" + 
             f"{a_y_tracker.get_value():.2f}" + 
             r"\end{bmatrix}",
-            color=BLUE
+            color=BLUE,
+            font_size=24
         )
         new_label.move_to(mob)
         mob.become(new_label)
     label_a.add_updater(update_label_a)
 
-    # Length labels with updaters
+    # Create initial length labels
     vector_a_length = MathTex(
         f"|\\vec{{a}}| = \\sqrt{{{a_x_tracker.get_value():.2f}^2 + {a_y_tracker.get_value():.2f}^2}} = {np.sqrt(a_x_tracker.get_value()**2 + a_y_tracker.get_value()**2):.2f}",
-        color=BLUE
+        color=BLUE,
+        font_size=24
     )
+
+    # Add updaters for length labels
+    def update_length_a(mob):
+        new_length = MathTex(
+            f"|\\vec{{a}}| = \\sqrt{{{a_x_tracker.get_value():.2f}^2 + {a_y_tracker.get_value():.2f}^2}} = {np.sqrt(a_x_tracker.get_value()**2 + a_y_tracker.get_value()**2):.2f}",
+            color=BLUE,
+            font_size=24
+        )
+        new_length.move_to(mob)
+        mob.become(new_length)
+    vector_a_length.add_updater(update_length_a)
 
     # VECTOR B #################################################
     ############################################################
@@ -80,7 +94,8 @@ def DotProduct(scene: Scene, plane, plane_container, debug: bool = False) -> Non
         f"{b_x_tracker.get_value():.2f}" + r"\\" + 
         f"{b_y_tracker.get_value():.2f}" + 
         r"\end{bmatrix}",
-        color=RED
+        color=RED,
+        font_size=24
     )
 
     # Add updaters that ONLY update content, not position
@@ -90,7 +105,8 @@ def DotProduct(scene: Scene, plane, plane_container, debug: bool = False) -> Non
             f"{b_x_tracker.get_value():.2f}" + r"\\" + 
             f"{b_y_tracker.get_value():.2f}" + 
             r"\end{bmatrix}",
-            color=RED
+            color=RED,
+            font_size=24
         )
         new_label.move_to(mob)
         mob.become(new_label)
@@ -98,26 +114,36 @@ def DotProduct(scene: Scene, plane, plane_container, debug: bool = False) -> Non
 
     vector_b_length = MathTex(
         f"|\\vec{{b}}| = \\sqrt{{{b_x_tracker.get_value():.2f}^2 + {b_y_tracker.get_value():.2f}^2}} = {np.sqrt(b_x_tracker.get_value()**2 + b_y_tracker.get_value()**2):.2f}",
-        color=RED
+        color=RED,
+        font_size=24
     )
 
-    # # Create VGroup and position
-    # labels = VGroup(label_a, label_b)
-    # labels.arrange(RIGHT, buff=1, center=True)  # Ensure centered arrangement
-    # labels.next_to(plane, DOWN, buff=0.5)
+    # Add updaters for length labels
+    def update_length_b(mob):
+        new_length = MathTex(
+            f"|\\vec{{b}}| = \\sqrt{{{b_x_tracker.get_value():.2f}^2 + {b_y_tracker.get_value():.2f}^2}} = {np.sqrt(b_x_tracker.get_value()**2 + b_y_tracker.get_value()**2):.2f}",
+            color=RED,
+            font_size=24
+        )
+        new_length.move_to(mob)
+        mob.become(new_length)
+    vector_b_length.add_updater(update_length_b)
 
     # GROUPS ###################################################
     ############################################################
-    # One VGroup, side by side, under plane. That's it.
-    labels = VGroup(label_a, label_b)
-    labels.arrange(RIGHT, buff=1)
-    labels.next_to(plane, DOWN, buff=0.5)
+    # Create VGroups for positioning
+    vector_labels = VGroup(label_a, label_b).arrange(RIGHT, buff=1)
+    vector_labels.next_to(plane, DOWN, buff=0.5)
+    
+    length_labels = VGroup(vector_a_length, vector_b_length).arrange(RIGHT, buff=1)
+    length_labels.next_to(vector_labels, DOWN, buff=0.5)   
 
     # ANIMATE ##################################################
     ############################################################
     scene.play(Create(plane))
     scene.play(Write(vector_a), Write(vector_b))
-    scene.play(Write(labels))
+    scene.play(Write(vector_labels))
+    scene.play(Write(length_labels))
     scene.wait(1)
 
     # RANDOMIZE VECTOR(s) #######################################
