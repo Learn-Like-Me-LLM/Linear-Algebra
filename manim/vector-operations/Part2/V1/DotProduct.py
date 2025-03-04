@@ -131,11 +131,76 @@ def DotProduct(scene: Scene, plane, plane_container, debug: bool = False) -> Non
 
     # LEFT EXAMPLE > Calculate Angle Between Vectors############
     ############################################################
-    # Create dot product formula
-    angle_formula = MathTex(
-        r"\vec{a} \cdot \vec{b} = |\vec{a}| |\vec{b}| \cos(\theta)",
-        color=WHITE
-    ).to_edge(LEFT)
+    # Initial angle formula setup
+    dot_product = a_x_tracker.get_value()*b_x_tracker.get_value() + a_y_tracker.get_value()*b_y_tracker.get_value()
+    mag_a = np.sqrt(a_x_tracker.get_value()**2 + a_y_tracker.get_value()**2)
+    mag_b = np.sqrt(b_x_tracker.get_value()**2 + b_y_tracker.get_value()**2)
+    angle = np.arccos(dot_product / (mag_a * mag_b))
+    
+    angle_formula = VGroup(
+        MathTex(
+            r"\vec{a} \cdot \vec{b} &= \|\vec{a}\|\|\vec{b}\|\cos(\theta) \\",
+            color=WHITE,
+            font_size=24
+        ),
+        MathTex(
+            f"\\begin{{bmatrix}}{a_x_tracker.get_value():.2f} \\\\ {a_y_tracker.get_value():.2f}\\end{{bmatrix}} \\cdot \\begin{{bmatrix}}{b_x_tracker.get_value():.2f} \\\\ {b_y_tracker.get_value():.2f}\\end{{bmatrix}} &= \\sqrt{{{a_x_tracker.get_value():.2f}^2 + {a_y_tracker.get_value():.2f}^2}}\\sqrt{{{b_x_tracker.get_value():.2f}^2 + {b_y_tracker.get_value():.2f}^2}}\\cos(\\theta) \\\\",
+            color=WHITE,
+            font_size=24
+        ),
+        MathTex(
+            f"{a_x_tracker.get_value():.2f} \\cdot {b_x_tracker.get_value():.2f} + {a_y_tracker.get_value():.2f} \\cdot {b_y_tracker.get_value():.2f} &= {mag_a:.2f} \\cdot {mag_b:.2f} \\cos(\\theta) \\\\",
+            color=WHITE,
+            font_size=24
+        ),
+        MathTex(
+            f"{dot_product:.2f} &= {mag_a * mag_b:.2f} \\cos(\\theta) \\\\",
+            color=WHITE,
+            font_size=24
+        ),
+        MathTex(
+            f"\\theta &= {np.arccos(dot_product / (mag_a * mag_b)):.2f} \\text{{ rad}} \\approx {np.degrees(np.arccos(dot_product / (mag_a * mag_b))):.2f}°",
+            color=WHITE,
+            font_size=24
+        )
+    ).arrange(DOWN, buff=0.5)
+
+    def update_angle_formula(mob):
+        dot_product = a_x_tracker.get_value()*b_x_tracker.get_value() + a_y_tracker.get_value()*b_y_tracker.get_value()
+        mag_a = np.sqrt(a_x_tracker.get_value()**2 + a_y_tracker.get_value()**2)
+        mag_b = np.sqrt(b_x_tracker.get_value()**2 + b_y_tracker.get_value()**2)
+        angle = np.arccos(np.clip(dot_product / (mag_a * mag_b), -1, 1))  # Clip to avoid floating point errors
+        
+        new_formula = VGroup(
+            MathTex(
+                r"\vec{a} \cdot \vec{b} &= \|\vec{a}\|\|\vec{b}\|\cos(\theta) \\",
+                color=WHITE,
+                font_size=24
+            ),
+            MathTex(
+                f"\\begin{{bmatrix}}{a_x_tracker.get_value():.2f} \\\\ {a_y_tracker.get_value():.2f}\\end{{bmatrix}} \\cdot \\begin{{bmatrix}}{b_x_tracker.get_value():.2f} \\\\ {b_y_tracker.get_value():.2f}\\end{{bmatrix}} &= \\sqrt{{{a_x_tracker.get_value():.2f}^2 + {a_y_tracker.get_value():.2f}^2}}\\sqrt{{{b_x_tracker.get_value():.2f}^2 + {b_y_tracker.get_value():.2f}^2}}\\cos(\\theta) \\\\",
+                color=WHITE,
+                font_size=24
+            ),
+            MathTex(
+                f"{a_x_tracker.get_value():.2f} \\cdot {b_x_tracker.get_value():.2f} + {a_y_tracker.get_value():.2f} \\cdot {b_y_tracker.get_value():.2f} &= {mag_a:.2f} \\cdot {mag_b:.2f} \\cos(\\theta) \\\\",
+                color=WHITE,
+                font_size=24
+            ),
+            MathTex(
+                f"{dot_product:.2f} &= {mag_a * mag_b:.2f} \\cos(\\theta) \\\\",
+                color=WHITE,
+                font_size=24
+            ),
+            MathTex(
+                f"\\theta &= {angle:.2f} \\text{{ rad}} \\approx {np.degrees(angle):.2f}°",
+                color=WHITE,
+                font_size=24
+            )
+        ).arrange(DOWN, buff=0.5).to_edge(LEFT)
+        mob.become(new_formula)
+    
+    angle_formula.add_updater(update_angle_formula)
 
     # RIGHT EXAMPLE > Project Vector A Onto Vector B ###########
     ############################################################
