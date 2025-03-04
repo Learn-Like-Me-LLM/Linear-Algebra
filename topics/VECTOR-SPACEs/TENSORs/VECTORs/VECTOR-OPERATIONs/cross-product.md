@@ -1,5 +1,7 @@
 # Cross Product _(Vector Product)_
 
+> only defined for 3D vectors
+
 The cross product $\vec{a} \times \vec{b}$ of two vectors produces a new vector that is:
 - Perpendicular to both input vectors
 - Has magnitude equal to $\|\vec{a}\|\|\vec{b}\|\sin(\theta)$

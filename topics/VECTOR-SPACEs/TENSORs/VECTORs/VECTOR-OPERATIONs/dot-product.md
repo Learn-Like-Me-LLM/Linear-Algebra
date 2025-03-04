@@ -1,4 +1,8 @@
-# Dot Product _(Scalar Product)_
+# Dot Product _(Inner Product / Scalar Product)_
+
+> The dot product is a [SCALAR](../../SCALARs/scalar.md) quantity that results from the multiplication of two vectors. It is used to determine the:
+> - angle between two vectors
+> - projection of one vector onto another
 
 The dot product $\vec{a} \cdot \vec{b}$ has two equivalent definitions:
 
@@ -15,16 +19,7 @@ Where $\theta$ is the angle between vectors.
 - Testing perpendicularity: $\vec{a} \perp \vec{b} \iff \vec{a} \cdot \vec{b} = 0$
 - Vector projections: $proj_{\vec{b}}\vec{a} = \frac{\vec{a} \cdot \vec{b}}{\|\vec{b}\|^2}\vec{b}$
 
-> [!IMPORTANT]
->
-> The dot product is a [SCALAR](./scalar.md) quantity that results from the multiplication of two vectors. It is used to determine the:
-> - angle between two vectors
-> - projection of one vector onto another
+## Properties
 
-> [!EXAMPLE]
-> 
-> $\langle \vec{a} * \vec{b}  \rangle = a_1b_1 + a_2b_2 + a_3b_3 +\:... =\sum_{i=1}^3 a_ib_i$
-
-## Inner Product
- 
->  a generalization of the dot product. The inner product allows us to define angles between vectors and notions of orthogonality (perpendicularity).
+- Commutative: $\vec{a} \cdot \vec{b} = \vec{b} \cdot \vec{a}$
+- Distributive: $\vec{a} \cdot (\vec{b} + \vec{c}) = \vec{a} \cdot \vec{b} + \vec{a} \cdot \vec{c}$

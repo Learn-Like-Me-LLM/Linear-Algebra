@@ -40,8 +40,9 @@ class VectorOperations(Scene):
         self.wait(1)
 
         # PART 1 ##################################################
+        # vector addition / subtraction & scalar multiplication ###
         ###########################################################
-        Part1(self, title, subtitle, debug)
+        # Part1(self, title, subtitle, debug)
 
         # UPDATE TITLE ############################################
         ###########################################################
@@ -50,13 +51,19 @@ class VectorOperations(Scene):
                                 part="Part 2",
                                 subtitle = VGroup( 
                                     Text("Dot Product (Inner Product)", font_size=40),
-                                    Text("Cross Product", font_size=40),
                                 ),
                             )
 
         # PART 2 ##################################################
+        # dot product #############################################
         ###########################################################
         Part2(self, title, subtitle, debug)
+
+        # PART 3 ##################################################
+        # cross product ###########################################
+        ###########################################################
+        # TODO: build: 
+        # Part3(self, title, subtitle, debug)
 
         # THANK YOU ###############################################
         ###########################################################
