@@ -2,29 +2,25 @@ from manim import *
 import sys
 from pathlib import Path
 
-def Title(self, debug: bool = False):
+def Title(scene, debug: bool = False, part: str = "Part 1", subtitle = None):
     # TITLE ####################################################
     ############################################################
     title = Text("Vector Operations", font_size=96).move_to(ORIGIN)
-    part = Text("Part 1", font_size=30, slant=ITALIC, color=BLUE).next_to(title, RIGHT).align_to(title, RIGHT).shift(DOWN * 0.6)
-    subtitle = VGroup( 
-        Text("Vector Addition / Subtraction", font_size=40),
-        Text("Scalar Multiplication", font_size=40)  
-    ).arrange(DOWN).next_to(title, DOWN, buff=0.5)
+    part_text = Text(part, font_size=30, slant=ITALIC, color=BLUE).next_to(title, RIGHT).align_to(title, RIGHT).shift(DOWN * 0.6)
 
     # TITLE > ANIMATE ##########################################
     ############################################################
-    self.play(Write(title))
-    self.wait(.5)
-    self.play(Write(part))
-    self.wait(.5)
-    self.play(Write(subtitle))
-    self.wait(1.5)
+    scene.play(Write(title))
+    scene.wait(.5)
+    scene.play(Write(part_text))
+    scene.wait(.5)
+    scene.play(Write(subtitle.arrange(DOWN).next_to(title, DOWN, buff=0.5)))
+    scene.wait(1.5)
     
     # REMOVE UNNECESSARY MOBJECTS
     ############################################################
-    mobjects_to_remove = [m for m in self.mobjects if m not in [title]]
-    self.play(
+    mobjects_to_remove = [m for m in scene.mobjects if m not in [title]]
+    scene.play(
         FadeOut(*mobjects_to_remove), 
         run_time=2
     )
@@ -37,12 +33,12 @@ def Title(self, debug: bool = False):
      .to_corner(UL, buff=0.5) \
      .to_edge(LEFT, buff=0.5)
      
-    self.play(
+    scene.play(
         Transform(
             title, # this one survives
             new_title
         )
     )
     
-    titleVGroup = title
-    return titleVGroup
+    
+    return title, subtitle

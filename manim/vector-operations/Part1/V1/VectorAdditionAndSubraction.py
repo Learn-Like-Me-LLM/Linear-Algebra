@@ -6,8 +6,8 @@ import numpy as np
 # Add the parent directory to Python path to allow imports from utils
 sys.path.append(str(Path(__file__).parent.parent.parent.parent))
 
-from VectorAddition import Addition
-from VectorSubtraction import Subtraction
+from .VectorAddition import Addition
+from .VectorSubtraction import Subtraction
 def VectorAdditionAndSubraction(self, plane, plane_container, debug: bool = False):
     # CREATE VECTORS ###########################################
     ############################################################
