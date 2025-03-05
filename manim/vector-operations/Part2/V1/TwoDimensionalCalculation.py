@@ -42,9 +42,9 @@ def TwoDimensionalCalculation(
             ).arrange(RIGHT, buff=0.25),
         ).arrange(RIGHT, buff=0.25),
         VGroup(
-            MathTex(f"{a_x_tracker.get_value() * b_x_tracker.get_value():.0f}", font_size=calculation_font_size).set_color(PURE_GREEN),
+            MathTex(f"{a_x_tracker.get_value() * b_x_tracker.get_value():.0f}", font_size=calculation_font_size).set_color(WHITE),
             Text(r"+", font_size=calculation_font_size),
-            MathTex(f"{a_y_tracker.get_value() * b_y_tracker.get_value():.0f}", font_size=calculation_font_size).set_color(YELLOW),
+            MathTex(f"{a_y_tracker.get_value() * b_y_tracker.get_value():.0f}", font_size=calculation_font_size).set_color(WHITE),
         ).arrange(RIGHT, buff=0.25),
         VGroup(
             MathTex(f"{(a_x_tracker.get_value() * b_x_tracker.get_value()) + (a_y_tracker.get_value() * b_y_tracker.get_value()):.0f}", font_size=calculation_font_size * 1.5).set_color(ORANGE),
