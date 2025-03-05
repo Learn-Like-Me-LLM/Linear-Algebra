@@ -25,7 +25,7 @@ def Part2(self, title, subtitle, debug: bool = False):
     ############################################################
     # VECTOR ADDITION > UPDATE SUBTITLE
     subtitle = MarkupText(
-        '<span color="PURPLE">Dot Product (Inner Product)</span>',
+        '<span color="PURPLE">Dot Product (Inner Product)</span>TESTING-1',
         font_size=20,
         slant=ITALIC
     ).next_to(title, DOWN, buff=0.1).align_to(title, LEFT)

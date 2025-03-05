@@ -34,40 +34,6 @@ def GenericExample(
             # font_size=24
         ),
     ).arrange(DOWN, buff=0.25).move_to(ORIGIN)
-
-    # FULL CALCULATION #########################################
-    ############################################################
-    calculation = VGroup(
-        VGroup(
-            MathTex(r"\vec{a}"),
-            MathTex(r"\cdot"),
-            MathTex(r"\vec{b}"),
-        ).arrange(RIGHT, buff=0.25),
-        VGroup(
-            MathTex(r"\begin{bmatrix}" + f"{a_x_tracker.get_value():.0f}" + r"\\[1pt]" + f"{a_y_tracker.get_value():.0f}" + r"\end{bmatrix}"),
-            MathTex(f"\cdot"),
-            MathTex(r"\begin{bmatrix}" + f"{b_x_tracker.get_value():.0f}" + r"\\[1pt]" + f"{b_y_tracker.get_value():.0f}" + r"\end{bmatrix}")
-        ).arrange(RIGHT, buff=0.25),
-        VGroup(
-            MathTex(f"({a_x_tracker.get_value():.0f}" + r"\times" + f"{b_x_tracker.get_value():.0f})"),
-            Text(r"+"),
-            MathTex(f"({a_y_tracker.get_value():.0f}" + r"\times" + f"{b_y_tracker.get_value():.0f})"),
-        ).arrange(RIGHT, buff=0.25),
-        VGroup(
-            MathTex(f"{a_x_tracker.get_value() * b_x_tracker.get_value():.0f}"),
-            Text(r"+"),
-            MathTex(f"{a_y_tracker.get_value() * b_y_tracker.get_value():.0f}"),
-        ).arrange(RIGHT, buff=0.25),
-        VGroup(
-            MathTex(f"{(a_x_tracker.get_value() * b_x_tracker.get_value()) + (a_y_tracker.get_value() * b_y_tracker.get_value()):.0f}"),
-        ).arrange(RIGHT, buff=0.25)
-    ).arrange(DOWN, buff=0.25)
-    calculation[0][0].set_color(BLUE)
-    calculation[0][2].set_color(RED)
-    calculation[1][0].set_color(BLUE)
-    calculation[1][2].set_color(RED)
-    
-    calculation.to_edge(LEFT)
     
     # ANIMATE ##################################################
     ############################################################
@@ -97,16 +63,5 @@ def GenericExample(
     scene.play(Write(vector_labels))
     scene.wait(1)
 
-
-    count = 0 
-    while count < len(calculation):
-        scene.play(Write(calculation[count]))
-        scene.wait(1)
-        count += 1
-
     # CLEAN UP 
     ############################################################
-    scene.play(
-        FadeOut(plane, vector_a, vector_b, vector_labels, calculation, formula), 
-        run_time=2
-    )

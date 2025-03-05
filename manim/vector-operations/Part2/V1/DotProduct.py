@@ -158,25 +158,15 @@ def DotProduct(scene: Scene, plane, plane_container, title, subtitle, debug: boo
     )
     scene.wait(1)
 
-    # UPDATE SUBTITLE ##########################################
-    subtitle = VGroup(
-        MarkupText(
-            '<span color="PURPLE">Dot Product (Inner Product)</span>',
-            font_size=20,
-            slant=ITALIC
-        ),
-        MathTex(
-            r"\vec{a} \cdot \vec{b} = \sum_{i=1}^{n} a_i \cdot b_i",
-            # font_size=24
-        ),
-    ).next_to(title, DOWN, buff=0.1).align_to(title, LEFT)
-    scene.play(Write(subtitle))
-
     # ANIMATE > 2D Calculation ##################################
     TwoDimensionalCalculation(
         scene, 
         plane, plane_container, 
         title, subtitle,
+        vector_a, vector_b, 
+        vector_labels,
+        a_x_tracker, a_y_tracker,
+        b_x_tracker, b_y_tracker,
         debug
     )
 
