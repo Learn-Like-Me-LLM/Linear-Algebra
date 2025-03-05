@@ -27,8 +27,8 @@ def DotProduct(scene: Scene, plane, plane_container, debug: bool = False) -> Non
     # Create the labels
     label_a = MathTex(
         r"\vec{a} = \begin{bmatrix}" + 
-        f"{a_x_tracker.get_value():.2f}" + r"\\" + 
-        f"{a_y_tracker.get_value():.2f}" + 
+        f"{a_x_tracker.get_value():.0f}" + r"\\" + 
+        f"{a_y_tracker.get_value():.0f}" + 
         r"\end{bmatrix}",
         color=BLUE,
         font_size=24
@@ -38,8 +38,8 @@ def DotProduct(scene: Scene, plane, plane_container, debug: bool = False) -> Non
     def update_label_a(mob):
         new_label = MathTex(
             r"\vec{a} = \begin{bmatrix}" + 
-            f"{a_x_tracker.get_value():.2f}" + r"\\" + 
-            f"{a_y_tracker.get_value():.2f}" + 
+            f"{a_x_tracker.get_value():.0f}" + r"\\" + 
+            f"{a_y_tracker.get_value():.0f}" + 
             r"\end{bmatrix}",
             color=BLUE,
             font_size=24
@@ -50,7 +50,7 @@ def DotProduct(scene: Scene, plane, plane_container, debug: bool = False) -> Non
 
     # Create initial length labels
     vector_a_length = MathTex(
-        f"|\\vec{{a}}| = \\sqrt{{{a_x_tracker.get_value():.2f}^2 + {a_y_tracker.get_value():.2f}^2}} = {np.sqrt(a_x_tracker.get_value()**2 + a_y_tracker.get_value()**2):.2f}",
+        f"|\\vec{{a}}| = \\sqrt{{{a_x_tracker.get_value():.0f}^2 + {a_y_tracker.get_value():.0f}^2}} = {np.sqrt(a_x_tracker.get_value()**2 + a_y_tracker.get_value()**2):.0f}",
         color=BLUE,
         font_size=24
     )
@@ -58,7 +58,7 @@ def DotProduct(scene: Scene, plane, plane_container, debug: bool = False) -> Non
     # Add updaters for length labels
     def update_length_a(mob):
         new_length = MathTex(
-            f"|\\vec{{a}}| = \\sqrt{{{a_x_tracker.get_value():.2f}^2 + {a_y_tracker.get_value():.2f}^2}} = {np.sqrt(a_x_tracker.get_value()**2 + a_y_tracker.get_value()**2):.2f}",
+            f"|\\vec{{a}}| = \\sqrt{{{a_x_tracker.get_value():.0f}^2 + {a_y_tracker.get_value():.0f}^2}} = {np.sqrt(a_x_tracker.get_value()**2 + a_y_tracker.get_value()**2):.0f}",
             color=BLUE,
             font_size=24
         )
@@ -91,8 +91,8 @@ def DotProduct(scene: Scene, plane, plane_container, debug: bool = False) -> Non
     # Create the labels
     label_b = MathTex(
         r"\vec{b} = \begin{bmatrix}" + 
-        f"{b_x_tracker.get_value():.2f}" + r"\\" + 
-        f"{b_y_tracker.get_value():.2f}" + 
+        f"{b_x_tracker.get_value():.0f}" + r"\\" + 
+        f"{b_y_tracker.get_value():.0f}" + 
         r"\end{bmatrix}",
         color=RED,
         font_size=24
@@ -102,8 +102,8 @@ def DotProduct(scene: Scene, plane, plane_container, debug: bool = False) -> Non
     def update_label_b(mob):
         new_label = MathTex(
             r"\vec{b} = \begin{bmatrix}" + 
-            f"{b_x_tracker.get_value():.2f}" + r"\\" + 
-            f"{b_y_tracker.get_value():.2f}" + 
+            f"{b_x_tracker.get_value():.0f}" + r"\\" + 
+            f"{b_y_tracker.get_value():.0f}" + 
             r"\end{bmatrix}",
             color=RED,
             font_size=24
@@ -113,7 +113,7 @@ def DotProduct(scene: Scene, plane, plane_container, debug: bool = False) -> Non
     label_b.add_updater(update_label_b)
 
     vector_b_length = MathTex(
-        f"|\\vec{{b}}| = \\sqrt{{{b_x_tracker.get_value():.2f}^2 + {b_y_tracker.get_value():.2f}^2}} = {np.sqrt(b_x_tracker.get_value()**2 + b_y_tracker.get_value()**2):.2f}",
+        f"|\\vec{{b}}| = \\sqrt{{{b_x_tracker.get_value():.0f}^2 + {b_y_tracker.get_value():.0f}^2}} = {np.sqrt(b_x_tracker.get_value()**2 + b_y_tracker.get_value()**2):.0f}",
         color=RED,
         font_size=24
     )
@@ -121,7 +121,7 @@ def DotProduct(scene: Scene, plane, plane_container, debug: bool = False) -> Non
     # Add updaters for length labels
     def update_length_b(mob):
         new_length = MathTex(
-            f"|\\vec{{b}}| = \\sqrt{{{b_x_tracker.get_value():.2f}^2 + {b_y_tracker.get_value():.2f}^2}} = {np.sqrt(b_x_tracker.get_value()**2 + b_y_tracker.get_value()**2):.2f}",
+            f"|\\vec{{b}}| = \\sqrt{{{b_x_tracker.get_value():.0f}^2 + {b_y_tracker.get_value():.0f}^2}} = {np.sqrt(b_x_tracker.get_value()**2 + b_y_tracker.get_value()**2):.0f}",
             color=RED,
             font_size=24
         )
@@ -144,22 +144,22 @@ def DotProduct(scene: Scene, plane, plane_container, debug: bool = False) -> Non
             font_size=24
         ),
         MathTex(
-            f"\\begin{{bmatrix}}{a_x_tracker.get_value():.2f} \\\\ {a_y_tracker.get_value():.2f}\\end{{bmatrix}} \\cdot \\begin{{bmatrix}}{b_x_tracker.get_value():.2f} \\\\ {b_y_tracker.get_value():.2f}\\end{{bmatrix}} &= \\sqrt{{{a_x_tracker.get_value():.2f}^2 + {a_y_tracker.get_value():.2f}^2}}\\sqrt{{{b_x_tracker.get_value():.2f}^2 + {b_y_tracker.get_value():.2f}^2}}\\cos(\\theta) \\\\",
+            f"\\begin{{bmatrix}}{a_x_tracker.get_value():.0f} \\\\ {a_y_tracker.get_value():.0f}\\end{{bmatrix}} \\cdot \\begin{{bmatrix}}{b_x_tracker.get_value():.0f} \\\\ {b_y_tracker.get_value():.0f}\\end{{bmatrix}} &= \\sqrt{{{a_x_tracker.get_value():.0f}^2 + {a_y_tracker.get_value():.0f}^2}}\\sqrt{{{b_x_tracker.get_value():.0f}^2 + {b_y_tracker.get_value():.0f}^2}}\\cos(\\theta) \\\\",
             color=WHITE,
             font_size=24
         ),
         MathTex(
-            f"{a_x_tracker.get_value():.2f} \\cdot {b_x_tracker.get_value():.2f} + {a_y_tracker.get_value():.2f} \\cdot {b_y_tracker.get_value():.2f} &= {mag_a:.2f} \\cdot {mag_b:.2f} \\cos(\\theta) \\\\",
+            f"{a_x_tracker.get_value():.0f} \\cdot {b_x_tracker.get_value():.0f} + {a_y_tracker.get_value():.0f} \\cdot {b_y_tracker.get_value():.0f} &= {mag_a:.0f} \\cdot {mag_b:.0f} \\cos(\\theta) \\\\",
             color=WHITE,
             font_size=24
         ),
         MathTex(
-            f"{dot_product:.2f} &= {mag_a * mag_b:.2f} \\cos(\\theta) \\\\",
+            f"{dot_product:.0f} &= {mag_a * mag_b:.0f} \\cos(\\theta) \\\\",
             color=WHITE,
             font_size=24
         ),
         MathTex(
-            f"\\theta &= {np.arccos(dot_product / (mag_a * mag_b)):.2f} \\text{{ rad}} \\approx {np.degrees(np.arccos(dot_product / (mag_a * mag_b))):.2f}°",
+            f"\\theta &= {np.arccos(dot_product / (mag_a * mag_b)):.0f} \\text{{ rad}} \\approx {np.degrees(np.arccos(dot_product / (mag_a * mag_b))):.0f}°",
             color=WHITE,
             font_size=24
         )
@@ -178,22 +178,22 @@ def DotProduct(scene: Scene, plane, plane_container, debug: bool = False) -> Non
                 font_size=24
             ),
             MathTex(
-                f"\\begin{{bmatrix}}{a_x_tracker.get_value():.2f} \\\\ {a_y_tracker.get_value():.2f}\\end{{bmatrix}} \\cdot \\begin{{bmatrix}}{b_x_tracker.get_value():.2f} \\\\ {b_y_tracker.get_value():.2f}\\end{{bmatrix}} &= \\sqrt{{{a_x_tracker.get_value():.2f}^2 + {a_y_tracker.get_value():.2f}^2}}\\sqrt{{{b_x_tracker.get_value():.2f}^2 + {b_y_tracker.get_value():.2f}^2}}\\cos(\\theta) \\\\",
+                f"\\begin{{bmatrix}}{a_x_tracker.get_value():.0f} \\\\ {a_y_tracker.get_value():.0f}\\end{{bmatrix}} \\cdot \\begin{{bmatrix}}{b_x_tracker.get_value():.0f} \\\\ {b_y_tracker.get_value():.0f}\\end{{bmatrix}} &= \\sqrt{{{a_x_tracker.get_value():.0f}^2 + {a_y_tracker.get_value():.0f}^2}}\\sqrt{{{b_x_tracker.get_value():.0f}^2 + {b_y_tracker.get_value():.0f}^2}}\\cos(\\theta) \\\\",
                 color=WHITE,
                 font_size=24
             ),
             MathTex(
-                f"{a_x_tracker.get_value():.2f} \\cdot {b_x_tracker.get_value():.2f} + {a_y_tracker.get_value():.2f} \\cdot {b_y_tracker.get_value():.2f} &= {mag_a:.2f} \\cdot {mag_b:.2f} \\cos(\\theta) \\\\",
+                f"{a_x_tracker.get_value():.0f} \\cdot {b_x_tracker.get_value():.0f} + {a_y_tracker.get_value():.0f} \\cdot {b_y_tracker.get_value():.0f} &= {mag_a:.0f} \\cdot {mag_b:.0f} \\cos(\\theta) \\\\",
                 color=WHITE,
                 font_size=24
             ),
             MathTex(
-                f"{dot_product:.2f} &= {mag_a * mag_b:.2f} \\cos(\\theta) \\\\",
+                f"{dot_product:.0f} &= {mag_a * mag_b:.0f} \\cos(\\theta) \\\\",
                 color=WHITE,
                 font_size=24
             ),
             MathTex(
-                f"\\theta &= {angle:.2f} \\text{{ rad}} \\approx {np.degrees(angle):.2f}°",
+                f"\\theta &= {angle:.0f} \\text{{ rad}} \\approx {np.degrees(angle):.0f}°",
                 color=WHITE,
                 font_size=24
             )
@@ -214,6 +214,63 @@ def DotProduct(scene: Scene, plane, plane_container, debug: bool = False) -> Non
     length_labels = VGroup(vector_a_length, vector_b_length).arrange(RIGHT, buff=1)
     length_labels.next_to(vector_labels, DOWN, buff=0.5)   
 
+    # Create initial angle visualization
+    angle_arc = Angle(
+        vector_a, vector_b,
+        radius=0.5,
+        color=YELLOW,
+        other_angle=False
+    )
+    
+    angle_label = MathTex(
+        f"{np.degrees(angle):.1f}°",
+        color=YELLOW,
+        font_size=24
+    ).move_to(
+        plane.c2p(0,0) + 
+        angle_arc.point_from_proportion(0.5) * 1.2
+    )
+
+    # Add updaters for angle visualization
+    def update_angle_arc(mob):
+        try:
+            new_angle = Angle(
+                vector_a, vector_b,
+                radius=0.5,
+                color=YELLOW,
+                other_angle=False
+            )
+            mob.become(new_angle)
+        except ValueError:  # Handles parallel vectors case
+            # Create an empty VMobject when vectors are parallel
+            mob.become(VMobject())
+
+    def update_angle_label(mob):
+        dot_product = a_x_tracker.get_value()*b_x_tracker.get_value() + a_y_tracker.get_value()*b_y_tracker.get_value()
+        mag_a = np.sqrt(a_x_tracker.get_value()**2 + a_y_tracker.get_value()**2)
+        mag_b = np.sqrt(b_x_tracker.get_value()**2 + b_y_tracker.get_value()**2)
+        
+        # Handle zero magnitude vectors
+        if mag_a == 0 or mag_b == 0:
+            angle = 0
+        else:
+            # Clip the value to avoid floating point errors
+            cos_theta = np.clip(dot_product / (mag_a * mag_b), -1, 1)
+            angle = np.arccos(cos_theta)
+        
+        new_label = MathTex(
+            f"{np.degrees(angle):.1f}°",
+            color=YELLOW,
+            font_size=24
+        ).move_to(
+            plane.c2p(0,0) + 
+            (angle_arc.point_from_proportion(0.5) if not isinstance(angle_arc, VMobject) else UP*0.5) * 1.2
+        )
+        mob.become(new_label)
+
+    angle_arc.add_updater(update_angle_arc)
+    angle_label.add_updater(update_angle_label)
+
     # ANIMATE ##################################################
     ############################################################
     scene.play(Create(plane))
@@ -221,8 +278,12 @@ def DotProduct(scene: Scene, plane, plane_container, debug: bool = False) -> Non
     scene.play(Write(vector_labels))
     scene.play(Write(length_labels))
     scene.wait(1)
-
     scene.play(Write(angle_formula))
+    scene.wait(1)
+    scene.play(
+        Create(angle_arc),
+        Write(angle_label)
+    )
     scene.wait(1)
 
     # RANDOMIZE VECTOR(s) #######################################
