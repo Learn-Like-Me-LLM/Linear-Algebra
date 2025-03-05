@@ -7,6 +7,7 @@ def CalculateAngleBetweenVectors(
     plane_container, 
     vector_a, vector_b, 
     a_x_tracker, a_y_tracker, b_x_tracker, b_y_tracker,
+    length_labels,
     debug: bool = False
 ):
     # Initial angle formula setup
@@ -146,7 +147,10 @@ def CalculateAngleBetweenVectors(
 
     # ANIMATE ##################################################
     ############################################################
-    scene.play(Write(angle_formula))
+    scene.play(Write(angle_formula[0]), Write(length_labels))
+    scene.wait(1)
+    scene.play(Write(angle_formula[1:]))
+    scene.wait(1)
     scene.play(
         Create(angle_arc),
         Write(angle_label)

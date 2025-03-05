@@ -145,7 +145,6 @@ def DotProduct(scene: Scene, plane, plane_container, debug: bool = False) -> Non
     scene.play(Create(plane))
     scene.play(Write(vector_a), Write(vector_b))
     scene.play(Write(vector_labels))
-    scene.play(Write(length_labels))
     scene.wait(1)
     
     # LEFT EXAMPLE > Calculate Angle Between Vectors############
@@ -157,5 +156,8 @@ def DotProduct(scene: Scene, plane, plane_container, debug: bool = False) -> Non
         vector_a, 
         vector_b, 
         a_x_tracker, 
-        a_y_tracker, b_x_tracker, b_y_tracker, debug)
+        a_y_tracker, b_x_tracker, b_y_tracker, 
+        length_labels,
+        debug
+    )
     scene.wait(1)
