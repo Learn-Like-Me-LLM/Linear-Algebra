@@ -30,12 +30,11 @@ def Part2(self, title, subtitle, debug: bool = False):
         slant=ITALIC
     ).next_to(title, DOWN, buff=0.1).align_to(title, LEFT)
     
-    title.add(subtitle)
     self.play(Write(subtitle))
     self.wait(1)
 
     # Create dot product demonstration
-    DotProduct(self, plane, plane_container,debug)
+    DotProduct(self, plane, plane_container, title, subtitle, debug)
     
     # CLEAN UP 
     ############################################################

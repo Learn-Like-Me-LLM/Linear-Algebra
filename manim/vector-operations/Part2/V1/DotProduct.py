@@ -2,8 +2,8 @@ from manim import *
 import numpy as np
 
 from .CalculateAngleBetweenVectors import CalculateAngleBetweenVectors
-
-def DotProduct(scene: Scene, plane, plane_container, debug: bool = False) -> None:
+from .GenericExample import GenericExample
+def DotProduct(scene: Scene, plane, plane_container, title, subtitle, debug: bool = False) -> None:
     # VECTOR A #################################################
     ############################################################
     # Create trackers for vector coordinates
@@ -142,22 +142,31 @@ def DotProduct(scene: Scene, plane, plane_container, debug: bool = False) -> Non
 
     # ANIMATE ##################################################
     ############################################################
-    scene.play(Create(plane))
-    scene.play(Write(vector_a), Write(vector_b))
-    scene.play(Write(vector_labels))
-    scene.wait(1)
-    
-    # LEFT EXAMPLE > Calculate Angle Between Vectors############
-    ############################################################
-    CalculateAngleBetweenVectors(
+
+    # AMINATE > Generic Example#################################
+    GenericExample(
         scene, 
-        plane, 
-        plane_container, 
-        vector_a, 
-        vector_b, 
-        a_x_tracker, 
-        a_y_tracker, b_x_tracker, b_y_tracker, 
-        length_labels,
+        plane, plane_container, 
+        title, subtitle,
+        vector_a, vector_b, 
+        vector_labels,
+        a_x_tracker, a_y_tracker,
+        b_x_tracker, b_y_tracker,
         debug
     )
     scene.wait(1)
+
+    # # LEFT EXAMPLE > Calculate Angle Between Vectors############
+    # ############################################################
+    # CalculateAngleBetweenVectors(
+    #     scene, 
+    #     plane, 
+    #     plane_container, 
+    #     vector_a, 
+    #     vector_b, 
+    #     a_x_tracker, 
+    #     a_y_tracker, b_x_tracker, b_y_tracker, 
+    #     length_labels,
+    #     debug
+    # )
+    # scene.wait(1)
