@@ -234,15 +234,21 @@ def DotProduct(scene: Scene, plane, plane_container, debug: bool = False) -> Non
     # Add updaters for angle visualization
     def update_angle_arc(mob):
         try:
+            # Get vector angles in radians
+            angle_a = np.arctan2(a_y_tracker.get_value(), a_x_tracker.get_value())
+            angle_b = np.arctan2(b_y_tracker.get_value(), b_x_tracker.get_value())
+            
+            # Calculate the absolute difference between angles
+            angle_diff = (angle_b - angle_a) % (2 * PI)
+            
             new_angle = Angle(
                 vector_a, vector_b,
                 radius=0.5,
                 color=YELLOW,
-                other_angle=False
+                other_angle=(angle_diff > PI)  # Use other_angle when the difference is > 180°
             )
             mob.become(new_angle)
         except ValueError:  # Handles parallel vectors case
-            # Create an empty VMobject when vectors are parallel
             mob.become(VMobject())
 
     def update_angle_label(mob):
