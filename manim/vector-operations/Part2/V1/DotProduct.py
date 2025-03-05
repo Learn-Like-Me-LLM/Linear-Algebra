@@ -309,36 +309,3 @@ def DotProduct(scene: Scene, plane, plane_container, debug: bool = False) -> Non
         )
         scene.wait(2)
         count += 1
-
-    # # FORMULA(s) ###############################################
-    # ############################################################
-    # # dot_product = MathTex(
-    # #     r"\vec{a} \cdot \vec{b} = |\vec{a}| |\vec{b}| \cos(\theta)",
-    # #     color=WHITE
-    # # ).to_edge(UP)
-    
-    # # Show angle between vectors
-    # angle = Angle(vector_a, vector_b, radius=0.5, color=YELLOW)
-    # angle_label = MathTex(r"\theta", color=YELLOW).next_to(angle, RIGHT, buff=0.1)
-    
-    # scene.play(
-    #     Create(angle),
-    #     Write(angle_label)
-    # )
-    # scene.wait(1)
-    
-    # # Show dot product formula
-    # scene.play(Write(dot_product))
-    # scene.wait(2)
-    
-    # # Calculate actual dot product
-    # result = MathTex(
-    #     r"\vec{a} \cdot \vec{b} = (2,1) \cdot (1,2) = 2(1) + 1(2) = 4",
-    #     color=GREEN
-    # ).next_to(dot_product, DOWN)
-    
-    # scene.play(Write(result))
-    # scene.wait(2)
-
-    # if debug:
-    #     scene.wait(5)
