@@ -42,7 +42,7 @@ class VectorOperations(Scene):
         # PART 1 ##################################################
         # vector addition / subtraction & scalar multiplication ###
         ###########################################################
-        # Part1(self, title, subtitle, debug)
+        Part1(self, title, subtitle, debug)
 
         # UPDATE TITLE ############################################
         ###########################################################
