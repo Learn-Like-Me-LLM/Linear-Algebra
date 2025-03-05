@@ -159,16 +159,17 @@ def DotProduct(scene: Scene, plane, plane_container, title, subtitle, debug: boo
     scene.wait(1)
 
     # # ANIMATE > 2D Calculation ##################################
-    # TwoDimensionalCalculation(
-    #     scene, 
-    #     plane, plane_container, 
-    #     title, subtitle,
-    #     vector_a, vector_b, 
-    #     vector_labels,
-    #     a_x_tracker, a_y_tracker,
-    #     b_x_tracker, b_y_tracker,
-    #     debug
-    # )
+    TwoDimensionalCalculation(
+        scene, 
+        plane, plane_container, 
+        title, subtitle,
+        vector_a, vector_b, 
+        vector_labels,
+        a_x_tracker, a_y_tracker,
+        b_x_tracker, b_y_tracker,
+        debug
+    )
+    scene.wait(1)
 
     # # # LEFT EXAMPLE > Calculate Angle Between Vectors############
     # # ############################################################
