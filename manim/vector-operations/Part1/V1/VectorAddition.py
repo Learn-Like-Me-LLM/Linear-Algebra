@@ -22,44 +22,44 @@ def Addition(self, plane, vector_a, vector_b, debug: bool = False):
     ############################################################
     vector_equation = VGroup(
         VGroup(
-            MathTex("\\vec{a}", font_size=30).set_color(BLUE),
+            MathTex("\\vec{a}", font_size=30).set_color(PURE_GREEN),
             MathTex("+", font_size=30),
             MathTex("\\vec{b}", font_size=30).set_color(YELLOW),
         ).arrange(RIGHT, buff=0.5).to_edge(LEFT, buff=1),
         VGroup(
-            MathTex(f"\\begin{{bmatrix}} {a_components[0]} \\\\ {a_components[1]} \\end{{bmatrix}}", font_size=30).set_color(BLUE),
+            MathTex(f"\\begin{{bmatrix}} {a_components[0]} \\\\ {a_components[1]} \\end{{bmatrix}}", font_size=30).set_color(PURE_GREEN),
             MathTex("+", font_size=30),
             MathTex(f"\\begin{{bmatrix}} {b_components[0]} \\\\ {b_components[1]} \\end{{bmatrix}}", font_size=30).set_color(YELLOW),
         ).arrange(RIGHT, buff=0.5).to_edge(LEFT, buff=1),
         VGroup(
-            MathTex(f"\\begin{{bmatrix}} {a_components[0]} + {b_components[0]} \\\\ {a_components[1]} + {b_components[1]} \\end{{bmatrix}}", font_size=30).set_color(GREEN),
+            MathTex(f"\\begin{{bmatrix}} {a_components[0]} + {b_components[0]} \\\\ {a_components[1]} + {b_components[1]} \\end{{bmatrix}}", font_size=30).set_color(WHITE),
         ).arrange(RIGHT, buff=0.5).to_edge(LEFT, buff=1),
         VGroup(
-            MathTex(f"\\begin{{bmatrix}} {c_components[0]} \\\\ {c_components[1]} \\end{{bmatrix}}", font_size=30).set_color(GREEN),
+            MathTex(f"\\begin{{bmatrix}} {c_components[0]} \\\\ {c_components[1]} \\end{{bmatrix}}", font_size=30).set_color(WHITE),
         ).arrange(RIGHT, buff=0.5).to_edge(LEFT, buff=1),
     ).arrange(DOWN).to_edge(LEFT, buff=1)
 
     commutative_description = VGroup(
-        Text("Commutative:", font_size=30).to_edge(LEFT, buff=1),
-        MathTex("\\vec{a} + \\vec{b} = \\vec{b} + \\vec{a}", font_size=30).to_edge(LEFT, buff=1),
+        Text("Commutative:", font_size=30).to_edge(LEFT, buff=1).set_color(BLUE),
+        MathTex("\\vec{a} + \\vec{b} = \\vec{b} + \\vec{a}", font_size=30).to_edge(LEFT, buff=1).set_color(BLUE),
     ).arrange(DOWN).next_to(vector_equation, DOWN)
 
     vector_equation_commutative = VGroup(
         VGroup(
             MathTex("\\vec{b}", font_size=30).set_color(YELLOW),
             MathTex("+", font_size=30),
-            MathTex("\\vec{a}", font_size=30).set_color(BLUE),
+            MathTex("\\vec{a}", font_size=30).set_color(PURE_GREEN),
         ).arrange(RIGHT, buff=0.5).to_edge(LEFT, buff=1),
         VGroup(
             MathTex(f"\\begin{{bmatrix}} {b_components[0]} \\\\ {b_components[1]} \\end{{bmatrix}}", font_size=30).set_color(YELLOW),
             MathTex("+", font_size=30),
-            MathTex(f"\\begin{{bmatrix}} {a_components[0]} \\\\ {a_components[1]} \\end{{bmatrix}}", font_size=30).set_color(BLUE),
+            MathTex(f"\\begin{{bmatrix}} {a_components[0]} \\\\ {a_components[1]} \\end{{bmatrix}}", font_size=30).set_color(PURE_GREEN),
         ).arrange(RIGHT, buff=0.5).to_edge(LEFT, buff=1),
         VGroup(
-            MathTex(f"\\begin{{bmatrix}} {b_components[0]} + {a_components[0]} \\\\ {b_components[1]} + {a_components[1]} \\end{{bmatrix}}", font_size=30).set_color(GREEN),
+            MathTex(f"\\begin{{bmatrix}} {b_components[0]} + {a_components[0]} \\\\ {b_components[1]} + {a_components[1]} \\end{{bmatrix}}", font_size=30).set_color(WHITE),
         ).arrange(RIGHT, buff=0.5).to_edge(LEFT, buff=1),
         VGroup(
-            MathTex(f"\\begin{{bmatrix}} {c_components[0]} \\\\ {c_components[1]} \\end{{bmatrix}}", font_size=30).set_color(GREEN),
+            MathTex(f"\\begin{{bmatrix}} {c_components[0]} \\\\ {c_components[1]} \\end{{bmatrix}}", font_size=30).set_color(WHITE),
         ).arrange(RIGHT, buff=0.5).to_edge(LEFT, buff=1),
     ).arrange(DOWN).to_edge(LEFT, buff=1)
 
@@ -83,7 +83,7 @@ def Addition(self, plane, vector_a, vector_b, debug: bool = False):
         plane.c2p(0, 0),  # Start at origin
         plane.c2p(c_components[0], c_components[1]),  # End at sum of components
         buff=0,
-        color=GREEN
+        color=WHITE
     )
     
     # ANIMATE ##################################################

@@ -17,9 +17,9 @@ def VectorAdditionAndSubraction(self, plane, plane_container, debug: bool = Fals
     vector_a = Arrow(
         plane.c2p(0, 0), 
         plane.c2p(vector_a_points[0], vector_a_points[1]), 
-        buff=0, color=BLUE
+        buff=0, color=PURE_GREEN
     )
-    vector_a_label = MathTex(f"\\vec{{a}} = [{vector_a_points[0]}, {vector_a_points[1]}]", font_size=30).next_to(plane.c2p(vector_a_points[0], vector_a_points[1]), RIGHT).set_color(BLUE)
+    vector_a_label = MathTex(f"\\vec{{a}} = [{vector_a_points[0]}, {vector_a_points[1]}]", font_size=30).next_to(plane.c2p(vector_a_points[0], vector_a_points[1]), RIGHT).set_color(PURE_GREEN)
     
     vector_b = Arrow(
         plane.c2p(0, 0), 

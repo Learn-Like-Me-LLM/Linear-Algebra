@@ -27,11 +27,10 @@ def Part1(self, title, subtitle, debug: bool = False):
     # SCALAR MULTIPLICATION ####################################
     ############################################################
     # SCALAR MULTIPLICATION > UPDATE SUBTITLE
-    new_subtitle = MarkupText(
-        'Scalar <span color="PURPLE">Multiplication</span>',
-        font_size=20,
-        slant=ITALIC
-    ).move_to(subtitle).align_to(title, LEFT)
+    new_subtitle = VGroup(
+        Text("Scalar", font_size=20, slant=ITALIC),
+        Text("Multiplication", font_size=20, slant=ITALIC, color=BLUE),
+    ).arrange(RIGHT, buff=0.1).move_to(subtitle).align_to(title, LEFT)
     
     self.play(Transform(subtitle, new_subtitle))
     self.wait(1)

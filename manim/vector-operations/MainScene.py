@@ -29,11 +29,13 @@ class VectorOperations(Scene):
         # VECTOR ADDITION ##########################################
         ############################################################
         # VECTOR ADDITION > UPDATE SUBTITLE
-        subtitle = MarkupText(
-            'Vector <span color="GREEN">Addition</span> &amp; <span color="RED">Subtraction</span>',
-            font_size=20,
-            slant=ITALIC
-        ).next_to(title, DOWN, buff=0.1).align_to(title, LEFT)
+        subtitle = VGroup (
+            Text("Vector", font_size=20, slant=ITALIC),
+            Text("Addition", font_size=20, slant=ITALIC,  color=BLUE),
+            MathTex("\\&", font_size=20),
+            Text("Subtraction", font_size=20, slant=ITALIC, color=BLUE),
+        ).arrange(RIGHT, buff=0.1)
+        subtitle.next_to(title, DOWN, buff=0.1).align_to(title, LEFT)
         
         # titleVGroup.add(subtitle)
         self.play(Write(subtitle))
@@ -50,14 +52,14 @@ class VectorOperations(Scene):
                                 debug,
                                 part="Part 2",
                                 subtitle = VGroup( 
-                                    Text("Dot Product (Inner Product)", font_size=40),
+                                    Text("Dot Product", font_size=40),
                                 ),
                             )
 
         # PART 2 ##################################################
         # dot product #############################################
         ###########################################################
-        Part2(self, title, subtitle, debug)
+        # Part2(self, title, subtitle, debug)
 
         # PART 3 ##################################################
         # cross product ###########################################
