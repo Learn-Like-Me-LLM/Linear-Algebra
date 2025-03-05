@@ -17,7 +17,7 @@ def DotProduct(scene: Scene, plane, plane_container, title, subtitle, debug: boo
         start=plane.c2p(0,0),
         end=plane.c2p(a_x_tracker.get_value(), a_y_tracker.get_value()),
         buff=0,
-        color=BLUE
+        color=PURE_GREEN
     )
     
     # Update vector_a position
@@ -34,7 +34,7 @@ def DotProduct(scene: Scene, plane, plane_container, title, subtitle, debug: boo
         f"{a_x_tracker.get_value():.0f}" + r"\\" + 
         f"{a_y_tracker.get_value():.0f}" + 
         r"\end{bmatrix}",
-        color=BLUE,
+        color=PURE_GREEN,
         font_size=24
     )
 
@@ -45,7 +45,7 @@ def DotProduct(scene: Scene, plane, plane_container, title, subtitle, debug: boo
             f"{a_x_tracker.get_value():.0f}" + r"\\" + 
             f"{a_y_tracker.get_value():.0f}" + 
             r"\end{bmatrix}",
-            color=BLUE,
+            color=PURE_GREEN,
             font_size=24
         )
         new_label.move_to(mob)
@@ -55,7 +55,7 @@ def DotProduct(scene: Scene, plane, plane_container, title, subtitle, debug: boo
     # Create initial length labels
     vector_a_length = MathTex(
         f"|\\vec{{a}}| = \\sqrt{{{a_x_tracker.get_value():.0f}^2 + {a_y_tracker.get_value():.0f}^2}} = {np.sqrt(a_x_tracker.get_value()**2 + a_y_tracker.get_value()**2):.0f}",
-        color=BLUE,
+        color=PURE_GREEN,
         font_size=24
     )
 
@@ -63,7 +63,7 @@ def DotProduct(scene: Scene, plane, plane_container, title, subtitle, debug: boo
     def update_length_a(mob):
         new_length = MathTex(
             f"|\\vec{{a}}| = \\sqrt{{{a_x_tracker.get_value():.0f}^2 + {a_y_tracker.get_value():.0f}^2}} = {np.sqrt(a_x_tracker.get_value()**2 + a_y_tracker.get_value()**2):.0f}",
-            color=BLUE,
+            color=PURE_GREEN,
             font_size=24
         )
         new_length.move_to(mob)
@@ -81,7 +81,7 @@ def DotProduct(scene: Scene, plane, plane_container, title, subtitle, debug: boo
         start=plane.c2p(0,0),
         end=plane.c2p(b_x_tracker.get_value(), b_y_tracker.get_value()),
         buff=0,
-        color=RED
+        color=YELLOW
     )
     
     # Update vector_b position
@@ -98,7 +98,7 @@ def DotProduct(scene: Scene, plane, plane_container, title, subtitle, debug: boo
         f"{b_x_tracker.get_value():.0f}" + r"\\" + 
         f"{b_y_tracker.get_value():.0f}" + 
         r"\end{bmatrix}",
-        color=RED,
+        color=YELLOW,
         font_size=24
     )
 
@@ -109,7 +109,7 @@ def DotProduct(scene: Scene, plane, plane_container, title, subtitle, debug: boo
             f"{b_x_tracker.get_value():.0f}" + r"\\" + 
             f"{b_y_tracker.get_value():.0f}" + 
             r"\end{bmatrix}",
-            color=RED,
+            color=YELLOW,
             font_size=24
         )
         new_label.move_to(mob)
@@ -118,7 +118,7 @@ def DotProduct(scene: Scene, plane, plane_container, title, subtitle, debug: boo
 
     vector_b_length = MathTex(
         f"|\\vec{{b}}| = \\sqrt{{{b_x_tracker.get_value():.0f}^2 + {b_y_tracker.get_value():.0f}^2}} = {np.sqrt(b_x_tracker.get_value()**2 + b_y_tracker.get_value()**2):.0f}",
-        color=RED,
+        color=YELLOW,
         font_size=24
     )
 
@@ -126,7 +126,7 @@ def DotProduct(scene: Scene, plane, plane_container, title, subtitle, debug: boo
     def update_length_b(mob):
         new_length = MathTex(
             f"|\\vec{{b}}| = \\sqrt{{{b_x_tracker.get_value():.0f}^2 + {b_y_tracker.get_value():.0f}^2}} = {np.sqrt(b_x_tracker.get_value()**2 + b_y_tracker.get_value()**2):.0f}",
-            color=RED,
+            color=YELLOW,
             font_size=24
         )
         new_length.move_to(mob)
@@ -158,29 +158,29 @@ def DotProduct(scene: Scene, plane, plane_container, title, subtitle, debug: boo
     )
     scene.wait(1)
 
-    # ANIMATE > 2D Calculation ##################################
-    TwoDimensionalCalculation(
-        scene, 
-        plane, plane_container, 
-        title, subtitle,
-        vector_a, vector_b, 
-        vector_labels,
-        a_x_tracker, a_y_tracker,
-        b_x_tracker, b_y_tracker,
-        debug
-    )
+    # # ANIMATE > 2D Calculation ##################################
+    # TwoDimensionalCalculation(
+    #     scene, 
+    #     plane, plane_container, 
+    #     title, subtitle,
+    #     vector_a, vector_b, 
+    #     vector_labels,
+    #     a_x_tracker, a_y_tracker,
+    #     b_x_tracker, b_y_tracker,
+    #     debug
+    # )
 
-    # # LEFT EXAMPLE > Calculate Angle Between Vectors############
-    # ############################################################
-    CalculateAngleBetweenVectors(
-        scene, 
-        plane, 
-        plane_container, 
-        vector_a, 
-        vector_b, 
-        a_x_tracker, 
-        a_y_tracker, b_x_tracker, b_y_tracker, 
-        length_labels,
-        debug
-    )
-    scene.wait(1)
+    # # # LEFT EXAMPLE > Calculate Angle Between Vectors############
+    # # ############################################################
+    # CalculateAngleBetweenVectors(
+    #     scene, 
+    #     plane, 
+    #     plane_container, 
+    #     vector_a, 
+    #     vector_b, 
+    #     a_x_tracker, 
+    #     a_y_tracker, b_x_tracker, b_y_tracker, 
+    #     length_labels,
+    #     debug
+    # )
+    # scene.wait(1)

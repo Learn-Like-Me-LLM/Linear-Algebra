@@ -44,7 +44,7 @@ class VectorOperations(Scene):
         # PART 1 ##################################################
         # vector addition / subtraction & scalar multiplication ###
         ###########################################################
-        Part1(self, title, subtitle, debug)
+        # Part1(self, title, subtitle, debug)
 
         # UPDATE TITLE ############################################
         ###########################################################
@@ -59,7 +59,7 @@ class VectorOperations(Scene):
         # PART 2 ##################################################
         # dot product #############################################
         ###########################################################
-        # Part2(self, title, subtitle, debug)
+        Part2(self, title, subtitle, debug)
 
         # PART 3 ##################################################
         # cross product ###########################################

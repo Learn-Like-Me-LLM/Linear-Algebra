@@ -14,25 +14,72 @@ def GenericExample(
 
     # GENERIC EXAMPLE ##########################################
     ############################################################
+
+    formula = VGroup(
+        VGroup(
+            MathTex(r"\vec{a}").set_color(PURE_GREEN),
+            MathTex(r"\cdot"),
+            MathTex(r"\vec{b}").set_color(YELLOW),
+        ).arrange(RIGHT, buff=0.1),
+        Text("="),
+        VGroup(
+            MathTex(r"\sum_{i=1}^{n}"),
+            VGroup(
+                MathTex(r"a_i").set_color(PURE_GREEN),
+                MathTex(r"\cdot"),
+                MathTex(r"b_i").set_color(YELLOW),
+            ).arrange(RIGHT, buff=0.1),
+        ).arrange(RIGHT, buff=0.1),
+    ).arrange(RIGHT, buff=0.1)
+    
+
     example = VGroup(
         VGroup(
             MathTex(
                 r"\vec{a} = \begin{bmatrix} {a_x} \\[1pt] {a_y} \\[1pt] {a_z} \\[1pt] \dots \\[1pt] {a_n} \end{bmatrix}",
                 # font_size=24
-            ),
+            ).set_color(PURE_GREEN),
             MathTex(
                 r"\vec{b} = \begin{bmatrix} {b_x} \\[1pt] {b_y} \\[1pt] {b_z} \\[1pt] \dots \\[1pt] {b_n} \end{bmatrix}",
                 # font_size=24
-            )
+            ).set_color(YELLOW)
         ).arrange(RIGHT, buff=0.25),
-        MathTex(
-            r"\vec{a} \cdot \vec{b} = ({a_x} \cdot {b_x}) + ({a_y} \cdot {b_y}) + ({a_z} \cdot {b_z}) + \dots + ({a_n} \cdot {b_n})",
-            # font_size=24
-        ),
-        MathTex(
-            r"\vec{a} \cdot \vec{b} = \sum_{i=1}^{n} a_i \cdot b_i",
-            # font_size=24
-        ),
+        VGroup(
+            VGroup(
+                MathTex(r"\vec{a}").set_color(PURE_GREEN),
+                MathTex(r"\cdot"),
+                MathTex(r"\vec{b}").set_color(YELLOW),
+            ).arrange(RIGHT, buff=0.1),
+            Text("="),
+            VGroup(
+                Text("("),
+                MathTex(r"{a_x}").set_color(PURE_GREEN),
+                MathTex(r"\cdot"),
+                MathTex(r"{b_x}").set_color(YELLOW),
+                Text(")"),
+                MathTex(r" + "),
+                Text("("),
+                MathTex(r"{a_y}").set_color(PURE_GREEN),
+                MathTex(r"\cdot"),
+                MathTex(r"{b_y}").set_color(YELLOW),
+                Text(")"),
+                MathTex(r" + "),
+                Text("("),
+                MathTex(r"{a_z}").set_color(PURE_GREEN),
+                MathTex(r"\cdot"),
+                MathTex(r"{b_z}").set_color(YELLOW),
+                Text(")"),
+                MathTex(r" + "),
+                MathTex(r"\dots"),
+                MathTex(r" + "),
+                Text("("),
+                MathTex(r"{a_n}").set_color(PURE_GREEN),
+                MathTex(r"\cdot"),
+                MathTex(r"{b_n}").set_color(YELLOW),
+                Text(")"),
+            ).arrange(RIGHT, buff=0.1),
+        ).arrange(RIGHT, buff=0.1),
+        formula,
     ).arrange(DOWN, buff=0.25).move_to(ORIGIN)
     
     # ANIMATE ##################################################
@@ -43,17 +90,9 @@ def GenericExample(
         scene.wait(1)
         count += 1
 
-    formula = MathTex(
-        r"\vec{a} \cdot \vec{b} = \sum_{i=1}^{n} a_i \cdot b_i",
-        font_size=25
-    ).arrange(DOWN).next_to(plane, UP, buff=0.25)
-    
     scene.play(
-        FadeOut(example), 
-        TransformFromCopy(
-            example[2], 
-            formula,
-        ),
+        FadeOut(example[0:2]),
+        example[2].animate.scale(0.6).next_to(plane, UP, buff=0.25),
         run_time=2
     )
 
