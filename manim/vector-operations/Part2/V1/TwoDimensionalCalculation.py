@@ -12,35 +12,78 @@ def TwoDimensionalCalculation(
 ) -> None:
     # FULL CALCULATION #########################################
     ############################################################
+    calculation_font_size = 24
     calculation = VGroup(
         VGroup(
-            MathTex(r"\vec{a}"),
-            MathTex(r"\cdot"),
-            MathTex(r"\vec{b}"),
+            MathTex(r"\vec{a}", font_size=calculation_font_size),
+            MathTex(r"\cdot", font_size=calculation_font_size),
+            MathTex(r"\vec{b}", font_size=calculation_font_size),
         ).arrange(RIGHT, buff=0.25),
         VGroup(
-            MathTex(r"\begin{bmatrix}" + f"{a_x_tracker.get_value():.0f}" + r"\\[1pt]" + f"{a_y_tracker.get_value():.0f}" + r"\end{bmatrix}"),
-            MathTex(f"\cdot"),
-            MathTex(r"\begin{bmatrix}" + f"{b_x_tracker.get_value():.0f}" + r"\\[1pt]" + f"{b_y_tracker.get_value():.0f}" + r"\end{bmatrix}")
+            MathTex(r"\begin{bmatrix}" + f"{a_x_tracker.get_value():.0f}" + r"\\[1pt]" + f"{a_y_tracker.get_value():.0f}" + r"\end{bmatrix}", font_size=calculation_font_size),
+            MathTex(f"\cdot", font_size=calculation_font_size),
+            MathTex(r"\begin{bmatrix}" + f"{b_x_tracker.get_value():.0f}" + r"\\[1pt]" + f"{b_y_tracker.get_value():.0f}" + r"\end{bmatrix}", font_size=calculation_font_size)
         ).arrange(RIGHT, buff=0.25),
         VGroup(
-            MathTex(f"({a_x_tracker.get_value():.0f}" + r"\times" + f"{b_x_tracker.get_value():.0f})"),
-            Text(r"+"),
-            MathTex(f"({a_y_tracker.get_value():.0f}" + r"\times" + f"{b_y_tracker.get_value():.0f})"),
+            MathTex(f"({a_x_tracker.get_value():.0f}" + r"\times" + f"{b_x_tracker.get_value():.0f})", font_size=calculation_font_size),
+            Text(r"+", font_size=calculation_font_size),
+            MathTex(f"({a_y_tracker.get_value():.0f}" + r"\times" + f"{b_y_tracker.get_value():.0f})", font_size=calculation_font_size),
         ).arrange(RIGHT, buff=0.25),
         VGroup(
-            MathTex(f"{a_x_tracker.get_value() * b_x_tracker.get_value():.0f}"),
-            Text(r"+"),
-            MathTex(f"{a_y_tracker.get_value() * b_y_tracker.get_value():.0f}"),
+            MathTex(f"{a_x_tracker.get_value() * b_x_tracker.get_value():.0f}", font_size=calculation_font_size),
+            Text(r"+", font_size=calculation_font_size),
+            MathTex(f"{a_y_tracker.get_value() * b_y_tracker.get_value():.0f}", font_size=calculation_font_size),
         ).arrange(RIGHT, buff=0.25),
         VGroup(
-            MathTex(f"{(a_x_tracker.get_value() * b_x_tracker.get_value()) + (a_y_tracker.get_value() * b_y_tracker.get_value()):.0f}"),
+            MathTex(f"{(a_x_tracker.get_value() * b_x_tracker.get_value()) + (a_y_tracker.get_value() * b_y_tracker.get_value()):.0f}", font_size=calculation_font_size),
         ).arrange(RIGHT, buff=0.25)
     ).arrange(DOWN, buff=0.25)
+
+    # Add updaters for each calculation step
+    def update_matrix_step(mob):
+        new_step = VGroup(
+            MathTex(r"\begin{bmatrix}" + f"{a_x_tracker.get_value():.0f}" + r"\\[1pt]" + f"{a_y_tracker.get_value():.0f}" + r"\end{bmatrix}", font_size=calculation_font_size),
+            MathTex(f"\cdot", font_size=calculation_font_size),
+            MathTex(r"\begin{bmatrix}" + f"{b_x_tracker.get_value():.0f}" + r"\\[1pt]" + f"{b_y_tracker.get_value():.0f}" + r"\end{bmatrix}", font_size=calculation_font_size)
+        ).arrange(RIGHT, buff=0.25)
+        new_step.move_to(mob)
+        mob.become(new_step)
+        mob[0].set_color(BLUE)
+        mob[2].set_color(RED)
+
+    def update_multiplication_step(mob):
+        new_step = VGroup(
+            MathTex(f"({a_x_tracker.get_value():.0f}" + r"\times" + f"{b_x_tracker.get_value():.0f})", font_size=calculation_font_size),
+            Text(r"+", font_size=calculation_font_size),
+            MathTex(f"({a_y_tracker.get_value():.0f}" + r"\times" + f"{b_y_tracker.get_value():.0f})", font_size=calculation_font_size)
+        ).arrange(RIGHT, buff=0.25)
+        new_step.move_to(mob)
+        mob.become(new_step)
+
+    def update_addition_step(mob):
+        new_step = VGroup(
+            MathTex(f"{a_x_tracker.get_value() * b_x_tracker.get_value():.0f}", font_size=calculation_font_size),
+            Text(r"+", font_size=calculation_font_size),
+            MathTex(f"{a_y_tracker.get_value() * b_y_tracker.get_value():.0f}", font_size=calculation_font_size)
+        ).arrange(RIGHT, buff=0.25)
+        new_step.move_to(mob)
+        mob.become(new_step)
+
+    def update_result_step(mob):
+        new_step = VGroup(
+            MathTex(f"{(a_x_tracker.get_value() * b_x_tracker.get_value()) + (a_y_tracker.get_value() * b_y_tracker.get_value()):.0f}", font_size=calculation_font_size)
+        ).arrange(RIGHT, buff=0.25)
+        new_step.move_to(mob)
+        mob.become(new_step)
+
+    calculation[1].add_updater(update_matrix_step)
+    calculation[2].add_updater(update_multiplication_step)
+    calculation[3].add_updater(update_addition_step)
+    calculation[4].add_updater(update_result_step)
+
+    # Set colors for the first step (vector names)
     calculation[0][0].set_color(BLUE)
     calculation[0][2].set_color(RED)
-    calculation[1][0].set_color(BLUE)
-    calculation[1][2].set_color(RED)
     
     calculation.to_edge(LEFT)
 
