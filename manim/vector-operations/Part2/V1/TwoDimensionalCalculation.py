@@ -84,9 +84,9 @@ def TwoDimensionalCalculation(
 
     def update_addition_step(mob):
         new_step = VGroup(
-            MathTex(f"{a_x_tracker.get_value() * b_x_tracker.get_value():.0f}", font_size=calculation_font_size).set_color(PURE_GREEN),
+            MathTex(f"{a_x_tracker.get_value() * b_x_tracker.get_value():.0f}", font_size=calculation_font_size).set_color(WHITE),
             Text(r"+", font_size=calculation_font_size),
-            MathTex(f"{a_y_tracker.get_value() * b_y_tracker.get_value():.0f}", font_size=calculation_font_size).set_color(YELLOW),
+            MathTex(f"{a_y_tracker.get_value() * b_y_tracker.get_value():.0f}", font_size=calculation_font_size).set_color(WHITE),
         ).arrange(RIGHT, buff=0.25)
         new_step.move_to(mob)
         mob.become(new_step)
@@ -134,5 +134,5 @@ def TwoDimensionalCalculation(
     # CLEAN UP #################################################
     ############################################################
     scene.play(
-        FadeOut(calculation)
+        FadeOut(calculation, plane, vector_a, vector_b, vector_labels)
     )

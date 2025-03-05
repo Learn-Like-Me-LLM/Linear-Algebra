@@ -6,7 +6,9 @@ def CalculateAngleBetweenVectors(
     plane, 
     plane_container, 
     vector_a, vector_b, 
-    a_x_tracker, a_y_tracker, b_x_tracker, b_y_tracker,
+    vector_labels,
+    a_x_tracker, a_y_tracker, 
+    b_x_tracker, b_y_tracker,
     length_labels,
     debug: bool = False
 ):

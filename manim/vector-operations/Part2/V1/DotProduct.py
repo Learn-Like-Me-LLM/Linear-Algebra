@@ -171,17 +171,17 @@ def DotProduct(scene: Scene, plane, plane_container, title, subtitle, debug: boo
     )
     scene.wait(1)
 
-    # # # LEFT EXAMPLE > Calculate Angle Between Vectors############
-    # # ############################################################
-    # CalculateAngleBetweenVectors(
-    #     scene, 
-    #     plane, 
-    #     plane_container, 
-    #     vector_a, 
-    #     vector_b, 
-    #     a_x_tracker, 
-    #     a_y_tracker, b_x_tracker, b_y_tracker, 
-    #     length_labels,
-    #     debug
-    # )
-    # scene.wait(1)
+    # # LEFT EXAMPLE > Calculate Angle Between Vectors############
+    # ############################################################
+    CalculateAngleBetweenVectors(
+        scene, 
+        plane, 
+        plane_container, 
+        vector_a, vector_b,  
+        vector_labels,
+        a_x_tracker, a_y_tracker,
+        b_x_tracker, b_y_tracker,
+        length_labels,
+        debug
+    )
+    scene.wait(1)
