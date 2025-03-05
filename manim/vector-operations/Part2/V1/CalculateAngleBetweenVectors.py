@@ -150,11 +150,7 @@ def CalculateAngleBetweenVectors(
     # ANIMATE ##################################################
     ############################################################
     scene.play(Write(angle_formula[0]), Write(length_labels))
-    scene.play(
-        Write(plane), 
-        # Write(vector_a), Write(vector_b), 
-        Write(vector_labels)
-    )
+    scene.play(FadeIn(plane, vector_a, vector_b, vector_labels))
     scene.wait(1)
     scene.play(Write(angle_formula[1:]))
     scene.wait(1)
