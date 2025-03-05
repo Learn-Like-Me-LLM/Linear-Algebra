@@ -3,6 +3,8 @@ import numpy as np
 
 from .CalculateAngleBetweenVectors import CalculateAngleBetweenVectors
 from .GenericExample import GenericExample
+from .TwoDimensionalCalculation import TwoDimensionalCalculation
+
 def DotProduct(scene: Scene, plane, plane_container, title, subtitle, debug: bool = False) -> None:
     # VECTOR A #################################################
     ############################################################
@@ -155,6 +157,14 @@ def DotProduct(scene: Scene, plane, plane_container, title, subtitle, debug: boo
         debug
     )
     scene.wait(1)
+
+    # ANIMATE > 2D Calculation ##################################
+    TwoDimensionalCalculation(
+        scene, 
+        plane, plane_container, 
+        title, subtitle,
+        debug
+    )
 
     # # LEFT EXAMPLE > Calculate Angle Between Vectors############
     # ############################################################

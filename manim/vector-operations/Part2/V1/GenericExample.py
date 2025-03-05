@@ -26,7 +26,7 @@ def GenericExample(
             )
         ).arrange(RIGHT, buff=0.25),
         MathTex(
-            r"\vec{a} \cdot \vec{b} = {a_x} \cdot {b_x} + {a_y} \cdot {b_y} + {a_z} \cdot {b_z} + \dots + {a_n} \cdot {b_n}",
+            r"\vec{a} \cdot \vec{b} = ({a_x} \cdot {b_x}) + ({a_y} \cdot {b_y}) + ({a_z} \cdot {b_z}) + \dots + ({a_n} \cdot {b_n})",
             # font_size=24
         ),
         MathTex(
@@ -68,34 +68,26 @@ def GenericExample(
     calculation[1][2].set_color(RED)
     
     calculation.to_edge(LEFT)
-
+    
     # ANIMATE ##################################################
     ############################################################
-    scene.play(Write(example[0]))
-    scene.wait(1)
-    scene.play(Write(example[1]))
-    scene.wait(1)
+    count = 0
+    while count < len(example):
+        scene.play(Write(example[count]))
+        scene.wait(1)
+        count += 1
 
-    # UPDATE SUBTITLE
-    new_subtitle = VGroup(
-        MarkupText(
-            '<span color="PURPLE">Dot Product (Inner Product)</span>',
-            font_size=20,
-            slant=ITALIC
-        ),
-        MathTex(
-            r"\vec{a} \cdot \vec{b} = \sum_{i=1}^{n} a_i \cdot b_i",
-            font_size=25
-        ).align_to(LEFT),
-    ).arrange(DOWN).next_to(title, DOWN).align_to(title, LEFT)
+    formula = MathTex(
+        r"\vec{a} \cdot \vec{b} = \sum_{i=1}^{n} a_i \cdot b_i",
+        font_size=25
+    ).arrange(DOWN).next_to(plane, UP, buff=0.25)
     
     scene.play(
-        Transform(subtitle, new_subtitle),
-        Write(example[2])
-    )
-
-    scene.play(
         FadeOut(example), 
+        TransformFromCopy(
+            example[2], 
+            formula,
+        ),
         run_time=2
     )
 
@@ -104,6 +96,7 @@ def GenericExample(
     scene.play(Write(vector_a), Write(vector_b))
     scene.play(Write(vector_labels))
     scene.wait(1)
+
 
     count = 0 
     while count < len(calculation):
@@ -114,6 +107,6 @@ def GenericExample(
     # CLEAN UP 
     ############################################################
     scene.play(
-        FadeOut(plane, vector_a, vector_b, vector_labels, calculation), 
+        FadeOut(plane, vector_a, vector_b, vector_labels, calculation, formula), 
         run_time=2
     )
