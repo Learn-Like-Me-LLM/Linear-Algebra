@@ -35,14 +35,28 @@ def GenericExample(
 
     example = VGroup(
         VGroup(
-            MathTex(
-                r"\vec{a} = \begin{bmatrix} {a_x} \\[1pt] {a_y} \\[1pt] {a_z} \\[1pt] \dots \\[1pt] {a_n} \end{bmatrix}",
-                # font_size=24
-            ).set_color(PURE_GREEN),
-            MathTex(
-                r"\vec{b} = \begin{bmatrix} {b_x} \\[1pt] {b_y} \\[1pt] {b_z} \\[1pt] \dots \\[1pt] {b_n} \end{bmatrix}",
-                # font_size=24
-            ).set_color(YELLOW)
+            VGroup(
+                MathTex(
+                    r"\vec{a}",
+                    # font_size=24
+                ).set_color(PURE_GREEN),
+                Text("="),
+                MathTex(
+                    r"\begin{bmatrix} {a_x} \\[1pt] {a_y} \\[1pt] {a_z} \\[1pt] \dots \\[1pt] {a_n} \end{bmatrix}",
+                    # font_size=24
+                ).set_color(PURE_GREEN),
+            ).arrange(RIGHT, buff=0.1),
+            VGroup(
+                MathTex(
+                    r"\vec{b}",
+                    # font_size=24
+                ).set_color(YELLOW),
+                Text("="),
+                MathTex(
+                    r"\begin{bmatrix} {b_x} \\[1pt] {b_y} \\[1pt] {b_z} \\[1pt] \dots \\[1pt] {b_n} \end{bmatrix}",
+                    # font_size=24
+                ).set_color(YELLOW)
+            ).arrange(RIGHT, buff=0.1),
         ).arrange(RIGHT, buff=0.25),
         VGroup(
             VGroup(
@@ -95,12 +109,3 @@ def GenericExample(
         example[2].animate.scale(0.6).next_to(plane, UP, buff=0.25),
         run_time=2
     )
-
-    # ANIMATE > Plane & Vectors ################################
-    scene.play(Create(plane))
-    scene.play(Write(vector_a), Write(vector_b))
-    scene.play(Write(vector_labels))
-    scene.wait(1)
-
-    # CLEAN UP 
-    ############################################################

@@ -5,12 +5,12 @@ from .CalculateAngleBetweenVectors import CalculateAngleBetweenVectors
 from .GenericExample import GenericExample
 from .TwoDimensionalCalculation import TwoDimensionalCalculation
 
-def DotProduct(scene: Scene, plane, plane_container, title, subtitle, debug: bool = False) -> None:
+def DotProduct(scene: Scene, plane, plane_container, title, subtitle, font_size: int = 35, debug: bool = False) -> None:
     # VECTOR A #################################################
     ############################################################
     # Create trackers for vector coordinates
-    a_x_tracker = ValueTracker(2)
-    a_y_tracker = ValueTracker(1)
+    a_x_tracker = ValueTracker(0)
+    a_y_tracker = ValueTracker(-1)
 
     # VECTOR A with trackers
     vector_a = Arrow(
@@ -35,7 +35,7 @@ def DotProduct(scene: Scene, plane, plane_container, title, subtitle, debug: boo
         f"{a_y_tracker.get_value():.0f}" + 
         r"\end{bmatrix}",
         color=PURE_GREEN,
-        font_size=24
+        font_size=font_size
     )
 
     # Add updaters that ONLY update content, not position
@@ -46,7 +46,7 @@ def DotProduct(scene: Scene, plane, plane_container, title, subtitle, debug: boo
             f"{a_y_tracker.get_value():.0f}" + 
             r"\end{bmatrix}",
             color=PURE_GREEN,
-            font_size=24
+            font_size=font_size
         )
         new_label.move_to(mob)
         mob.become(new_label)
@@ -56,7 +56,7 @@ def DotProduct(scene: Scene, plane, plane_container, title, subtitle, debug: boo
     vector_a_length = MathTex(
         f"|\\vec{{a}}| = \\sqrt{{{a_x_tracker.get_value():.0f}^2 + {a_y_tracker.get_value():.0f}^2}} = {np.sqrt(a_x_tracker.get_value()**2 + a_y_tracker.get_value()**2):.0f}",
         color=PURE_GREEN,
-        font_size=24
+        font_size=font_size
     )
 
     # Add updaters for length labels
@@ -64,7 +64,7 @@ def DotProduct(scene: Scene, plane, plane_container, title, subtitle, debug: boo
         new_length = MathTex(
             f"|\\vec{{a}}| = \\sqrt{{{a_x_tracker.get_value():.0f}^2 + {a_y_tracker.get_value():.0f}^2}} = {np.sqrt(a_x_tracker.get_value()**2 + a_y_tracker.get_value()**2):.0f}",
             color=PURE_GREEN,
-            font_size=24
+            font_size=font_size
         )
         new_length.move_to(mob)
         mob.become(new_length)
@@ -74,7 +74,7 @@ def DotProduct(scene: Scene, plane, plane_container, title, subtitle, debug: boo
     ############################################################
     # Create trackers for vector coordinates
     b_x_tracker = ValueTracker(1)
-    b_y_tracker = ValueTracker(2)
+    b_y_tracker = ValueTracker(-1)
 
     # VECTOR B with trackers
     vector_b = Arrow(
@@ -99,7 +99,7 @@ def DotProduct(scene: Scene, plane, plane_container, title, subtitle, debug: boo
         f"{b_y_tracker.get_value():.0f}" + 
         r"\end{bmatrix}",
         color=YELLOW,
-        font_size=24
+        font_size=font_size
     )
 
     # Add updaters that ONLY update content, not position
@@ -110,7 +110,7 @@ def DotProduct(scene: Scene, plane, plane_container, title, subtitle, debug: boo
             f"{b_y_tracker.get_value():.0f}" + 
             r"\end{bmatrix}",
             color=YELLOW,
-            font_size=24
+            font_size=font_size
         )
         new_label.move_to(mob)
         mob.become(new_label)
@@ -119,7 +119,7 @@ def DotProduct(scene: Scene, plane, plane_container, title, subtitle, debug: boo
     vector_b_length = MathTex(
         f"|\\vec{{b}}| = \\sqrt{{{b_x_tracker.get_value():.0f}^2 + {b_y_tracker.get_value():.0f}^2}} = {np.sqrt(b_x_tracker.get_value()**2 + b_y_tracker.get_value()**2):.0f}",
         color=YELLOW,
-        font_size=24
+        font_size=font_size
     )
 
     # Add updaters for length labels
@@ -127,7 +127,7 @@ def DotProduct(scene: Scene, plane, plane_container, title, subtitle, debug: boo
         new_length = MathTex(
             f"|\\vec{{b}}| = \\sqrt{{{b_x_tracker.get_value():.0f}^2 + {b_y_tracker.get_value():.0f}^2}} = {np.sqrt(b_x_tracker.get_value()**2 + b_y_tracker.get_value()**2):.0f}",
             color=YELLOW,
-            font_size=24
+            font_size=font_size
         )
         new_length.move_to(mob)
         mob.become(new_length)
