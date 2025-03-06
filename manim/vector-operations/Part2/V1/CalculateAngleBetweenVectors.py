@@ -183,6 +183,11 @@ def CalculateAngleBetweenVectors(
                 }",font_size=font_size).set_color(WHITE),
             ).arrange(RIGHT, buff=0.1),
         ).arrange(RIGHT, buff=0.1),
+        VGroup(
+            MathTex(r"\theta", color=ORANGE, font_size=font_size),
+            Text("=", font_size=font_size),
+            MathTex(f"{np.degrees(angle):.0f}°", font_size=font_size).set_color(ORANGE),
+        ).arrange(RIGHT, buff=0.1),
     ).arrange(DOWN, buff=0.25).to_edge(LEFT)
 
     def update_angle_formula(mob):
