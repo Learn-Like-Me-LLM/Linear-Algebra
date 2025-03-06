@@ -10,6 +10,8 @@ from Part2.V1.Index import Part2
 
 from Title import Title
 
+# sys.setrecursionlimit(3000)  # Increase from default 1000
+
 class VectorOperations(Scene):
     def construct(self):
         debug = True

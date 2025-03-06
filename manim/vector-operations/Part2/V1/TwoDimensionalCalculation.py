@@ -134,7 +134,7 @@ def TwoDimensionalCalculation(
 
     count = 0
     existing = set()
-    while count < 5:
+    while count < 3:
         while True:
             new_ax = np.random.randint(-1, 2)
             new_ay = np.random.randint(-1, 2)
@@ -155,12 +155,24 @@ def TwoDimensionalCalculation(
                 existing.add(vector_combo)
                 break
 
+        # print(f'CHECKING - 1 : ({new_ax}, {new_ay}) -- ({new_bx}, {new_by})')
+
+        # Animate both components of a vector together to avoid zero-length vectors during transitions
         scene.play(
             a_x_tracker.animate.set_value(new_ax),
             a_y_tracker.animate.set_value(new_ay),
             b_x_tracker.animate.set_value(new_bx),
             b_y_tracker.animate.set_value(new_by)
         )
+        # scene.play(
+        #     a_x_tracker.animate.set_value(new_ax),
+        #     a_y_tracker.animate.set_value(new_ay)
+        # )
+        # scene.play(
+        #     b_x_tracker.animate.set_value(new_bx),
+        #     b_y_tracker.animate.set_value(new_by)
+        # )
+        # print(f'...passed checking 1...')
         scene.wait(1.5)
         count += 1
     scene.play(FadeOut(unit_vector_dot_product_bounds))
@@ -168,12 +180,12 @@ def TwoDimensionalCalculation(
     # Optional: Demonstrate with larger vectors
     count = 0
     existing = set()
-    while count < 5:
+    while count < 3:
         while True:
-            new_ax = np.random.randint(-4, 7)
-            new_ay = np.random.randint(-4, 7)
-            new_bx = np.random.randint(-4, 7)
-            new_by = np.random.randint(-4, 7)
+            new_ax = np.random.randint(-4, 5)
+            new_ay = np.random.randint(-4, 5)
+            new_bx = np.random.randint(-4, 5)
+            new_by = np.random.randint(-4, 5)
             
             # Skip if either vector is zero
             if (new_ax == 0 and new_ay == 0) or (new_bx == 0 and new_by == 0):
@@ -189,12 +201,23 @@ def TwoDimensionalCalculation(
                 existing.add(vector_combo)
                 break
 
+        # print(f'CHECKING - 2 : ({new_ax}, {new_ay}) -- ({new_bx}, {new_by})')
+
         scene.play(
             a_x_tracker.animate.set_value(new_ax),
             a_y_tracker.animate.set_value(new_ay),
             b_x_tracker.animate.set_value(new_bx),
             b_y_tracker.animate.set_value(new_by)
         )
+        # scene.play(
+        #     a_x_tracker.animate.set_value(new_ax),
+        #     a_y_tracker.animate.set_value(new_ay)
+        # )
+        # scene.play(
+        #     b_x_tracker.animate.set_value(new_bx),
+        #     b_y_tracker.animate.set_value(new_by)
+        # )
+        # print(f'...passed checking 2...')
         scene.wait(1.5)
         count += 1
 

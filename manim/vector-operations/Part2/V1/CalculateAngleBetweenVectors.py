@@ -1,6 +1,10 @@
 from manim import *
 import numpy as np
 
+def get_vector_angle(vector):
+    """Calculate angle of vector relative to positive x-axis"""
+    return np.arctan2(vector[1], vector[0])
+
 def CalculateAngleBetweenVectors(
     scene: Scene, 
     plane, 
@@ -10,7 +14,7 @@ def CalculateAngleBetweenVectors(
     a_x_tracker, a_y_tracker, 
     b_x_tracker, b_y_tracker,
     length_labels,
-    debug: bool = False
+    debug: bool = True
 ):
     # Initial angle formula setup
     dot_product = a_x_tracker.get_value()*b_x_tracker.get_value() + a_y_tracker.get_value()*b_y_tracker.get_value()
@@ -21,16 +25,29 @@ def CalculateAngleBetweenVectors(
     # ANGLE FORMULA ############################################
     
     angle_formula = VGroup(
-        MathTex(
-            r"\vec{a} \cdot \vec{b} &= \|\vec{a}\|\|\vec{b}\|\cos(\theta) \\",
-            color=WHITE,
-            font_size=24
-        ),
-        MathTex(
-            f"\\begin{{bmatrix}}{a_x_tracker.get_value():.0f} \\\\ {a_y_tracker.get_value():.0f}\\end{{bmatrix}} \\cdot \\begin{{bmatrix}}{b_x_tracker.get_value():.0f} \\\\ {b_y_tracker.get_value():.0f}\\end{{bmatrix}} &= \\sqrt{{{a_x_tracker.get_value():.0f}^2 + {a_y_tracker.get_value():.0f}^2}}\\sqrt{{{b_x_tracker.get_value():.0f}^2 + {b_y_tracker.get_value():.0f}^2}}\\cos(\\theta) \\\\",
-            color=WHITE,
-            font_size=24
-        ),
+        VGroup(
+            MathTex(r"\vec{a}").set_color(PURE_GREEN),
+            MathTex(r"\cdot"),
+            MathTex(r"\vec{b}").set_color(YELLOW),
+            Text("="),
+            MathTex(r"\|\vec{a}\|",color=PURE_GREEN),
+            MathTex(r"\cdot"),
+            MathTex(r"\|\vec{b}\|",color=YELLOW),
+            MathTex(r"\cos(\theta)",color=ORANGE),
+        ).arrange(RIGHT, buff=0.1),
+        VGroup(
+            MathTex(f"\\begin{{bmatrix}}{a_x_tracker.get_value():.0f} \\\\ {a_y_tracker.get_value():.0f}\\end{{bmatrix}}",color=PURE_GREEN),
+            MathTex(r"\cdot"),
+            MathTex(f"\\begin{{bmatrix}}{b_x_tracker.get_value():.0f} \\\\ {b_y_tracker.get_value():.0f}\\end{{bmatrix}}", color=YELLOW),
+            Text("="),
+            VGroup(
+                MathTex(
+                    f"\\sqrt{{{a_x_tracker.get_value():.0f}^2 + {a_y_tracker.get_value():.0f}^2}}\\sqrt{{{b_x_tracker.get_value():.0f}^2 + {b_y_tracker.get_value():.0f}^2}}\\cos(\\theta) \\\\",
+                    color=WHITE,
+                    font_size=24
+                ),
+            ).arrange(RIGHT, buff=0.1),
+        ).arrange(RIGHT, buff=0.1),
         MathTex(
             f"{a_x_tracker.get_value():.0f} \\cdot {b_x_tracker.get_value():.0f} + {a_y_tracker.get_value():.0f} \\cdot {b_y_tracker.get_value():.0f} &= {mag_a:.0f} \\cdot {mag_b:.0f} \\cos(\\theta) \\\\",
             color=WHITE,
@@ -88,30 +105,45 @@ def CalculateAngleBetweenVectors(
     # ANGLE VISUALIZATION ######################################
     ############################################################
     # ANGLE VISUALIZATION > ARC ################################
-    angle_arc = Angle(
-        vector_a, vector_b,
-        radius=0.5,
+    angle_arc = AnnularSector(
+        inner_radius=0.5,
+        outer_radius=0.7,
+        angle=0,
+        start_angle=0,
         color=YELLOW,
-        other_angle=False
+        fill_opacity=0.3
     )
+
     def update_angle_arc(mob):
         try:
-            # Get vector angles in radians
-            angle_a = np.arctan2(a_y_tracker.get_value(), a_x_tracker.get_value())
-            angle_b = np.arctan2(b_y_tracker.get_value(), b_x_tracker.get_value())
-            
-            # Calculate the absolute difference between angles
-            angle_diff = (angle_b - angle_a) % (2 * PI)
-            
-            new_angle = Angle(
-                vector_a, vector_b,
-                radius=0.5,
-                color=YELLOW,
-                other_angle=(angle_diff > PI)  # Use other_angle when the difference is > 180°
+            # Get current vector positions
+            vec_a_start = vector_a.get_start()
+            vec_a_end = vector_a.get_end()
+            vec_b_start = vector_b.get_start() 
+            vec_b_end = vector_b.get_end()
+
+            # Calculate angle
+            angle = calculate_angle_between_vectors(
+                vec_a_end - vec_a_start,
+                vec_b_end - vec_b_start
             )
-            mob.become(new_angle)
-        except ValueError:  # Handles parallel vectors case
-            mob.become(VMobject())
+
+            # Create new arc without copying the entire mobject
+            new_arc = AnnularSector(
+                inner_radius=0.5,
+                outer_radius=0.7,
+                angle=angle,
+                start_angle=get_vector_angle(vec_a_end - vec_a_start)
+            )
+            
+            # Update points directly instead of using become()
+            mob.points = new_arc.points
+            
+        except Exception as e:
+            print(f"Angle calculation error: {e}")
+            mob.points = VMobject().points
+
+    # Add updater to angle arc
     angle_arc.add_updater(update_angle_arc)
 
     # ANGLE VISUALIZATION > LABEL ##############################
@@ -163,17 +195,60 @@ def CalculateAngleBetweenVectors(
     # RANDOMIZE VECTOR(s) #######################################
     ############################################################
     count = 0
-    while count < 2:
-        new_ax = np.random.randint(-5, 6)
-        new_ay = np.random.randint(-5, 6)
-        new_bx = np.random.randint(-5, 6)
-        new_by = np.random.randint(-5, 6)
-        
+    existing = set()
+    while count < 3:
+        while True:
+            new_ax = np.random.randint(-4, 5)
+            new_ay = np.random.randint(-4, 5)
+            new_bx = np.random.randint(-4, 5)
+            new_by = np.random.randint(-4, 5)
+            
+            # Skip if either vector is zero
+            if (new_ax == 0 and new_ay == 0) or (new_bx == 0 and new_by == 0):
+                continue
+                
+            # Skip if vectors are the same
+            if new_ax == new_bx and new_ay == new_by:
+                continue
+                
+            # Create tuple of vector components for tracking
+            vector_combo = (new_ax, new_ay, new_bx, new_by)
+            if vector_combo not in existing:
+                existing.add(vector_combo)
+                break
+
+        # print(f'CHECKING - 3 : ({new_ax}, {new_ay}) -- ({new_bx}, {new_by})')
         scene.play(
             a_x_tracker.animate.set_value(new_ax),
             a_y_tracker.animate.set_value(new_ay),
             b_x_tracker.animate.set_value(new_bx),
             b_y_tracker.animate.set_value(new_by)
         )
-        scene.wait(2)
+        # scene.play(
+        #     a_x_tracker.animate.set_value(new_ax),
+        #     a_y_tracker.animate.set_value(new_ay)
+        # )
+        # scene.play(
+        #     b_x_tracker.animate.set_value(new_bx),
+        #     b_y_tracker.animate.set_value(new_by)
+        # )
+        # print(f'...passed checking 2...')
+        scene.wait(1.5)
         count += 1
+
+def calculate_angle_between_vectors(v1, v2):
+    # Normalize vectors
+    v1_norm = np.linalg.norm(v1)
+    v2_norm = np.linalg.norm(v2)
+    
+    if v1_norm == 0 or v2_norm == 0:
+        return 0
+        
+    # Calculate dot product and angle
+    dot_product = np.dot(v1, v2)
+    cos_angle = dot_product / (v1_norm * v2_norm)
+    
+    # Handle numerical errors
+    cos_angle = np.clip(cos_angle, -1.0, 1.0)
+    
+    return np.arccos(cos_angle)

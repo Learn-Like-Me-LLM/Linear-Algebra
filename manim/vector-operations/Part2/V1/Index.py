@@ -13,8 +13,8 @@ def Part2(self, title, subtitle, debug: bool = False):
     # CREATE NUMBER PLANE ######################################
     ############################################################
     plane = makeNumberPlane( self, 
-                                x_range=[-5, 7, 1], 
-                                y_range=[-5, 7, 1], 
+                                x_range=[-5, 5, 1], 
+                                y_range=[-5, 5, 1], 
                                 x_length=3,
                                 y_length=3,
                                 axis_config={"include_numbers": False},

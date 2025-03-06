@@ -20,13 +20,34 @@ def DotProduct(scene: Scene, plane, plane_container, title, subtitle, font_size:
         color=PURE_GREEN
     )
     
-    # Update vector_a position
-    vector_a.add_updater(
-        lambda v: v.put_start_and_end_on(
-            plane.c2p(0,0),
-            plane.c2p(a_x_tracker.get_value(), a_y_tracker.get_value())
-        )
-    )
+    # Update vector_a position with logging
+    def update_vector_a(v):
+        start_point = plane.c2p(0, 0)
+        end_point = plane.c2p(a_x_tracker.get_value(), a_y_tracker.get_value())
+        print(f"Vector A: start={start_point}, end={end_point}, x={a_x_tracker.get_value()}, y={a_y_tracker.get_value()}")
+        
+        # Check if vector is too small to avoid cross product issues
+        if np.allclose(start_point, end_point, atol=1e-6):
+            v.set_opacity(0)  # Hide the vector when it's essentially zero
+        else:
+            # Temporarily remove the updater to avoid recursion
+            v.clear_updaters()
+            
+            # Create a new arrow and copy its properties
+            new_arrow = Arrow(
+                start=start_point,
+                end=end_point,
+                buff=0,
+                color=PURE_GREEN
+            )
+            v.become(new_arrow)
+            v.set_opacity(1)  # Show the vector when it has meaningful length
+            
+            # Re-add the updater
+            v.add_updater(update_vector_a)
+        
+        return v
+    vector_a.add_updater(update_vector_a)
 
     # Create the labels
     label_a = MathTex(
@@ -84,13 +105,34 @@ def DotProduct(scene: Scene, plane, plane_container, title, subtitle, font_size:
         color=YELLOW
     )
     
-    # Update vector_b position
-    vector_b.add_updater(
-        lambda v: v.put_start_and_end_on(
-            plane.c2p(0,0),
-            plane.c2p(b_x_tracker.get_value(), b_y_tracker.get_value())
-        )
-    )
+    # Update vector_b position with logging
+    def update_vector_b(v):
+        start_point = plane.c2p(0, 0)
+        end_point = plane.c2p(b_x_tracker.get_value(), b_y_tracker.get_value())
+        print(f"Vector B: start={start_point}, end={end_point}, x={b_x_tracker.get_value()}, y={b_y_tracker.get_value()}")
+        
+        # Check if vector is too small to avoid cross product issues
+        if np.allclose(start_point, end_point, atol=1e-6):
+            v.set_opacity(0)  # Hide the vector when it's essentially zero
+        else:
+            # Temporarily remove the updater to avoid recursion
+            v.clear_updaters()
+            
+            # Create a new arrow and copy its properties
+            new_arrow = Arrow(
+                start=start_point,
+                end=end_point,
+                buff=0,
+                color=YELLOW
+            )
+            v.become(new_arrow)
+            v.set_opacity(1)  # Show the vector when it has meaningful length
+            
+            # Re-add the updater
+            v.add_updater(update_vector_b)
+            
+        return v
+    vector_b.add_updater(update_vector_b)
 
     # Create the labels
     label_b = MathTex(
@@ -173,15 +215,15 @@ def DotProduct(scene: Scene, plane, plane_container, title, subtitle, font_size:
 
     # # LEFT EXAMPLE > Calculate Angle Between Vectors############
     # ############################################################
-    CalculateAngleBetweenVectors(
-        scene, 
-        plane, 
-        plane_container, 
-        vector_a, vector_b,  
-        vector_labels,
-        a_x_tracker, a_y_tracker,
-        b_x_tracker, b_y_tracker,
-        length_labels,
-        debug
-    )
-    scene.wait(1)
+    # CalculateAngleBetweenVectors(
+    #     scene, 
+    #     plane, 
+    #     plane_container, 
+    #     vector_a, vector_b,  
+    #     vector_labels,
+    #     a_x_tracker, a_y_tracker,
+    #     b_x_tracker, b_y_tracker,
+    #     length_labels,
+    #     debug
+    # )
+    # scene.wait(1)
