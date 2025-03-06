@@ -120,14 +120,14 @@ def CalculateAngleBetweenVectors(
             Text("=", font_size=font_size),
             VGroup(
                 MathTex(
-                    f"{np.sqrt(a_x_tracker.get_value()**2 + a_y_tracker.get_value()**2):.1f}", 
+                    f"{mag_a:.1f}", 
                     font_size=font_size
                 ).set_color(PURE_GREEN),
                 MathTex(
-                    f"{np.sqrt(b_x_tracker.get_value()**2 + b_y_tracker.get_value()**2):.1f}", 
+                    f"{mag_b:.1f}", 
                     font_size=font_size
                 ).set_color(YELLOW),
-            ).arrange(RIGHT, buff=0.1).to_edge(LEFT),
+            ).arrange(RIGHT, buff=0.1),
             VGroup(
                 MathTex(r"\cos(", font_size=font_size),
                 MathTex(r"\theta", color=ORANGE, font_size=font_size),
@@ -136,11 +136,11 @@ def CalculateAngleBetweenVectors(
         ).arrange(RIGHT, buff=0.1),
         VGroup(
             VGroup(
-                MathTex(f"{(a_x_tracker.get_value() * b_x_tracker.get_value() + a_y_tracker.get_value() * b_y_tracker.get_value()):.0f}",font_size=font_size).set_color(WHITE),
+                MathTex(f"{dot_product:.0f}", font_size=font_size).set_color(WHITE),
             ).arrange(RIGHT, buff=0.1),
             Text("=", font_size=font_size),
             VGroup(
-                MathTex(f"{(np.sqrt(a_x_tracker.get_value()**2 + a_y_tracker.get_value()**2) * np.sqrt(b_x_tracker.get_value()**2 + b_y_tracker.get_value()**2)):.1f}", font_size=font_size).set_color(WHITE),
+                MathTex(f"{(mag_a * mag_b):.1f}", font_size=font_size).set_color(WHITE),
                 VGroup(
                     MathTex(r"\cos(", font_size=font_size),
                     MathTex(r"\theta", color=ORANGE, font_size=font_size),
@@ -156,31 +156,7 @@ def CalculateAngleBetweenVectors(
             ).arrange(RIGHT, buff=0.1),
             Text("=", font_size=font_size),
             VGroup(
-                MathTex(f"{(a_x_tracker.get_value() * b_x_tracker.get_value() + a_y_tracker.get_value() * b_y_tracker.get_value()):.0f}",font_size=font_size).set_color(WHITE),
-                MathTex(r"\cdot", font_size=font_size),
-                MathTex(f"{(np.sqrt(a_x_tracker.get_value()**2 + a_y_tracker.get_value()**2) * np.sqrt(b_x_tracker.get_value()**2 + b_y_tracker.get_value()**2)):.1f}", font_size=font_size).set_color(WHITE),
-                # MathTex(f"{
-                #     (
-                #         (a_x_tracker.get_value() * b_x_tracker.get_value() + a_y_tracker.get_value() * b_y_tracker.get_value()) *
-                #         (np.sqrt(a_x_tracker.get_value()**2 + a_y_tracker.get_value()**2) * np.sqrt(b_x_tracker.get_value()**2 + b_y_tracker.get_value()**2))
-                #     ):.0f
-                # }",font_size=font_size).set_color(WHITE),
-            ).arrange(RIGHT, buff=0.1),
-        ).arrange(RIGHT, buff=0.1),
-        VGroup(
-            VGroup(
-                MathTex(r"\cos(", font_size=font_size),
-                MathTex(r"\theta", color=ORANGE, font_size=font_size),
-                MathTex(r")", font_size=font_size),
-            ).arrange(RIGHT, buff=0.1),
-            Text("=", font_size=font_size),
-            VGroup(
-                MathTex(f"{
-                    (
-                        (a_x_tracker.get_value() * b_x_tracker.get_value() + a_y_tracker.get_value() * b_y_tracker.get_value()) *
-                        (np.sqrt(a_x_tracker.get_value()**2 + a_y_tracker.get_value()**2) * np.sqrt(b_x_tracker.get_value()**2 + b_y_tracker.get_value()**2))
-                    ):.0f
-                }",font_size=font_size).set_color(WHITE),
+                MathTex(f"{dot_product / (mag_a * mag_b):.2f}", font_size=font_size).set_color(WHITE),
             ).arrange(RIGHT, buff=0.1),
         ).arrange(RIGHT, buff=0.1),
         VGroup(
@@ -190,42 +166,164 @@ def CalculateAngleBetweenVectors(
         ).arrange(RIGHT, buff=0.1),
     ).arrange(DOWN, buff=0.25).to_edge(LEFT)
 
-    def update_angle_formula(mob):
+    # Instead, add individual updaters for each step
+    def update_step_3(mob):
+        new_step = VGroup(
+            VGroup(
+                MathTex(f"\\begin{{bmatrix}}{a_x_tracker.get_value():.0f} \\\\ {a_y_tracker.get_value():.0f}\\end{{bmatrix}}", color=PURE_GREEN, font_size=font_size),
+                MathTex(r"\cdot", font_size=font_size),
+                MathTex(f"\\begin{{bmatrix}}{b_x_tracker.get_value():.0f} \\\\ {b_y_tracker.get_value():.0f}\\end{{bmatrix}}", color=YELLOW, font_size=font_size),
+            ).arrange(RIGHT, buff=0.1),
+            Text("=", font_size=font_size),
+            VGroup(
+                MathTex(r"\sqrt{", f"{{{a_x_tracker.get_value():.0f}}}^2 + {{{a_y_tracker.get_value():.0f}}}^2", r"}", font_size=font_size).set_color(PURE_GREEN),
+                MathTex(r"\sqrt{", f"{{{b_x_tracker.get_value():.0f}}}^2 + {{{b_y_tracker.get_value():.0f}}}^2", r"}", font_size=font_size).set_color(YELLOW),
+            ).arrange(RIGHT, buff=0.1),
+            VGroup(
+                MathTex(r"\cos(", font_size=font_size),
+                MathTex(r"\theta", color=ORANGE, font_size=font_size),
+                MathTex(r")", font_size=font_size),
+            ).arrange(RIGHT, buff=0.1),
+        ).arrange(RIGHT, buff=0.1)
+        
+        # Preserve the position
+        new_step.move_to(mob)
+        mob.become(new_step)
+    
+    def update_step_4(mob):
+        new_step = VGroup(
+            VGroup(
+                Text("(", font_size=font_size),
+                VGroup(
+                    MathTex(f"{a_x_tracker.get_value():.0f}", font_size=font_size).set_color(PURE_GREEN),
+                    MathTex(r"\cdot", font_size=font_size),
+                    MathTex(f"{b_x_tracker.get_value():.0f}", font_size=font_size).set_color(YELLOW),
+                ).arrange(RIGHT, buff=0.1),
+                Text(r") + (", font_size=font_size),
+                VGroup(
+                    MathTex(f"{a_y_tracker.get_value():.0f}", font_size=font_size).set_color(PURE_GREEN),
+                    MathTex(r"\cdot", font_size=font_size),
+                    MathTex(f"{b_y_tracker.get_value():.0f}", font_size=font_size).set_color(YELLOW),
+                ).arrange(RIGHT, buff=0.1),
+                Text(r")", font_size=font_size),
+            ).arrange(RIGHT, buff=0.1),
+            Text("=", font_size=font_size),
+            VGroup(
+                MathTex(
+                    r"\sqrt{" + f"{(a_x_tracker.get_value()**2):.0f} + {(a_y_tracker.get_value()**2):.0f}" + r"}", 
+                    font_size=font_size
+                ).set_color(PURE_GREEN),
+                MathTex(
+                    r"\sqrt{" + f"{(b_x_tracker.get_value()**2):.0f} + {(b_y_tracker.get_value()**2):.0f}" + r"}", 
+                    font_size=font_size
+                ).set_color(YELLOW),
+            ).arrange(RIGHT, buff=0.1),
+            VGroup(
+                MathTex(r"\cos(", font_size=font_size),
+                MathTex(r"\theta", color=ORANGE, font_size=font_size),
+                MathTex(r")", font_size=font_size),
+            ).arrange(RIGHT, buff=0.1),
+        ).arrange(RIGHT, buff=0.1)
+        
+        # Preserve the position
+        new_step.move_to(mob)
+        mob.become(new_step)
+    
+    def update_step_5(mob):
         dot_product = a_x_tracker.get_value()*b_x_tracker.get_value() + a_y_tracker.get_value()*b_y_tracker.get_value()
         mag_a = np.sqrt(a_x_tracker.get_value()**2 + a_y_tracker.get_value()**2)
         mag_b = np.sqrt(b_x_tracker.get_value()**2 + b_y_tracker.get_value()**2)
-        angle = np.arccos(np.clip(dot_product / (mag_a * mag_b), -1, 1))  # Clip to avoid floating point errors
         
-        new_formula = VGroup(
-            MathTex(
-                r"\vec{a} \cdot \vec{b} &= \|\vec{a}\|\|\vec{b}\|\cos(\theta) \\",
-                color=WHITE,
-                font_size=font_size
-            ),
-            MathTex(
-                f"\\begin{{bmatrix}}{a_x_tracker.get_value():.0f} \\\\ {a_y_tracker.get_value():.0f}\\end{{bmatrix}} \\cdot \\begin{{bmatrix}}{b_x_tracker.get_value():.0f} \\\\ {b_y_tracker.get_value():.0f}\\end{{bmatrix}} &= \\sqrt{{{a_x_tracker.get_value():.0f}^2 + {a_y_tracker.get_value():.0f}^2}}\\sqrt{{{b_x_tracker.get_value():.0f}^2 + {b_y_tracker.get_value():.0f}^2}}\\cos(\\theta) \\\\",
-                color=WHITE,
-                font_size=font_size
-            ),
-            MathTex(
-                f"{a_x_tracker.get_value():.0f} \\cdot {b_x_tracker.get_value():.0f} + {a_y_tracker.get_value():.0f} \\cdot {b_y_tracker.get_value():.0f} &= {mag_a:.0f} \\cdot {mag_b:.0f} \\cos(\\theta) \\\\",
-                color=WHITE,
-                font_size=font_size
-            ),
-            MathTex(
-                f"{dot_product:.0f} &= {mag_a * mag_b:.0f} \\cos(\\theta) \\\\",
-                color=WHITE,
-                font_size=font_size
-            ),
-            MathTex(
-                f"\\theta &= {angle:.0f} \\text{{ rad}} \\approx {np.degrees(angle):.0f}°",
-                color=WHITE,
-                font_size=font_size
-            )
-        ).arrange(DOWN, buff=0.1).to_edge(LEFT)
-        mob.become(new_formula)
+        new_step = VGroup(
+            VGroup(
+                MathTex(f"{a_x_tracker.get_value() * b_x_tracker.get_value():.0f}", font_size=font_size).set_color(WHITE),
+                MathTex(r" + ", font_size=font_size),
+                MathTex(f"{a_y_tracker.get_value() * b_y_tracker.get_value():.0f}", font_size=font_size).set_color(WHITE),
+            ).arrange(RIGHT, buff=0.1),
+            Text("=", font_size=font_size),
+            VGroup(
+                MathTex(f"{mag_a:.1f}", font_size=font_size).set_color(PURE_GREEN),
+                MathTex(f"{mag_b:.1f}", font_size=font_size).set_color(YELLOW),
+            ).arrange(RIGHT, buff=0.1),
+            VGroup(
+                MathTex(r"\cos(", font_size=font_size),
+                MathTex(r"\theta", color=ORANGE, font_size=font_size),
+                MathTex(r")", font_size=font_size),
+            ).arrange(RIGHT, buff=0.1),
+        ).arrange(RIGHT, buff=0.1)
+        
+        # Preserve the position
+        new_step.move_to(mob)
+        mob.become(new_step)
     
-    angle_formula.add_updater(update_angle_formula)
+    def update_step_6(mob):
+        dot_product = a_x_tracker.get_value()*b_x_tracker.get_value() + a_y_tracker.get_value()*b_y_tracker.get_value()
+        mag_a = np.sqrt(a_x_tracker.get_value()**2 + a_y_tracker.get_value()**2)
+        mag_b = np.sqrt(b_x_tracker.get_value()**2 + b_y_tracker.get_value()**2)
+        
+        new_step = VGroup(
+            VGroup(
+                MathTex(f"{dot_product:.0f}", font_size=font_size).set_color(WHITE),
+            ).arrange(RIGHT, buff=0.1),
+            Text("=", font_size=font_size),
+            VGroup(
+                MathTex(f"{(mag_a * mag_b):.1f}", font_size=font_size).set_color(WHITE),
+                VGroup(
+                    MathTex(r"\cos(", font_size=font_size),
+                    MathTex(r"\theta", color=ORANGE, font_size=font_size),
+                    MathTex(r")", font_size=font_size),
+                ).arrange(RIGHT, buff=0.1),
+            ).arrange(RIGHT, buff=0.1),
+        ).arrange(RIGHT, buff=0.1)
+        
+        # Preserve the position
+        new_step.move_to(mob)
+        mob.become(new_step)
+    
+    def update_step_7(mob):
+        dot_product = a_x_tracker.get_value()*b_x_tracker.get_value() + a_y_tracker.get_value()*b_y_tracker.get_value()
+        mag_a = np.sqrt(a_x_tracker.get_value()**2 + a_y_tracker.get_value()**2)
+        mag_b = np.sqrt(b_x_tracker.get_value()**2 + b_y_tracker.get_value()**2)
+        
+        new_step = VGroup(
+            VGroup(
+                MathTex(r"\cos(", font_size=font_size),
+                MathTex(r"\theta", color=ORANGE, font_size=font_size),
+                MathTex(r")", font_size=font_size),
+            ).arrange(RIGHT, buff=0.1),
+            Text("=", font_size=font_size),
+            VGroup(
+                MathTex(f"{dot_product / (mag_a * mag_b):.2f}", font_size=font_size).set_color(WHITE),
+            ).arrange(RIGHT, buff=0.1),
+        ).arrange(RIGHT, buff=0.1)
+        
+        # Preserve the position
+        new_step.move_to(mob)
+        mob.become(new_step)
+    
+    def update_step_8(mob):
+        dot_product = a_x_tracker.get_value()*b_x_tracker.get_value() + a_y_tracker.get_value()*b_y_tracker.get_value()
+        mag_a = np.sqrt(a_x_tracker.get_value()**2 + a_y_tracker.get_value()**2)
+        mag_b = np.sqrt(b_x_tracker.get_value()**2 + b_y_tracker.get_value()**2)
+        angle = np.arccos(np.clip(dot_product / (mag_a * mag_b), -1, 1))
+        
+        new_step = VGroup(
+            MathTex(r"\theta", color=ORANGE, font_size=font_size),
+            Text("=", font_size=font_size),
+            MathTex(f"{np.degrees(angle):.0f}°", font_size=font_size).set_color(ORANGE),
+        ).arrange(RIGHT, buff=0.1)
+        
+        # Preserve the position
+        new_step.move_to(mob)
+        mob.become(new_step)
+    
+    # Add updaters to each step individually
+    angle_formula[2].add_updater(update_step_3)
+    angle_formula[3].add_updater(update_step_4)
+    angle_formula[4].add_updater(update_step_5)
+    angle_formula[5].add_updater(update_step_6)
+    angle_formula[6].add_updater(update_step_7)
+    angle_formula[7].add_updater(update_step_8)
 
     # ANGLE VISUALIZATION ######################################
     ############################################################
