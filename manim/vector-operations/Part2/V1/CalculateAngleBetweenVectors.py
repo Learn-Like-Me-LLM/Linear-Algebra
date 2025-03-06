@@ -148,6 +148,25 @@ def CalculateAngleBetweenVectors(
                 ).arrange(RIGHT, buff=0.1),
             ).arrange(RIGHT, buff=0.1),
         ).arrange(RIGHT, buff=0.1),
+        VGroup(
+            VGroup(
+                MathTex(r"\cos(", font_size=font_size),
+                MathTex(r"\theta", color=ORANGE, font_size=font_size),
+                MathTex(r")", font_size=font_size),
+            ).arrange(RIGHT, buff=0.1),
+            Text("=", font_size=font_size),
+            VGroup(
+                MathTex(f"{(a_x_tracker.get_value() * b_x_tracker.get_value() + a_y_tracker.get_value() * b_y_tracker.get_value()):.0f}",font_size=font_size).set_color(WHITE),
+                MathTex(r"\cdot", font_size=font_size),
+                MathTex(f"{(np.sqrt(a_x_tracker.get_value()**2 + a_y_tracker.get_value()**2) * np.sqrt(b_x_tracker.get_value()**2 + b_y_tracker.get_value()**2)):.1f}", font_size=font_size).set_color(WHITE),
+                # MathTex(f"{
+                #     (
+                #         (a_x_tracker.get_value() * b_x_tracker.get_value() + a_y_tracker.get_value() * b_y_tracker.get_value()) *
+                #         (np.sqrt(a_x_tracker.get_value()**2 + a_y_tracker.get_value()**2) * np.sqrt(b_x_tracker.get_value()**2 + b_y_tracker.get_value()**2))
+                #     ):.0f
+                # }",font_size=font_size).set_color(WHITE),
+            ).arrange(RIGHT, buff=0.1),
+        ).arrange(RIGHT, buff=0.1),
     ).arrange(DOWN, buff=0.25).to_edge(LEFT)
 
     def update_angle_formula(mob):
