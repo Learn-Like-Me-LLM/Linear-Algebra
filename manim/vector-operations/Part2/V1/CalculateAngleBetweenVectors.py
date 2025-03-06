@@ -14,7 +14,7 @@ def CalculateAngleBetweenVectors(
     a_x_tracker, a_y_tracker, 
     b_x_tracker, b_y_tracker,
     length_labels,
-    font_size: int = 35,
+    font_size: int = 25,
     debug: bool = True
 ):
     
@@ -28,87 +28,112 @@ def CalculateAngleBetweenVectors(
     print('THE FONT_SIZE : ', font_size)
     angle_formula = VGroup(
         VGroup(
-            MathTex(r"\vec{a}", font_size=font_size).set_color(PURE_GREEN),
-            MathTex(r"\cdot", font_size=font_size),
-            MathTex(r"\vec{b}", font_size=font_size).set_color(YELLOW),
-            Text("=", font_size=font_size),
-            MathTex(r"\|\vec{a}\|",color=PURE_GREEN, font_size=font_size),
-            MathTex(r"\cdot", font_size=font_size),
-            MathTex(r"\|\vec{b}\|",color=YELLOW, font_size=font_size),
-            # MathTex(r"\cos(\theta)",color=ORANGE, font_size=font_size),
-            MathTex(r"\cos(", font_size=font_size),
-            MathTex(r"\theta", color=ORANGE, font_size=font_size),
-            MathTex(r")", font_size=font_size),
-        ).arrange(RIGHT, buff=0.1),
-        VGroup(
-            MathTex(f"\\begin{{bmatrix}}{a_x_tracker.get_value():.0f} \\\\ {a_y_tracker.get_value():.0f}\\end{{bmatrix}}",color=PURE_GREEN, font_size=font_size),
-            MathTex(r"\cdot", font_size=font_size),
-            MathTex(f"\\begin{{bmatrix}}{b_x_tracker.get_value():.0f} \\\\ {b_y_tracker.get_value():.0f}\\end{{bmatrix}}", color=YELLOW, font_size=font_size),
+            VGroup(
+                MathTex(r"\vec{a}", font_size=font_size).set_color(PURE_GREEN),
+                MathTex(r"\cdot", font_size=font_size),
+                MathTex(r"\vec{b}", font_size=font_size).set_color(YELLOW),
+            ).arrange(RIGHT, buff=0.1),
             Text("=", font_size=font_size),
             VGroup(
-                MathTex(
-                    f"\\sqrt{{{a_x_tracker.get_value():.0f}^2 + {a_y_tracker.get_value():.0f}^2}}\\sqrt{{{b_x_tracker.get_value():.0f}^2 + {b_y_tracker.get_value():.0f}^2}}\\cos(\\theta) \\\\",
-                    color=WHITE,
-                    font_size=font_size
-                ),
+                MathTex(r"\|\vec{a}\|",color=PURE_GREEN, font_size=font_size),
+                MathTex(r"\|\vec{b}\|",color=YELLOW, font_size=font_size),
+            ).arrange(RIGHT, buff=0.1),
+            VGroup(
+                MathTex(r"\cos(", font_size=font_size),
+                MathTex(r"\theta", color=ORANGE, font_size=font_size),
+                MathTex(r")", font_size=font_size),
             ).arrange(RIGHT, buff=0.1),
         ).arrange(RIGHT, buff=0.1),
         VGroup(
-            MathTex(
-                f"{a_x_tracker.get_value():.0f}",
-                color=WHITE,
-                font_size=font_size
-            ),
-            MathTex(
-                f"\\cdot {b_x_tracker.get_value():.0f}",
-                color=WHITE,
-                font_size=font_size
-            ),
-            Text("+"),
-            MathTex(
-                f"{a_y_tracker.get_value():.0f}",
-                color=WHITE,
-                font_size=font_size
-            ),
-            MathTex(
-                f"\\cdot {b_y_tracker.get_value():.0f}",
-                color=WHITE,
-                font_size=font_size
-            ),
-            Text("="),
             VGroup(
-                MathTex(
-                    f"{mag_a:.0f}",
-                    color=WHITE,
-                    font_size=font_size
-                ),
-                MathTex(
-                    f"\\cdot",
-                    color=WHITE,
-                    font_size=font_size
-                ),
-                MathTex(
-                    f"{mag_b:.0f}",
-                    color=WHITE,
-                    font_size=font_size
-                ),
-                MathTex(
-                    f"{mag_b:.0f} \\cos(\\theta) \\\\",
-                    color=WHITE,
-                    font_size=font_size
-                ),
+                MathTex(r"\vec{a}", font_size=font_size).set_color(PURE_GREEN),
+                MathTex(r"\cdot", font_size=font_size),
+                MathTex(r"\vec{b}", font_size=font_size).set_color(YELLOW),
+            ).arrange(RIGHT, buff=0.1),
+            Text("=", font_size=font_size),
+            VGroup(
+                MathTex(r"\sqrt{", r"{a_x}^2 + {a_y}^2", r"}", r"}", font_size=font_size).set_color(PURE_GREEN),
+                MathTex(r"\sqrt{", r"{b_x}^2 + {b_y}^2", r"}",font_size=font_size).set_color(YELLOW),
+            ).arrange(RIGHT, buff=0.1),
+            VGroup(
+                MathTex(r"\cos(", font_size=font_size),
+                MathTex(r"\theta", color=ORANGE, font_size=font_size),
+                MathTex(r")", font_size=font_size),
             ).arrange(RIGHT, buff=0.1),
         ).arrange(RIGHT, buff=0.1),
-        MathTex(
-            f"{dot_product:.0f} &= {mag_a * mag_b:.0f} \\cos(\\theta) \\\\",
-            color=WHITE,
-            font_size=font_size
-        ),
-        MathTex(
-            f"\\theta &= {np.arccos(dot_product / (mag_a * mag_b)):.0f} \\text{{ rad}} \\approx {np.degrees(np.arccos(dot_product / (mag_a * mag_b))):.0f}°",
-            color=WHITE,
-            font_size=font_size
-        )
+        VGroup(
+            VGroup(
+                MathTex(f"\\begin{{bmatrix}}{a_x_tracker.get_value():.0f} \\\\ {a_y_tracker.get_value():.0f}\\end{{bmatrix}}",color=PURE_GREEN, font_size=font_size),
+                MathTex(r"\cdot", font_size=font_size),
+                MathTex(f"\\begin{{bmatrix}}{b_x_tracker.get_value():.0f} \\\\ {b_y_tracker.get_value():.0f}\\end{{bmatrix}}", color=YELLOW, font_size=font_size),
+            ).arrange(RIGHT, buff=0.1),
+            Text("=", font_size=font_size),
+            VGroup(
+                MathTex(r"\sqrt{", f"{{{a_x_tracker.get_value():.0f}}}^2 + {{{a_y_tracker.get_value():.0f}}}^2", r"}", font_size=font_size).set_color(PURE_GREEN),
+                MathTex(r"\sqrt{", f"{{{b_x_tracker.get_value():.0f}}}^2 + {{{b_y_tracker.get_value():.0f}}}^2", r"}", font_size=font_size).set_color(YELLOW),
+            ).arrange(RIGHT, buff=0.1),
+            VGroup(
+                MathTex(r"\cos(", font_size=font_size),
+                MathTex(r"\theta", color=ORANGE, font_size=font_size),
+                MathTex(r")", font_size=font_size),
+            ).arrange(RIGHT, buff=0.1),
+        ).arrange(RIGHT, buff=0.1),
+        # VGroup(
+        #     MathTex(
+        #         f"{a_x_tracker.get_value():.0f}",
+        #         color=WHITE,
+        #         font_size=font_size
+        #     ),
+        #     MathTex(
+        #         f"\\cdot {b_x_tracker.get_value():.0f}",
+        #         color=WHITE,
+        #         font_size=font_size
+        #     ),
+        #     Text("+", font_size=font_size),
+        #     MathTex(
+        #         f"{a_y_tracker.get_value():.0f}",
+        #         color=WHITE,
+        #         font_size=font_size
+        #     ),
+        #     MathTex(
+        #         f"\\cdot {b_y_tracker.get_value():.0f}",
+        #         color=WHITE,
+        #         font_size=font_size
+        #     ),
+        #     Text("=", font_size=font_size),
+        #     VGroup(
+        #         MathTex(
+        #             f"{mag_a:.0f}",
+        #             color=WHITE,
+        #             font_size=font_size
+        #         ),
+        #         MathTex(
+        #             f"\\cdot",
+        #             color=WHITE,
+        #             font_size=font_size
+        #         ),
+        #         MathTex(
+        #             f"{mag_b:.0f}",
+        #             color=WHITE,
+        #             font_size=font_size
+        #         ),
+        #         MathTex(
+        #             f"{mag_b:.0f} \\cos(\\theta) \\\\",
+        #             color=WHITE,
+        #             font_size=font_size
+        #         ),
+        #     ).arrange(RIGHT, buff=0.1),
+        # ).arrange(RIGHT, buff=0.1),
+        # MathTex(
+        #     f"{dot_product:.0f} &= {mag_a * mag_b:.0f} \\cos(\\theta) \\\\",
+        #     color=WHITE,
+        #     font_size=font_size
+        # ),
+        # MathTex(
+        #     f"\\theta &= {np.arccos(dot_product / (mag_a * mag_b)):.0f} \\text{{ rad}} \\approx {np.degrees(np.arccos(dot_product / (mag_a * mag_b))):.0f}°",
+        #     color=WHITE,
+        #     font_size=font_size
+        # )
     ).arrange(DOWN, buff=0.5).to_edge(LEFT)
 
     def update_angle_formula(mob):
