@@ -156,7 +156,7 @@ def CalculateAngleBetweenVectors(
             ).arrange(RIGHT, buff=0.1),
             Text("=", font_size=font_size),
             VGroup(
-                MathTex(f"{dot_product / (mag_a * mag_b):.2f}", font_size=font_size).set_color(WHITE),
+                MathTex(f"{dot_product / (mag_a * mag_b):.1f}", font_size=font_size).set_color(WHITE),
             ).arrange(RIGHT, buff=0.1),
         ).arrange(RIGHT, buff=0.1),
         VGroup(
@@ -293,7 +293,7 @@ def CalculateAngleBetweenVectors(
             ).arrange(RIGHT, buff=0.1),
             Text("=", font_size=font_size),
             VGroup(
-                MathTex(f"{dot_product / (mag_a * mag_b):.2f}", font_size=font_size).set_color(WHITE),
+                MathTex(f"{dot_product / (mag_a * mag_b):.1f}", font_size=font_size).set_color(WHITE),
             ).arrange(RIGHT, buff=0.1),
         ).arrange(RIGHT, buff=0.1)
         

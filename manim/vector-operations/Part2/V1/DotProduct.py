@@ -95,7 +95,7 @@ def DotProduct(scene: Scene, plane, plane_container, title, subtitle, font_size:
     ############################################################
     # Create trackers for vector coordinates
     b_x_tracker = ValueTracker(1)
-    b_y_tracker = ValueTracker(-1)
+    b_y_tracker = ValueTracker(0)
 
     # VECTOR B with trackers
     vector_b = Arrow(
