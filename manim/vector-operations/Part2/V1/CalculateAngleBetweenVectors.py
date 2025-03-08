@@ -46,9 +46,12 @@ def CalculateAngleBetweenVectors(
         ).arrange(RIGHT, buff=0.1),
         VGroup(
             VGroup(
-                MathTex(r"\vec{a}", font_size=font_size).set_color(PURE_GREEN),
-                MathTex(r"\cdot", font_size=font_size),
-                MathTex(r"\vec{b}", font_size=font_size).set_color(YELLOW),
+                MathTex(r"\sum_{i=1}^{n}", font_size=font_size),
+                VGroup(
+                    MathTex(r"a_i", font_size=font_size).set_color(PURE_GREEN),
+                    MathTex(r"\cdot", font_size=font_size),
+                    MathTex(r"b_i", font_size=font_size).set_color(YELLOW),
+                ).arrange(RIGHT, buff=0.1),
             ).arrange(RIGHT, buff=0.1),
             Text("=", font_size=font_size),
             VGroup(
@@ -63,9 +66,7 @@ def CalculateAngleBetweenVectors(
         ).arrange(RIGHT, buff=0.1),
         VGroup(
             VGroup(
-                MathTex(f"\\begin{{bmatrix}}{a_x_tracker.get_value():.0f} \\\\ {a_y_tracker.get_value():.0f}\\end{{bmatrix}}",color=PURE_GREEN, font_size=font_size),
-                MathTex(r"\cdot", font_size=font_size),
-                MathTex(f"\\begin{{bmatrix}}{b_x_tracker.get_value():.0f} \\\\ {b_y_tracker.get_value():.0f}\\end{{bmatrix}}", color=YELLOW, font_size=font_size),
+                MathTex(f"{dot_product:.0f}", font_size=font_size).set_color(WHITE),
             ).arrange(RIGHT, buff=0.1),
             Text("=", font_size=font_size),
             VGroup(
@@ -80,19 +81,7 @@ def CalculateAngleBetweenVectors(
         ).arrange(RIGHT, buff=0.1),
         VGroup(
             VGroup(
-                Text("(", font_size=font_size),
-                VGroup(
-                    MathTex(f"{a_x_tracker.get_value():.0f}",font_size=font_size).set_color(PURE_GREEN),
-                    MathTex(r"\cdot", font_size=font_size),
-                    MathTex(f"{b_x_tracker.get_value():.0f}",font_size=font_size).set_color(YELLOW),
-                ).arrange(RIGHT, buff=0.1),
-                Text(r") + (", font_size=font_size),
-                VGroup(
-                    MathTex(f"{a_y_tracker.get_value():.0f}", font_size=font_size).set_color(PURE_GREEN),
-                    MathTex(r"\cdot", font_size=font_size),
-                    MathTex(f"{b_y_tracker.get_value():.0f}",font_size=font_size).set_color(YELLOW),
-                ).arrange(RIGHT, buff=0.1),
-                Text(r")", font_size=font_size),
+                MathTex(f"{dot_product:.0f}", font_size=font_size).set_color(WHITE),
             ).arrange(RIGHT, buff=0.1),
             Text("=", font_size=font_size),
             VGroup(
@@ -113,14 +102,11 @@ def CalculateAngleBetweenVectors(
         ).arrange(RIGHT, buff=0.1),
         VGroup(
             VGroup(
-                MathTex(f"{a_x_tracker.get_value() * b_x_tracker.get_value():.0f}",font_size=font_size).set_color(WHITE),
-                MathTex(r" + ", font_size=font_size),
-                MathTex(f"{a_y_tracker.get_value() * b_y_tracker.get_value():.0f}",font_size=font_size).set_color(WHITE),
+                MathTex(f"{dot_product:.0f}", font_size=font_size).set_color(WHITE),
             ).arrange(RIGHT, buff=0.1),
             Text("=", font_size=font_size),
             VGroup(
-                MathTex(
-                    f"{mag_a:.1f}", 
+                MathTex(f"{mag_a:.1f}", 
                     font_size=font_size
                 ).set_color(PURE_GREEN),
                 MathTex(
@@ -168,11 +154,10 @@ def CalculateAngleBetweenVectors(
 
     # Instead, add individual updaters for each step
     def update_step_3(mob):
+        dot_product = a_x_tracker.get_value()*b_x_tracker.get_value() + a_y_tracker.get_value()*b_y_tracker.get_value()
         new_step = VGroup(
             VGroup(
-                MathTex(f"\\begin{{bmatrix}}{a_x_tracker.get_value():.0f} \\\\ {a_y_tracker.get_value():.0f}\\end{{bmatrix}}", color=PURE_GREEN, font_size=font_size),
-                MathTex(r"\cdot", font_size=font_size),
-                MathTex(f"\\begin{{bmatrix}}{b_x_tracker.get_value():.0f} \\\\ {b_y_tracker.get_value():.0f}\\end{{bmatrix}}", color=YELLOW, font_size=font_size),
+                MathTex(f"{dot_product:.0f}", font_size=font_size).set_color(WHITE),
             ).arrange(RIGHT, buff=0.1),
             Text("=", font_size=font_size),
             VGroup(
@@ -191,21 +176,10 @@ def CalculateAngleBetweenVectors(
         mob.become(new_step)
     
     def update_step_4(mob):
+        dot_product = a_x_tracker.get_value()*b_x_tracker.get_value() + a_y_tracker.get_value()*b_y_tracker.get_value()
         new_step = VGroup(
             VGroup(
-                Text("(", font_size=font_size),
-                VGroup(
-                    MathTex(f"{a_x_tracker.get_value():.0f}", font_size=font_size).set_color(PURE_GREEN),
-                    MathTex(r"\cdot", font_size=font_size),
-                    MathTex(f"{b_x_tracker.get_value():.0f}", font_size=font_size).set_color(YELLOW),
-                ).arrange(RIGHT, buff=0.1),
-                Text(r") + (", font_size=font_size),
-                VGroup(
-                    MathTex(f"{a_y_tracker.get_value():.0f}", font_size=font_size).set_color(PURE_GREEN),
-                    MathTex(r"\cdot", font_size=font_size),
-                    MathTex(f"{b_y_tracker.get_value():.0f}", font_size=font_size).set_color(YELLOW),
-                ).arrange(RIGHT, buff=0.1),
-                Text(r")", font_size=font_size),
+                MathTex(f"{dot_product:.0f}", font_size=font_size).set_color(WHITE),
             ).arrange(RIGHT, buff=0.1),
             Text("=", font_size=font_size),
             VGroup(
@@ -236,9 +210,7 @@ def CalculateAngleBetweenVectors(
         
         new_step = VGroup(
             VGroup(
-                MathTex(f"{a_x_tracker.get_value() * b_x_tracker.get_value():.0f}", font_size=font_size).set_color(WHITE),
-                MathTex(r" + ", font_size=font_size),
-                MathTex(f"{a_y_tracker.get_value() * b_y_tracker.get_value():.0f}", font_size=font_size).set_color(WHITE),
+                MathTex(f"{dot_product:.0f}", font_size=font_size).set_color(WHITE),
             ).arrange(RIGHT, buff=0.1),
             Text("=", font_size=font_size),
             VGroup(

@@ -15,7 +15,7 @@ def GenericExample(
     # GENERIC EXAMPLE ##########################################
     ############################################################
 
-    formula = VGroup(
+    dot_product_formula = VGroup(
         VGroup(
             MathTex(r"\vec{a}").set_color(PURE_GREEN),
             MathTex(r"\cdot"),
@@ -93,7 +93,7 @@ def GenericExample(
                 Text(")"),
             ).arrange(RIGHT, buff=0.1),
         ).arrange(RIGHT, buff=0.1),
-        formula,
+        dot_product_formula,
     ).arrange(DOWN, buff=0.25).move_to(ORIGIN)
     
     # ANIMATE ##################################################

@@ -253,8 +253,6 @@ def TwoDimensionalCalculation(
     calculation[2].clear_updaters()
     calculation[3].clear_updaters()
     calculation[4].clear_updaters()
-    unit_vector_calculation_label[0][0].clear_updaters()
-    unit_vector_calculation_label[1][0].clear_updaters()
 
     # Then fade everything out together
     scene.play(
@@ -262,6 +260,5 @@ def TwoDimensionalCalculation(
             plane, 
             vector_a, vector_b, vector_labels, 
             calculation,  # Fade out the entire calculation VGroup
-            unit_vector_calculation_label  # Fade out the entire label VGroup
         )
     )
