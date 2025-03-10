@@ -11,7 +11,6 @@ from utils.next_to_updater import next_to_updater
 wait = 1
 
 def create_vector_with_labels(start_point, end_point, plane, color=YELLOW):
-    print(f'START POINT: {start_point} {type(start_point)}')
     vector = Arrow(
         start=start_point,
         end=end_point,

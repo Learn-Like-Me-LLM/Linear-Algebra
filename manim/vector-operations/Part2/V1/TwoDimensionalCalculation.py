@@ -10,12 +10,24 @@ def TwoDimensionalCalculation(
     b_x_tracker, b_y_tracker,
     debug: bool = False
 ) -> None:
-    
+    calculation_font_size = 35
+    buff = 0.1
+
+    # DOT PRODUCT DEFINITION ###################################
+    ############################################################
+    dot_product_definition = VGroup(
+        VGroup(
+            Text("a", font_size=calculation_font_size*0.75),
+            Text("single number (scalar)", slant=ITALIC, font_size=calculation_font_size*0.75).set_color(ORANGE),
+        ).arrange(RIGHT, buff=0.1),
+        VGroup(
+            Text("representing how closely aligned", font_size=calculation_font_size*0.75),
+            Text("or perpendicular 2 vectors are", font_size=calculation_font_size*0.75)
+        ).arrange(DOWN, buff=0.1),
+    ).arrange(DOWN, buff=0.1).next_to(plane, RIGHT, buff=0.25)  
 
     # FULL CALCULATION #########################################
     ############################################################
-    calculation_font_size = 35
-    buff = 0.1
     calculation = VGroup(
         VGroup(
             MathTex(r"\vec{a}", font_size=calculation_font_size).set_color(PURE_GREEN),
@@ -110,25 +122,21 @@ def TwoDimensionalCalculation(
 
     # ANIMATE ##################################################
     ############################################################
-    scene.play(Create(plane))
+    scene.play(Create(plane), Write(dot_product_definition))
     scene.play(Write(vector_a), Write(vector_b))
     scene.play(Write(vector_labels))
-    scene.wait(1)
     
     count = 0 
     while count < len(calculation):
         scene.play(Write(calculation[count]))
-        scene.wait(1)
+        scene.wait(0.75)
         count += 1
 
     # RANDOMIZE VECTOR(s) ######################################
-    initial_plane_width = plane.get_width()
-    initial_plane_height = plane.get_height()
-
     # Unit vector demonstrations
     unit_vector_dot_product_bounds = VGroup(
         Text("Unit Vector Dot Products are bound between -1 and 1", font_size=round(calculation_font_size*0.75)),
-        Text("0 represents perpendicular vectors", font_size=round(calculation_font_size*0.75))
+        Text("0 : perpendicular vectors / 1 : parallel vectors / -1 : inverse vectors", font_size=round(calculation_font_size*0.75))
     ).arrange(DOWN, buff=.3).to_edge(DOWN)
     scene.play(Write(unit_vector_dot_product_bounds))
 
@@ -145,7 +153,7 @@ def TwoDimensionalCalculation(
                 font_size=calculation_font_size
             ).set_color(YELLOW)
         ).arrange(RIGHT, buff=.1)
-    ).arrange(DOWN, buff=.2, aligned_edge=LEFT).to_edge(RIGHT)
+    ).arrange(DOWN, buff=.2, aligned_edge=LEFT).next_to(dot_product_definition, DOWN, buff=0.25)
     
     scene.play(Write(unit_vector_calculation_label))
 
@@ -226,23 +234,12 @@ def TwoDimensionalCalculation(
                 existing.add(vector_combo)
                 break
 
-        # print(f'CHECKING - 2 : ({new_ax}, {new_ay}) -- ({new_bx}, {new_by})')
-
         scene.play(
             a_x_tracker.animate.set_value(new_ax),
             a_y_tracker.animate.set_value(new_ay),
             b_x_tracker.animate.set_value(new_bx),
             b_y_tracker.animate.set_value(new_by)
         )
-        # scene.play(
-        #     a_x_tracker.animate.set_value(new_ax),
-        #     a_y_tracker.animate.set_value(new_ay)
-        # )
-        # scene.play(
-        #     b_x_tracker.animate.set_value(new_bx),
-        #     b_y_tracker.animate.set_value(new_by)
-        # )
-        # print(f'...passed checking 2...')
         scene.wait(1.5)
         count += 1
 
@@ -259,6 +256,8 @@ def TwoDimensionalCalculation(
         FadeOut(
             plane, 
             vector_a, vector_b, vector_labels, 
-            calculation,  # Fade out the entire calculation VGroup
+            calculation, 
+            unit_vector_calculation_label,
+            dot_product_definition
         )
     )

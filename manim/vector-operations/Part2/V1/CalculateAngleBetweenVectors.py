@@ -25,7 +25,6 @@ def CalculateAngleBetweenVectors(
     angle = np.arccos(dot_product / (mag_a * mag_b))
 
     # ANGLE FORMULA ############################################
-    print('THE FONT_SIZE : ', font_size)
     angle_formula = VGroup(
         VGroup(
             VGroup(
@@ -412,22 +411,12 @@ def CalculateAngleBetweenVectors(
                 existing.add(vector_combo)
                 break
 
-        # print(f'CHECKING - 3 : ({new_ax}, {new_ay}) -- ({new_bx}, {new_by})')
         scene.play(
             a_x_tracker.animate.set_value(new_ax),
             a_y_tracker.animate.set_value(new_ay),
             b_x_tracker.animate.set_value(new_bx),
             b_y_tracker.animate.set_value(new_by)
         )
-        # scene.play(
-        #     a_x_tracker.animate.set_value(new_ax),
-        #     a_y_tracker.animate.set_value(new_ay)
-        # )
-        # scene.play(
-        #     b_x_tracker.animate.set_value(new_bx),
-        #     b_y_tracker.animate.set_value(new_by)
-        # )
-        # print(f'...passed checking 2...')
         scene.wait(1.5)
         count += 1
 

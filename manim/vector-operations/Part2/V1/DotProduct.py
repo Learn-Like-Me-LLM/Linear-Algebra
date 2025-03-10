@@ -24,7 +24,6 @@ def DotProduct(scene: Scene, plane, plane_container, title, subtitle, font_size:
     def update_vector_a(v):
         start_point = plane.c2p(0, 0)
         end_point = plane.c2p(a_x_tracker.get_value(), a_y_tracker.get_value())
-        print(f"Vector A: start={start_point}, end={end_point}, x={a_x_tracker.get_value()}, y={a_y_tracker.get_value()}")
         
         # Check if vector is too small to avoid cross product issues
         if np.allclose(start_point, end_point, atol=1e-6):
@@ -109,7 +108,6 @@ def DotProduct(scene: Scene, plane, plane_container, title, subtitle, font_size:
     def update_vector_b(v):
         start_point = plane.c2p(0, 0)
         end_point = plane.c2p(b_x_tracker.get_value(), b_y_tracker.get_value())
-        print(f"Vector B: start={start_point}, end={end_point}, x={b_x_tracker.get_value()}, y={b_y_tracker.get_value()}")
         
         # Check if vector is too small to avoid cross product issues
         if np.allclose(start_point, end_point, atol=1e-6):
@@ -189,41 +187,38 @@ def DotProduct(scene: Scene, plane, plane_container, title, subtitle, font_size:
 
     # AMINATE > Generic Example#################################
     GenericExample(
-        scene, 
-        plane, plane_container, 
-        title, subtitle,
-        vector_a, vector_b, 
-        vector_labels,
-        a_x_tracker, a_y_tracker,
-        b_x_tracker, b_y_tracker,
-        debug
+        scene=scene, 
+        plane=plane,
+        # debug=debug
     )
     scene.wait(1)
 
     # # ANIMATE > 2D Calculation ##################################
     TwoDimensionalCalculation(
-        scene, 
-        plane, plane_container, 
-        title, subtitle,
-        vector_a, vector_b, 
-        vector_labels,
-        a_x_tracker, a_y_tracker,
-        b_x_tracker, b_y_tracker,
-        debug
-    )
-    scene.wait(1)
-
-    # LEFT EXAMPLE > Calculate Angle Between Vectors############
-    ############################################################
-    CalculateAngleBetweenVectors(
         scene=scene, 
         plane=plane, 
         plane_container=plane_container, 
-        vector_a=vector_a, vector_b=vector_b,  
+        title=title, 
+        subtitle=subtitle,
+        vector_a=vector_a, vector_b=vector_b, 
         vector_labels=vector_labels,
         a_x_tracker=a_x_tracker, a_y_tracker=a_y_tracker,
         b_x_tracker=b_x_tracker, b_y_tracker=b_y_tracker,
-        length_labels=length_labels,
         debug=debug
     )
     scene.wait(1)
+
+    # # LEFT EXAMPLE > Calculate Angle Between Vectors############
+    # ############################################################
+    # CalculateAngleBetweenVectors(
+    #     scene=scene, 
+    #     plane=plane, 
+    #     plane_container=plane_container, 
+    #     vector_a=vector_a, vector_b=vector_b,  
+    #     vector_labels=vector_labels,
+    #     a_x_tracker=a_x_tracker, a_y_tracker=a_y_tracker,
+    #     b_x_tracker=b_x_tracker, b_y_tracker=b_y_tracker,
+    #     length_labels=length_labels,
+    #     debug=debug
+    # )
+    # scene.wait(1)

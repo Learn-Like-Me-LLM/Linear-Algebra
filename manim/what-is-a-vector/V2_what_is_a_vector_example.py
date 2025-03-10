@@ -10,7 +10,6 @@ from utils.next_to_updater import next_to_updater
 from utils.make_number_plane import makeNumberPlane
 
 def create_vector_with_labels(start_point, end_point, plane, color=YELLOW):
-    print(f'START POINT: {start_point} {type(start_point)}')
     vector = Arrow(
         start=start_point,
         end=end_point,
