@@ -7,6 +7,7 @@ sys.path.append(str(Path(__file__).parent.parent))
 
 from Part1.V1.Index import Part1
 from Part2.V1.Index import Part2
+from Part3.V1.index import Part3
 
 from Title import Title
 
@@ -63,11 +64,26 @@ class VectorOperations(Scene):
         ###########################################################
         Part2(self, title, subtitle, debug)
 
-        # PART 3 ##################################################
-        # cross product ###########################################
-        ###########################################################
-        # TODO: build: 
-        # Part3(self, title, subtitle, debug)
+        # # UPDATE TITLE ############################################
+        # ###########################################################
+        # title, subtitle = Title(self, 
+        #                         debug,
+        #                         part="Part 3",
+        #                         subtitle = VGroup( 
+        #                             Text("Cross Product", font_size=40),
+        #                         ),
+        #                     )
+
+        # # PART 3 ##################################################
+        # # cross product ###########################################
+        # ###########################################################
+        # # TODO: build: 
+        # Part3(
+        #     self, 
+        #     title, 
+        #     subtitle, 
+        #     debug
+        # )
 
         # THANK YOU ###############################################
         ###########################################################
