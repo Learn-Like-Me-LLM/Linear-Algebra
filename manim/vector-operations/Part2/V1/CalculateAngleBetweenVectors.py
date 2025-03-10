@@ -24,6 +24,11 @@ def CalculateAngleBetweenVectors(
     mag_b = np.sqrt(b_x_tracker.get_value()**2 + b_y_tracker.get_value()**2)
     angle = np.arccos(dot_product / (mag_a * mag_b))
 
+    dot_product_usage = VGroup(
+        Text("The Dot Product can also be used", font_size=font_size),
+        Text("to calculate the angle between 2 vectors", font_size=font_size),
+    ).arrange(DOWN, buff=0.1).next_to(plane, RIGHT, buff=0.25)
+
     # ANGLE FORMULA ############################################
     angle_formula = VGroup(
         VGroup(
@@ -304,7 +309,7 @@ def CalculateAngleBetweenVectors(
         outer_radius=0.7,
         angle=0,
         start_angle=0,
-        color=YELLOW,
+        color=ORANGE,
         fill_opacity=0.3
     )
 
@@ -316,21 +321,31 @@ def CalculateAngleBetweenVectors(
             vec_b_start = vector_b.get_start() 
             vec_b_end = vector_b.get_end()
 
-            # Calculate angle
-            angle = calculate_angle_between_vectors(
-                vec_a_end - vec_a_start,
-                vec_b_end - vec_b_start
-            )
+            # Calculate vectors from origin
+            v1 = vec_a_end - vec_a_start
+            v2 = vec_b_end - vec_b_start
 
-            # Create new arc without copying the entire mobject
+            # Get start angle (angle of first vector)
+            start_angle = get_vector_angle(v1)
+            
+            # Calculate angle between vectors
+            angle = calculate_angle_between_vectors(v1, v2)
+            
+            # Check if we need to flip the start angle
+            v2_angle = get_vector_angle(v2)
+            angle_diff = (v2_angle - start_angle) % (2 * np.pi)
+            if angle_diff > np.pi:
+                start_angle = v2_angle
+            
+            # Create new arc
             new_arc = AnnularSector(
                 inner_radius=0.5,
                 outer_radius=0.7,
                 angle=angle,
-                start_angle=get_vector_angle(vec_a_end - vec_a_start)
+                start_angle=start_angle,
+                color=ORANGE
             )
             
-            # Update points directly instead of using become()
             mob.points = new_arc.points
             
         except Exception as e:
@@ -343,12 +358,13 @@ def CalculateAngleBetweenVectors(
     # ANGLE VISUALIZATION > LABEL ##############################
     angle_label = MathTex(
         f"{np.degrees(angle):.0f}°",
-        color=YELLOW,
+        color=ORANGE,
         font_size=font_size
     ).move_to(
         plane.c2p(0,0) + 
-        angle_arc.point_from_proportion(0.5) * 1.2
+        (angle_arc.get_center() - plane.c2p(0,0)) * 0.6
     )
+    
     def update_angle_label(mob):
         dot_product = a_x_tracker.get_value()*b_x_tracker.get_value() + a_y_tracker.get_value()*b_y_tracker.get_value()
         mag_a = np.sqrt(a_x_tracker.get_value()**2 + a_y_tracker.get_value()**2)
@@ -362,21 +378,38 @@ def CalculateAngleBetweenVectors(
             cos_theta = np.clip(dot_product / (mag_a * mag_b), -1, 1)
             angle = np.arccos(cos_theta)
         
+        # Calculate midpoint angle for label positioning
+        vec_a_end = vector_a.get_end() - vector_a.get_start()
+        vec_b_end = vector_b.get_end() - vector_b.get_start()
+        angle_a = get_vector_angle(vec_a_end)
+        angle_b = get_vector_angle(vec_b_end)
+        
+        # Calculate midpoint angle
+        mid_angle = (angle_a + angle_b) / 2
+        if abs(angle_a - angle_b) > np.pi:
+            mid_angle += np.pi  # Adjust for angle wrapping
+            
+        # Position at center of arc
+        label_position = plane.c2p(0,0) + 0.6 * np.array([
+            np.cos(mid_angle),
+            np.sin(mid_angle),
+            0
+        ])
+        
         new_label = MathTex(
             f"{np.degrees(angle):.0f}°",
-            color=YELLOW,
+            color=ORANGE,
             font_size=font_size
-        ).move_to(
-            plane.c2p(0,0) + 
-            (angle_arc.point_from_proportion(0.5) if not isinstance(angle_arc, VMobject) else UP*0.5) * 1.2
-        )
+        ).move_to(label_position)
+        
         mob.become(new_label)
+    
     angle_label.add_updater(update_angle_label)
 
     # ANIMATE ##################################################
     ############################################################
-    scene.play(Write(angle_formula[0]), Write(length_labels))
-    scene.play(FadeIn(plane, vector_a, vector_b, vector_labels))
+    # scene.play(FadeIn(plane, vector_a, vector_b, vector_labels))
+    scene.play(Write(angle_formula[0]), Write(dot_product_usage))
     scene.wait(1)
     scene.play(Write(angle_formula[1:]))
     scene.wait(1)
@@ -434,5 +467,7 @@ def calculate_angle_between_vectors(v1, v2):
     
     # Handle numerical errors
     cos_angle = np.clip(cos_angle, -1.0, 1.0)
+    angle = np.arccos(cos_angle)
     
-    return np.arccos(cos_angle)
+    # Always return the acute angle (≤ 180 degrees)
+    return min(angle, 2 * np.pi - angle)

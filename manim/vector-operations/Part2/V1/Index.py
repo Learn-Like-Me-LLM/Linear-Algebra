@@ -31,13 +31,5 @@ def Part2(self, title, subtitle, debug: bool = False):
 
     # Create dot product demonstration
     DotProduct(self, plane, plane_container, title, subtitle, debug)
-    
-    # CLEAN UP 
-    ############################################################
-    mobjects_to_remove = [m for m in self.mobjects]
-    self.play(
-        FadeOut(*mobjects_to_remove), 
-        run_time=2
-    )
 
     

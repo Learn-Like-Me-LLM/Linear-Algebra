@@ -254,8 +254,8 @@ def TwoDimensionalCalculation(
     # Then fade everything out together
     scene.play(
         FadeOut(
-            plane, 
-            vector_a, vector_b, vector_labels, 
+            # plane, 
+            # vector_a, vector_b, vector_labels, 
             calculation, 
             unit_vector_calculation_label,
             dot_product_definition

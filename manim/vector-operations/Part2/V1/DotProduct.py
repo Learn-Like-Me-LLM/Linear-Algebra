@@ -208,17 +208,25 @@ def DotProduct(scene: Scene, plane, plane_container, title, subtitle, font_size:
     )
     scene.wait(1)
 
-    # # LEFT EXAMPLE > Calculate Angle Between Vectors############
-    # ############################################################
-    # CalculateAngleBetweenVectors(
-    #     scene=scene, 
-    #     plane=plane, 
-    #     plane_container=plane_container, 
-    #     vector_a=vector_a, vector_b=vector_b,  
-    #     vector_labels=vector_labels,
-    #     a_x_tracker=a_x_tracker, a_y_tracker=a_y_tracker,
-    #     b_x_tracker=b_x_tracker, b_y_tracker=b_y_tracker,
-    #     length_labels=length_labels,
-    #     debug=debug
-    # )
-    # scene.wait(1)
+    # LEFT EXAMPLE > Calculate Angle Between Vectors############
+    ############################################################
+    CalculateAngleBetweenVectors(
+        scene=scene, 
+        plane=plane, 
+        plane_container=plane_container, 
+        vector_a=vector_a, vector_b=vector_b,  
+        vector_labels=vector_labels,
+        a_x_tracker=a_x_tracker, a_y_tracker=a_y_tracker,
+        b_x_tracker=b_x_tracker, b_y_tracker=b_y_tracker,
+        length_labels=length_labels,
+        debug=debug
+    )
+    scene.wait(1)
+
+    # CLEAN UP #################################################
+    ############################################################
+    mobjects_to_remove = [m for m in scene.mobjects]
+    scene.play(
+        FadeOut(*mobjects_to_remove), 
+        run_time=2
+    )
