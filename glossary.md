@@ -8,3 +8,5 @@
 | scalar multiplication | scalar multiplication is unambiguously a linear transformation, while others like addition, subtraction, dot product, and cross product are either bilinear or can be considered linear transformations when one argument is fixed |
 | scalar product        | *see scalar multiplication | 
 | linear transformation | 
+| commutative property | the order of the operands does not matter |
+| distributive property | multiplying the sum by a number is the same as multiplying each added by that number and then adding the products |  
