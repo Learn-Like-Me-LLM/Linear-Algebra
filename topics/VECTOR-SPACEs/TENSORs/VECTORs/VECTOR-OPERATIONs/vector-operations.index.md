@@ -4,9 +4,10 @@
 
 ## Operations Producing Scalars
 
-| Operation                         | Description |
-| ---                               | --- |
-| [dot product](./dot-product.md)   | Results in a scalar value |
+| Operation                                                                 | Description |
+| ---                                                                       | --- |
+| [vector addition & subtraction ](./vector-addition-and-subtraction.md)    |                           |
+| [dot product](./dot-product.md)                                           | Results in a scalar value |
 
 ## Operations Producing Vectors
 

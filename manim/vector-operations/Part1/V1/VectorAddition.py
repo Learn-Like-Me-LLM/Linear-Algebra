@@ -25,23 +25,23 @@ def Addition(self, plane, vector_a, vector_b, debug: bool = False):
             MathTex("\\vec{a}", font_size=30).set_color(PURE_GREEN),
             MathTex("+", font_size=30),
             MathTex("\\vec{b}", font_size=30).set_color(YELLOW),
-        ).arrange(RIGHT, buff=0.5).to_edge(LEFT, buff=1),
+        ).arrange(RIGHT, buff=0.1).to_edge(LEFT, buff=0.1),
         VGroup(
             MathTex(f"\\begin{{bmatrix}} {a_components[0]} \\\\ {a_components[1]} \\end{{bmatrix}}", font_size=30).set_color(PURE_GREEN),
             MathTex("+", font_size=30),
             MathTex(f"\\begin{{bmatrix}} {b_components[0]} \\\\ {b_components[1]} \\end{{bmatrix}}", font_size=30).set_color(YELLOW),
-        ).arrange(RIGHT, buff=0.5).to_edge(LEFT, buff=1),
+        ).arrange(RIGHT, buff=0.1).to_edge(LEFT, buff=0.1),
         VGroup(
             MathTex(f"\\begin{{bmatrix}} {a_components[0]} + {b_components[0]} \\\\ {a_components[1]} + {b_components[1]} \\end{{bmatrix}}", font_size=30).set_color(WHITE),
-        ).arrange(RIGHT, buff=0.5).to_edge(LEFT, buff=1),
+        ).arrange(RIGHT, buff=0.1).to_edge(LEFT, buff=0.1),
         VGroup(
             MathTex(f"\\begin{{bmatrix}} {c_components[0]} \\\\ {c_components[1]} \\end{{bmatrix}}", font_size=30).set_color(WHITE),
-        ).arrange(RIGHT, buff=0.5).to_edge(LEFT, buff=1),
-    ).arrange(DOWN).to_edge(LEFT, buff=1)
+        ).arrange(RIGHT, buff=0.1).to_edge(LEFT, buff=0.1),
+    ).arrange(DOWN).next_to(plane, LEFT, buff=1)
 
     commutative_description = VGroup(
-        Text("Commutative:", font_size=30).to_edge(LEFT, buff=1).set_color(BLUE),
-        MathTex("\\vec{a} + \\vec{b} = \\vec{b} + \\vec{a}", font_size=30).to_edge(LEFT, buff=1).set_color(BLUE),
+        Text("Commutative:", font_size=30).to_edge(LEFT, buff=.1).set_color(BLUE),
+        MathTex("\\vec{a} + \\vec{b} = \\vec{b} + \\vec{a}", font_size=30).to_edge(LEFT, buff=0.1).set_color(BLUE),
     ).arrange(DOWN).next_to(vector_equation, DOWN)
 
     vector_equation_commutative = VGroup(
@@ -49,19 +49,19 @@ def Addition(self, plane, vector_a, vector_b, debug: bool = False):
             MathTex("\\vec{b}", font_size=30).set_color(YELLOW),
             MathTex("+", font_size=30),
             MathTex("\\vec{a}", font_size=30).set_color(PURE_GREEN),
-        ).arrange(RIGHT, buff=0.5).to_edge(LEFT, buff=1),
+        ).arrange(RIGHT, buff=0.1).to_edge(LEFT, buff=0.1),
         VGroup(
             MathTex(f"\\begin{{bmatrix}} {b_components[0]} \\\\ {b_components[1]} \\end{{bmatrix}}", font_size=30).set_color(YELLOW),
             MathTex("+", font_size=30),
             MathTex(f"\\begin{{bmatrix}} {a_components[0]} \\\\ {a_components[1]} \\end{{bmatrix}}", font_size=30).set_color(PURE_GREEN),
-        ).arrange(RIGHT, buff=0.5).to_edge(LEFT, buff=1),
+        ).arrange(RIGHT, buff=0.1).to_edge(LEFT, buff=0.1),
         VGroup(
             MathTex(f"\\begin{{bmatrix}} {b_components[0]} + {a_components[0]} \\\\ {b_components[1]} + {a_components[1]} \\end{{bmatrix}}", font_size=30).set_color(WHITE),
-        ).arrange(RIGHT, buff=0.5).to_edge(LEFT, buff=1),
+        ).arrange(RIGHT, buff=0.1).to_edge(LEFT, buff=0.1),
         VGroup(
             MathTex(f"\\begin{{bmatrix}} {c_components[0]} \\\\ {c_components[1]} \\end{{bmatrix}}", font_size=30).set_color(WHITE),
-        ).arrange(RIGHT, buff=0.5).to_edge(LEFT, buff=1),
-    ).arrange(DOWN).to_edge(LEFT, buff=1)
+        ).arrange(RIGHT, buff=0.1).to_edge(LEFT, buff=0.1),
+    ).arrange(DOWN).next_to(plane, LEFT, buff=1)
 
     # CONFIGURE TIP TO TAIL VISUALIZATION (A) ##################
     ############################################################

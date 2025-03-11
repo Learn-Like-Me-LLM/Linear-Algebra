@@ -102,6 +102,6 @@ def GenericExample(
 
     scene.play(
         FadeOut(example[0:3]),
-        example[3].animate.scale(0.75).next_to(plane, UP, buff=0.25),
+        example[3].animate.next_to(plane, UP, buff=0.25),
         run_time=2
     )

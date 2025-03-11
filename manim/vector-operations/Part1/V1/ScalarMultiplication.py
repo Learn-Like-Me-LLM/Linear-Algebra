@@ -6,32 +6,26 @@ def ScalarMultiplication(self, plane, plane_container, debug: bool = False):
     # DEFINE SCALAR ############################################
     ############################################################
     scalar_title = Text("What is a Scalar?", font_size=40).move_to(ORIGIN)
-    scalar_title[7:13].set_color(BLUE)
+    scalar_title[7:13].set_color(ORANGE)
     
-    scalar_definition = Text("...a single real number", font_size=30).next_to(scalar_title, DOWN)
+    scalar_definition = VGroup(
+        Text("...a single real number", font_size=30),
+        Text("real number", font_size=30).set_color(ORANGE)
+    ).arrange(RIGHT, buff=0.1).next_to(scalar_title, DOWN)
     
     # Create brace under just the "real number" portion
-    real_number_part = scalar_definition[-10:]  # Get the "real number" part
-    brace = Brace(real_number_part, DOWN)
+    brace = Brace(scalar_definition[1], DOWN).set_color(ORANGE)
     
     real_number_def = VGroup(
-        Text(
-            "any number that can be represented on a number",
-            font_size=18,
-            slant=ITALIC
-        ),
-        Text(
-            "line including rational & irrational numbers",
-            font_size=18,
-            slant=ITALIC
-        )
+        Text("any number that can be represented on a number",font_size=18).set_color(ORANGE),
+        Text("line including rational & irrational numbers",font_size=18).set_color(ORANGE)
     ).arrange(DOWN, buff=0.1).next_to(brace, DOWN)
     
     scalar_definition_group = VGroup(scalar_title, scalar_definition, brace, real_number_def)
     
     # CREATE VECTORS ###########################################
     ############################################################
-    vector_a_points = [3, 2]
+    vector_a_points = [2, 2]
     
     vector_a = Arrow(
         plane.c2p(0, 0), 
@@ -44,21 +38,23 @@ def ScalarMultiplication(self, plane, plane_container, debug: bool = False):
     ############################################################
     scalar = 2
     scalar_label = VGroup(
-        MathTex("scalar_1 = ", font_size=30).set_color(YELLOW),
+        MathTex("scalar_1", font_size=30).set_color(YELLOW),
+        Text("=", font_size=30),
         MathTex(scalar, font_size=30).next_to(vector_a_label, DOWN).set_color(YELLOW)
-    ).arrange(RIGHT)
+    ).arrange(RIGHT, buff=0.1)
 
     scalar_2 = -0.5
     scalar_2_label = VGroup(
-        MathTex("scalar_2 = ", font_size=30).set_color(YELLOW),
+        MathTex("scalar_2", font_size=30).set_color(YELLOW),
+        Text("=", font_size=30),
         MathTex(scalar_2, font_size=30).next_to(scalar_label, DOWN).set_color(YELLOW)
-    ).arrange(RIGHT)
+    ).arrange(RIGHT, buff=0.1)
     
     vector_labels = VGroup(
         vector_a_label,
         scalar_label,
         scalar_2_label
-    ).arrange(DOWN).next_to(plane, DOWN)
+    ).arrange(DOWN, buff=0.1).next_to(plane, DOWN)
     plane_container.add(vector_a, vector_labels)
 
     # CONFIGURE RESULTING VECTOR(s) ############################
@@ -82,38 +78,38 @@ def ScalarMultiplication(self, plane, plane_container, debug: bool = False):
             MathTex("\\vec{a}", font_size=30).set_color(BLUE),
             MathTex("\\times", font_size=30),
             MathTex("s_1", font_size=30).set_color(YELLOW),
-        ).arrange(RIGHT, buff=0.5).to_edge(LEFT, buff=1),
+        ).arrange(RIGHT, buff=0.1).to_edge(LEFT, buff=1),
         VGroup(
             MathTex(f"\\begin{{bmatrix}} {vector_a_points[0]} \\\\ {vector_a_points[1]} \\end{{bmatrix}}", font_size=30).set_color(BLUE),
             MathTex("\\times", font_size=30),
             MathTex(scalar, font_size=30).set_color(YELLOW),
-        ).arrange(RIGHT, buff=0.5).to_edge(LEFT, buff=1),
+        ).arrange(RIGHT, buff=0.1).to_edge(LEFT, buff=1),
         VGroup(
             MathTex(f"\\begin{{bmatrix}} {vector_a_points[0]} \\times {scalar} \\\\ {vector_a_points[1]} \\times {scalar} \\end{{bmatrix}}", font_size=30).set_color(WHITE),
-        ).arrange(RIGHT, buff=0.5).to_edge(LEFT, buff=1),
+        ).arrange(RIGHT, buff=0.1).to_edge(LEFT, buff=1),
         VGroup(
             MathTex(f"\\begin{{bmatrix}} {vector_a_points[0] * scalar} \\\\ {vector_a_points[1] * scalar} \\end{{bmatrix}}", font_size=30).set_color(YELLOW),
-        ).arrange(RIGHT, buff=0.5).to_edge(LEFT, buff=1),
-    ).arrange(DOWN, buff=0.5).to_edge(LEFT, buff=1)
+        ).arrange(RIGHT, buff=0.1).to_edge(LEFT, buff=1),
+    ).arrange(DOWN, buff=0.1).next_to(plane, LEFT, buff=1)
     
     vector_equation_2 = VGroup(
         VGroup(
             MathTex("\\vec{a}", font_size=30).set_color(BLUE),
             MathTex("\\times", font_size=30),
             MathTex("s_2", font_size=30).set_color(YELLOW),
-        ).arrange(RIGHT, buff=0.5).to_edge(LEFT, buff=1),
+        ).arrange(RIGHT, buff=0.1).to_edge(LEFT, buff=1),
         VGroup(
             MathTex(f"\\begin{{bmatrix}} {vector_a_points[0]} \\\\ {vector_a_points[1]} \\end{{bmatrix}}", font_size=30).set_color(BLUE),
             MathTex("\\times", font_size=30),
             MathTex(scalar_2, font_size=30).set_color(YELLOW),
-        ).arrange(RIGHT, buff=0.5).to_edge(LEFT, buff=1),
+        ).arrange(RIGHT, buff=0.1).to_edge(LEFT, buff=1),
         VGroup(
             MathTex(f"\\begin{{bmatrix}} {vector_a_points[0]} \\times {scalar_2} \\\\ {vector_a_points[1]} \\times {scalar_2} \\end{{bmatrix}}", font_size=30).set_color(WHITE),
-        ).arrange(RIGHT, buff=0.5).to_edge(LEFT, buff=1),
+        ).arrange(RIGHT, buff=0.1).to_edge(LEFT, buff=1),
         VGroup(
             MathTex(f"\\begin{{bmatrix}} {vector_a_points[0] * scalar_2} \\\\ {vector_a_points[1] * scalar_2} \\end{{bmatrix}}", font_size=30).set_color(RED),
-        ).arrange(RIGHT, buff=0.5).to_edge(LEFT, buff=1),
-    ).arrange(DOWN, buff=0.5).to_edge(RIGHT, buff=1)
+        ).arrange(RIGHT, buff=0.1).to_edge(LEFT, buff=1),
+    ).arrange(DOWN, buff=0.1).next_to(plane, RIGHT, buff=1)
 
     # ANIMATE ##################################################
     ############################################################

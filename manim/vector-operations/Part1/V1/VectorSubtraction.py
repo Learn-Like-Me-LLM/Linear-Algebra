@@ -25,28 +25,28 @@ def Subtraction(self, plane, vector_a, vector_b, debug: bool = False):
             MathTex("\\vec{a}", font_size=30).set_color(PURE_GREEN),
             MathTex("-", font_size=30),
             MathTex("\\vec{b}", font_size=30).set_color(YELLOW),
-        ).arrange(RIGHT, buff=0.5).to_edge(LEFT, buff=1),
+        ).arrange(RIGHT, buff=0.1).to_edge(LEFT, buff=0.1),
         VGroup(
             MathTex("\\vec{a}", font_size=30).set_color(PURE_GREEN),
             MathTex("+", font_size=30),
             MathTex("-\\vec{b}", font_size=30).set_color(YELLOW),
-        ).arrange(RIGHT, buff=0.5).to_edge(LEFT, buff=1),
+        ).arrange(RIGHT, buff=0.1).to_edge(LEFT, buff=0.1),
         VGroup(
             MathTex(f"\\begin{{bmatrix}} {a_components[0]} \\\\ {a_components[1]} \\end{{bmatrix}}", font_size=30).set_color(PURE_GREEN),
             MathTex("+", font_size=30),
             MathTex(f"\\begin{{bmatrix}} {b_components[0] * -1} \\\\ {b_components[1] * -1} \\end{{bmatrix}}", font_size=30).set_color(YELLOW),
-        ).arrange(RIGHT, buff=0.5).to_edge(LEFT, buff=1),
+        ).arrange(RIGHT, buff=0.1).to_edge(LEFT, buff=0.1),
         VGroup(
             MathTex(f"\\begin{{bmatrix}} {a_components[0]} + {b_components[0] * -1} \\\\ {a_components[1]} + {b_components[1] * -1} \\end{{bmatrix}}", font_size=30).set_color(WHITE),
-        ).arrange(RIGHT, buff=0.5).to_edge(LEFT, buff=1),
+        ).arrange(RIGHT, buff=0.1).to_edge(LEFT, buff=0.1),
         VGroup(
             MathTex(f"\\begin{{bmatrix}} {c_components[0]} \\\\ {c_components[1]} \\end{{bmatrix}}", font_size=30).set_color(WHITE),
-        ).arrange(RIGHT, buff=0.5).to_edge(LEFT, buff=1),
-    ).arrange(DOWN).to_edge(RIGHT, buff=1)
+        ).arrange(RIGHT, buff=0.1).to_edge(LEFT, buff=0.1),
+    ).arrange(DOWN).next_to(plane, RIGHT, buff=1)
 
     commutative_description = VGroup(
-        Text("NOT Commutative:", font_size=30).to_edge(LEFT, buff=1).set_color(PURE_RED),
-        MathTex("\\vec{a} - \\vec{b} \\neq \\vec{b} - \\vec{a}", font_size=30).to_edge(LEFT, buff=1).set_color(PURE_RED),
+        Text("NOT Commutative:", font_size=30).to_edge(LEFT, buff=0.1).set_color(PURE_RED),
+        MathTex("\\vec{a} - \\vec{b} \\neq \\vec{b} - \\vec{a}", font_size=30).to_edge(LEFT, buff=0.1).set_color(PURE_RED),
     ).arrange(DOWN).next_to(vector_equation, DOWN)
 
     vector_equation_commutative = VGroup(
@@ -54,24 +54,24 @@ def Subtraction(self, plane, vector_a, vector_b, debug: bool = False):
             MathTex("\\vec{b}", font_size=30).set_color(YELLOW),
             MathTex("-", font_size=30),
             MathTex("\\vec{a}", font_size=30).set_color(PURE_GREEN),
-        ).arrange(RIGHT, buff=0.5).to_edge(LEFT, buff=1),
+        ).arrange(RIGHT, buff=0.1).to_edge(LEFT, buff=0.1),
         VGroup(
             MathTex("\\vec{b}", font_size=30).set_color(YELLOW),
             MathTex("+", font_size=30),
             MathTex("-\\vec{a}", font_size=30).set_color(PURE_GREEN),
-        ).arrange(RIGHT, buff=0.5).to_edge(LEFT, buff=1),
+        ).arrange(RIGHT, buff=0.1).to_edge(LEFT, buff=0.1),
         VGroup(
             MathTex(f"\\begin{{bmatrix}} {b_components[0]} \\\\ {b_components[1]} \\end{{bmatrix}}", font_size=30).set_color(YELLOW),
             MathTex("+", font_size=30),
             MathTex(f"\\begin{{bmatrix}} {a_components[0] * -1} \\\\ {a_components[1] * -1} \\end{{bmatrix}}", font_size=30).set_color(PURE_GREEN),
-        ).arrange(RIGHT, buff=0.5).to_edge(LEFT, buff=1),
+        ).arrange(RIGHT, buff=0.1).to_edge(LEFT, buff=0.1),
         VGroup(
             MathTex(f"\\begin{{bmatrix}} {b_components[0]} + {a_components[0] * -1} \\\\ {b_components[1]} + {a_components[1] * -1} \\end{{bmatrix}}", font_size=30).set_color(WHITE),
-        ).arrange(RIGHT, buff=0.5).to_edge(LEFT, buff=1),
+        ).arrange(RIGHT, buff=0.1).to_edge(LEFT, buff=0.1),
         VGroup(
             MathTex(f"\\begin{{bmatrix}} {b_components[0] + a_components[0] * -1} \\\\ {b_components[1] + a_components[1] * -1} \\end{{bmatrix}}", font_size=30).set_color(WHITE),
-        ).arrange(RIGHT, buff=0.5).to_edge(LEFT, buff=1),
-    ).arrange(DOWN).to_edge(RIGHT, buff=1)
+        ).arrange(RIGHT, buff=0.1).to_edge(LEFT, buff=0.1),
+    ).arrange(DOWN).next_to(plane, RIGHT, buff=1)
 
     # CONFIGURE TIP TO TAIL VISUALIZATION (A) ##################
     ############################################################
@@ -130,21 +130,21 @@ def Subtraction(self, plane, vector_a, vector_b, debug: bool = False):
         TransformFromCopy(vector_b, vector_equation[0][2]),
         FadeIn(vector_equation[0][1])
     )
-    self.wait(1.5)
+    self.wait(1)
 
     self.play(
         TransformFromCopy(vector_equation[0][0], vector_equation[1][0]),
         TransformFromCopy(vector_equation[0][2], vector_equation[1][2]),
         FadeIn(vector_equation[1][1])
     )
-    self.wait(1.5)
+    self.wait(1)
 
     self.play(
         TransformFromCopy(vector_equation[1][0], vector_equation[2][0]),
         TransformFromCopy(vector_equation[1][2], vector_equation[2][2]),
         FadeIn(vector_equation[2][1])
     )
-    self.wait(1.5)
+    self.wait(1)
 
     self.play(
         TransformFromCopy(
@@ -152,7 +152,7 @@ def Subtraction(self, plane, vector_a, vector_b, debug: bool = False):
             vector_equation[3][0]
         ),
     )
-    self.wait(1.5)
+    self.wait(1)
 
     # Show tip-to-tail method with vector_b moving to tip of vector_a
     self.play(
@@ -163,12 +163,12 @@ def Subtraction(self, plane, vector_a, vector_b, debug: bool = False):
             vector_equation[4][0]
         ),
     )
-    self.wait(1.5)
+    self.wait(1)
     
     self.play(
         Write(commutative_description),
     )
-    self.wait(1.5)
+    self.wait(1)
 
     self.play(
         Transform(vector_equation, vector_equation_commutative),
@@ -177,14 +177,14 @@ def Subtraction(self, plane, vector_a, vector_b, debug: bool = False):
             resultant_vector
         )
     )
-    self.wait(1.5)
+    self.wait(1)
 
     # Show tip-to-tail method with vector_b moving to tip of vector_a
     self.play(
         TransformFromCopy(vector_a, vector_a_tip_to_tail),
         GrowArrow(resultant_vector_commutative),
     )
-    self.wait(1.5)
+    self.wait(1)
 
     # CLEAN UP #################################################
     ############################################################
@@ -196,7 +196,6 @@ def Subtraction(self, plane, vector_a, vector_b, debug: bool = False):
             resultant_vector_commutative
         )
     )
-    self.wait(1.5)
 
     return
 

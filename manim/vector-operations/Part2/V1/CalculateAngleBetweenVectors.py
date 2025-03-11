@@ -453,6 +453,24 @@ def CalculateAngleBetweenVectors(
         scene.wait(1.5)
         count += 1
 
+    # CLEAN UP #################################################
+    ############################################################
+    # Remove Updaters to fix fade out
+    angle_arc.remove_updater(update_angle_arc)
+    angle_label.remove_updater(update_angle_label)
+    angle_formula.remove_updater(update_step_3)
+    angle_formula.remove_updater(update_step_4)
+    angle_formula.remove_updater(update_step_5)
+    angle_formula.remove_updater(update_step_6)
+    angle_formula.remove_updater(update_step_7)
+    angle_formula.remove_updater(update_step_8)
+    scene.play(
+        FadeOut(angle_arc), 
+        FadeOut(angle_label), 
+        FadeOut(angle_formula),
+        FadeOut(dot_product_usage)
+    )
+
 def calculate_angle_between_vectors(v1, v2):
     # Normalize vectors
     v1_norm = np.linalg.norm(v1)
